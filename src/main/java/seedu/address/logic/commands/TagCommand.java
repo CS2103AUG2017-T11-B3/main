@@ -5,7 +5,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -19,20 +18,16 @@ import seedu.address.model.tag.Tag;
 public class TagCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "tag";
-    
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags multiple people using the same tag. ";
-    
     public static final String MESSAGE_TAG_PERSONS_SUCCESS = "New tags added";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_DUPLICATE_TAG = "One or more person(s) already has this tag";
-    
     private final Index[] indices;
     private final Set<Tag> tags;
     
     public TagCommand(Index[] indices, Set<Tag> tagList) {
         requireNonNull(indices);
         requireNonNull(tagList);
-        
         this.indices = indices;
         tags = tagList;
     }
