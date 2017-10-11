@@ -54,3 +54,11 @@ Role: Developer +
 Responsibilities: UI
 
 '''
+
+=== Tan Pei Quan
+image::tpq95.jpg[width="150", align="left"]
+{empty}[http://github.com/tpq95[github]]
+
+Role: Developer +
+Responsibilities: Testing + Model
+
