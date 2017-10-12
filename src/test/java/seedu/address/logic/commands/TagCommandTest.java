@@ -76,4 +76,5 @@ import seedu.address.model.util.SampleDataUtil;
         tagCommand.setData(model, new CommandHistory(), new UndoRedoStack());
         return tagCommand;
     }
-}*/
+}
+*/
