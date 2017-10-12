@@ -16,6 +16,9 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Add same tag to a given list of people
+ */
 public class TagCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "tag";
@@ -25,7 +28,12 @@ public class TagCommand extends UndoableCommand {
     public static final String MESSAGE_DUPLICATE_TAG = "One or more person(s) already has this tag";
     private final Index[] indices;
     private final Set<Tag> tags;
-    
+
+    /**
+     * Create a TagCommand to add the specified
+     * @param indices
+     * @param tagList
+     */
     public TagCommand(Index[] indices, Set<Tag> tagList) {
         requireNonNull(indices);
         requireNonNull(tagList);
