@@ -39,7 +39,6 @@ public class StorageManagerTest {
         return testFolder.getRoot().getPath() + fileName;
     }
 
-
     @Test
     public void prefsReadSave() throws Exception {
         /*
@@ -64,7 +63,7 @@ public class StorageManagerTest {
         AddressBook original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        assertEquals(original.getTaskList(), new AddressBook(retrieved).getTaskList());
     }
 
     @Test
@@ -81,7 +80,6 @@ public class StorageManagerTest {
         assertTrue(eventsCollectorRule.eventsCollector.getMostRecent() instanceof DataSavingExceptionEvent);
     }
 
-
     /**
      * A Stub class to throw an exception when the save method is called
      */
@@ -96,6 +94,5 @@ public class StorageManagerTest {
             throw new IOException("dummy exception");
         }
     }
-
 
 }

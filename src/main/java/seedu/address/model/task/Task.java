@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.model.person.ReadOnlyPerson;
 
 /**
  * Represents a Task in the application.

@@ -15,9 +15,9 @@ import seedu.address.model.task.Task;
 public class XmlAdaptedTask {
     @XmlElement(required = true)
     private String description;
-    @XmlElement(required = true)
+    @XmlElement
     private String startDate;
-    @XmlElement(required = true)
+    @XmlElement
     private String deadline;
 
     /**
