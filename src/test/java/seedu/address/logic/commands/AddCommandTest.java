@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.Rule;
@@ -127,6 +128,12 @@ public class AddCommandTest {
         @Override
         public void changeTag(Tag oldTag, Tag newTag)
             throws PersonNotFoundException, DuplicatePersonException {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonTags(ReadOnlyPerson person, Set<Tag> tagSet)
+                throws PersonNotFoundException, DuplicatePersonException {
             fail("This method should not be called.");
         }
 
