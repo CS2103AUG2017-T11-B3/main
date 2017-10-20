@@ -6,7 +6,7 @@ import org.testfx.api.FxToolkit;
 
 import guitests.guihandles.MainWindowHandle;
 import seedu.address.TestApp;
-import seedu.address.testutil.TypicalAddressBook;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains helper methods that system tests require.
@@ -20,7 +20,7 @@ public class SystemTestSetupHelper {
      */
     public TestApp setupApplication() {
         try {
-            FxToolkit.setupApplication(() -> testApp = new TestApp(TypicalAddressBook::getTypicalAddressBook,
+            FxToolkit.setupApplication(() -> testApp = new TestApp(TypicalPersons::getTypicalAddressBook,
                     TestApp.SAVE_LOCATION_FOR_TESTING));
         } catch (TimeoutException te) {
             throw new AssertionError("Application takes too long to set up.");

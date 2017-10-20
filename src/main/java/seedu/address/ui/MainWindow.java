@@ -49,9 +49,6 @@ public class MainWindow extends UiPart<Region> {
     private StackPane browserPlaceholder;
 
     @FXML
-    private StackPane taskListPanelPlaceHolder;
-
-    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
@@ -131,9 +128,6 @@ public class MainWindow extends UiPart<Region> {
     void fillInnerParts() {
         browserPanel = new BrowserPanel();
         browserPlaceholder.getChildren().add(browserPanel.getRoot());
-
-        TaskListPanel taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        taskListPanelPlaceHolder.getChildren().add(taskListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
