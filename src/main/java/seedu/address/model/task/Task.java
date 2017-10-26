@@ -3,10 +3,15 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Represents a Task in the application.
@@ -17,22 +22,26 @@ public class Task implements ReadOnlyTask {
     private ObjectProperty<Description> description;
     private ObjectProperty<StartDate> startDate;
     private ObjectProperty<Deadline> deadline;
+    private ObjectProperty<UniqueTagList> taskTags;
 
     /**
      * Every field must be present and not null.
      */
-    public Task(Description description, StartDate startDate, Deadline deadline) {
+    public Task(Description description, StartDate startDate, Deadline deadline,
+                Set<Tag> taskTags) {
         requireAllNonNull(description, startDate, deadline);
         this.description = new SimpleObjectProperty<>(description);
         this.startDate = new SimpleObjectProperty<>(startDate);
         this.deadline = new SimpleObjectProperty<>(deadline);
+        // protect internal tags from changes in the arg list
+        this.taskTags = new SimpleObjectProperty<>(new UniqueTagList(taskTags));
     }
 
     /**
      * Creates a copy of the given ReadOnlyTask.
      */
     public Task(ReadOnlyTask source) {
-        this(source.getDescription(), source.getStartDate(), source.getDeadline());
+        this(source.getDescription(), source.getStartDate(), source.getDeadline(), source.getTags());
     }
 
     public void setDescription(Description description) {
@@ -64,7 +73,6 @@ public class Task implements ReadOnlyTask {
     }
 
     public void setDeadline(Deadline deadline) {
-
         this.deadline.set(requireNonNull(deadline));
     }
 
@@ -78,6 +86,26 @@ public class Task implements ReadOnlyTask {
         return deadline.get();
     }
 
+    /**
+     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    @Override
+    public Set<Tag> getTags() {
+        return Collections.unmodifiableSet(taskTags.get().toSet());
+    }
+
+    public ObjectProperty<UniqueTagList> tagProperty() {
+        return taskTags;
+    }
+
+    /**
+     * Replaces this task's tags with the tags in the argument tag set.
+     */
+    public void setTags(Set<Tag> replacement) {
+        taskTags.set(new UniqueTagList(replacement));
+    }
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
