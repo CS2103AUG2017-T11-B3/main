@@ -134,27 +134,27 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…` +
 Examples: +
 
 * `add n/John Doe p/92435671 e/john_d888@gmail.com a/ 207 Upper Street, Islington, LONDON, N1 1RL b/15-11-1986 t/friend t/roommate` +
-Creates a new contact and sets the NAME to John Does, EMAIL to john_d888@gmail.com, ADDRESS TO 207 Upper Street, Islington, LONDON, N1 1RL,
-BIRTHDAY to 15-11-1996 and two TAGs to friend and roommate.
+Creates a new contact and sets the name to John Does, email address to john_d888@gmail.com, address to 207 Upper Street, Islington, LONDON, N1 1RL,
+birthday to 15-11-1996 and two tags to friend and roommate.
 
 __Constraints:__
 
 Note the following constraints when trying to add new contacts:
 
-****
 * All fields must be provided and not blank.
 * Duplicate contacts [where all parameters, except tags, are exactly the same] are not allowed.
 * NAME must only contain letters in upper or lower case.
 * PHONE must contain at least three numbers.
 * BIRTHDAY must be a eight-digit number in “dd-mm-yyyy” format.
 * Every TAG must be preceded by a tag prefix, t/.
-****
 
 ==== Finding contacts: `find`
 
 Whether you’re a social butterfly or a networking pro, sifting through contacts can be a tedious task. To ease the process, you can filter people by name, tag or birthday. +
 
 Format: `find [NAME] [TAG] [BIRTHDAY]` +
+
+<replace persons with contacts>
 
 [TIP]
 * The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends` and BIRTHDAY, in the format of DD-MM, will match DD-MM_YYYY. e.g `17-07` will match `17-07-1995` +
@@ -192,7 +192,7 @@ Examples:
 
 * `list` +
 `delete 2` +
-Deletes the 2nd person in the entire contact list.
+Deletes the 2nd person in the contact list.
 
 * `find Betsy` +
 `delete 1` +
@@ -203,9 +203,9 @@ __Constraints__
 Note the following constraints when trying to delete contacts:
 
 ****
-* Deletes the person at the specified INDEX.
-* The INDEX refers to the index number shown in the most recent listing.
-* The INDEX *must be a positive integer* 1, 2, 3, ...
+* Deletes the person at the specified index.
+* INDEX refers to the index number shown in the most recent listing.
+* The index *must be a positive integer* 1, 2, 3, ...
 ****
 
 [coming in v2.0]
@@ -229,11 +229,11 @@ __Constraints__
 Note the following constraints when trying to add tags:
 
 ****
-* The INDEX *must be a positive integer* 1, 2, 3, ...
-* Each INDEX *must* be valid according to the current list of contacts.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Each index *must* be valid according to the current list of contacts.
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
-* Every INDEX must be separated by a comma.
-* Every TAG must have a prefix.
+* Every index must be separated by a comma.
+* Every tag must have a prefix.
 ****
 
 ==== Removing tags from multiple contacts : `detag`
@@ -260,7 +260,7 @@ __Constraints__
 <format the following lines in the same way they have been formatted before i.e. replace index with INDEX>
 
 ****
-* The index refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent listing.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
 
@@ -271,8 +271,8 @@ Editing existing contacts is an easy way to keep track of people who might be ch
 Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [t/TAG]`
 
 [TIP]
-* All items are NOT mandatory for editing.
-*Any number between one and multiple items might be given for successful edit. All items left out will continue to have their original PARAMETERS.
+*All items are NOT mandatory for editing. +
+*Any number between one and multiple items might be given for successful edit. All items left out will continue to have their original parameters. +
 
 Examples:
 
@@ -292,12 +292,12 @@ Note the following constraints when editing contacts:
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing.
-* The INDEX *must be a positive integer* 1, 2, 3, ...
+* The index *must be a positive integer* 1, 2, 3, ...
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* If a tag prefix is given without a TAG PARAMETER, then the tags will be replaced by a blank (deleted) i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
+* If a tag prefix is given without a TAG parameter, then the tags will be replaced by a blank (deleted) i.e adding of tags is not cumulative.
+* You can remove all the contacts' tags by typing `t/` without specifying any tags after it.
 ****
 
 ==== Listing contacts : `list` +
@@ -328,7 +328,7 @@ __Constraints__
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing.
-* INDEX *must be a positive integer* 1, 2, 3, ...
+* The index *must be a positive integer* 1, 2, 3, ...
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 ****
 
@@ -419,7 +419,7 @@ __Constraints__
 
 ****
 * Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
@@ -447,7 +447,7 @@ __Constraints__
 Note the following constraints when editing tasks:
 
 ****
-* The index refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 * If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.
@@ -469,7 +469,7 @@ Note the following constraints when archiving tasks:
 
 ****
 * Multiple indices *must* be separated by commas.
-* The index refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent listing.
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
@@ -493,6 +493,7 @@ Format: `select INDEX`
 <add constraints label and lead in phrase>
 <constraints are what limit the usage of the command. they should be after examples>
 
+<replace the index in the second constraint with just INDEX>
 ****
 * Selects the task at the specified `INDEX`.
 * The index refers to the index number shown in the most recent listing.
