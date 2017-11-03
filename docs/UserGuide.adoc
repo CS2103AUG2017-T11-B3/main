@@ -526,7 +526,8 @@ Format: `help`
 
 ==== Display past commands : `history`
 
-To display all the commands that you have entered in reverse chronological order, use: +
+If you need a reminder about what command you used in the past, Mobilize has you covered!
+The history command can display a list of your typed commands in reverse chronological order! +
 
 Format: `history`
 
@@ -568,7 +569,7 @@ Reverses the `delete 1` command +
 
 ==== Redoing previously undone commands : `redo`
 
-Trying to reverse the most recent command you undid?
+Trying to reverse the most recent command you undid? Just redo it!
 
 Format: `redo`
 
@@ -597,7 +598,7 @@ Reapplies the `clear` command +
 
 __Constraints__
 
-Note the following contraint when redoing commands:
+Note the following constraint when redoing commands:
 
 ****
 * If no commands were undone previously, the redo command will not work.
@@ -606,15 +607,13 @@ Note the following contraint when redoing commands:
 
 ==== Clearing all entries : `clear`
 
-To cle
-
-Clearing all entries from Mobilize requires just one command: +
+For a fresh start, just clear up all entries in Mobilize!
 
 Format: `clear`
 
 ==== Exiting the program : `exit`
 
-If you are done organizing for the day, you can exit the application!
+If you are done organizing for the day, you can easily exit the application!
 
 Format: `exit`
 
