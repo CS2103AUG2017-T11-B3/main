@@ -257,7 +257,7 @@ Deletes the `OwesMoney` tag of the 1st, 2nd and 4th person in the results of the
 __Constraints__
 
 <add a "note the following constraints..." phrase>
-<format the following lines in the same way they have been formatted before i.e. replace index with INDEX>
+<add the other index constraints>
 
 ****
 * INDEX refers to the index number shown in the most recent listing.
@@ -271,8 +271,8 @@ Editing existing contacts is an easy way to keep track of people who might be ch
 Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [t/TAG]`
 
 [TIP]
-*All items are NOT mandatory for editing. +
-*Any number between one and multiple items might be given for successful edit. All items left out will continue to have their original parameters. +
+* All items are NOT mandatory for editing. +
+* Any number between one and multiple items might be given for successful edit. All items left out will continue to have their original parameters. +
 
 Examples:
 
