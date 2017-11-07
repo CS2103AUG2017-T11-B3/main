@@ -29,11 +29,11 @@ with only a few clicks on the keyboard.
 This User Guide will lead you through the process of downloading and using Mobilize, along with a brief overview of its features and
 the different commands which will help you use these features.
 
-A summary of all commands can be found at the end of the guide.
+All commands are summarized at the end of the guide.
 
 ==  Key Features +
 
-Mobilize facilitates planning and management by combining two important features: an address book and a contact manager.
+Mobilize facilitates planning and management by combining two important features: an address book and a task manager.
 
 === Address Book
 
@@ -111,17 +111,22 @@ Command formats will be explained using the following syntax:
 * Items followed by “…” can be repeated multiple times. +
   For example, if a command syntax contains the item [t/TAG]…, then the final command can contain multiple ‘tags’, such as t/friend, t/family, t/classmate.
 * Parameters that are preceded by a prefix, can occur in any order. +
-  For example, if a command syntax contains the item add n/NAME p/PHONE a/ADDRESS, then the final command can contain these items in mixed order, such as add a/ADDRESS n/NAME p/PHONE.
+  For example, if a command syntax contains the item add n/NAME p/PHONE a/ADDRESS, then the final command can contain these items in a different order, such as add a/ADDRESS n/NAME p/PHONE.
 
 
 === Switching Between Address Book and Task Manager
-
+<<Try to add a lead in line. "When you're ready to start using Mobilize...">>
+<Replace with something like "to help make it easier to remember the command format, Mobilize uses two command modes that help you..."">>
 To help you save time to remember all the commands in Mobilize, you can toggle between address book and task manager using:
 
 Format: `switch ab` or `switch tm`
 
+<<give a brief note on what "ab" and "tm" stand for>>
+
 [NOTE]
 The default system of Mobilize will be address book.
+
+<<*default mode>>
 
 === Managing Contacts
 
@@ -134,8 +139,8 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…` +
 Examples: +
 
 * `add n/John Doe p/92435671 e/john_d888@gmail.com a/ 207 Upper Street, Islington, LONDON, N1 1RL b/15-11-1986 t/friend t/roommate` +
-Creates a new contact and sets the name to John Does, email address to john_d888@gmail.com, address to 207 Upper Street, Islington, LONDON, N1 1RL,
-birthday to 15-11-1996 and two tags to friend and roommate.
+Creates a new contact and sets the name to `John Doe`, email address to `john_d888@gmail.com`, address to `207 Upper Street, Islington, LONDON, N1 1RL`,
+birthday to `15-11-1996` and two tags to [`friend`] and [`roommate`].
 
 __Constraints:__
 
@@ -150,11 +155,11 @@ Note the following constraints when trying to add new contacts:
 
 ==== Finding contacts: `find`
 
-Whether you’re a social butterfly or a networking pro, sifting through contacts can be a tedious task. To ease the process, you can filter people by name, tag or birthday. +
+Whether you’re a social butterfly or a networking pro, sifting through contacts can be a tedious task. To ease the process, you can filter your contact list by name, tag or birthday. +
 
 Format: `find [NAME] [TAG] [BIRTHDAY]` +
 
-<replace persons with contacts>
+<replace persons with contacts in all the following>
 
 [TIP]
 * The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends` and BIRTHDAY, in the format of DD-MM, will match DD-MM_YYYY. e.g `17-07` will match `17-07-1995` +
@@ -163,6 +168,7 @@ Format: `find [NAME] [TAG] [BIRTHDAY]` +
 
 * Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` +
 
+<wrap tags with []>
 Examples: +
 
 * `find John` +
@@ -178,9 +184,8 @@ __Constraints:__
 
 Note the following constraints when trying to find contacts:
 
-****
 * Only full words will be matched e.g `Han` will not match `Hans`, `friend` will not match `friends` and `1707` will not match `17-07`
-****
+
 
 ==== Deleting contacts : `delete`
 
@@ -192,23 +197,21 @@ Examples:
 
 * `list` +
 `delete 2` +
-Deletes the 2nd person in the contact list.
+Deletes the 2nd contact in the list.
 
 * `find Betsy` +
 `delete 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st contact in the result list of the `find` command.
 
 __Constraints__
 
 Note the following constraints when trying to delete contacts:
 
-****
-* Deletes the person at the specified index.
-* INDEX refers to the index number shown in the most recent listing.
+* Deletes the contact at the specified index.
+* INDEX refers to the index number shown in the most recent contact listing.
 * The index *must be a positive integer* 1, 2, 3, ...
-****
 
-[coming in v2.0]
+
 ==== Tagging multiple contacts : `tag` +
 
 Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.
@@ -222,23 +225,24 @@ You can add multiple tags to multiple contacts by repeating the tag prefix.
 Example:
 
 `tag 1, 2, 3 t/friend t/family` +
-Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] and [family].
+Results in all contacts in indices 1, 2 and 3 being tagged with both [`friend`] and [`family`].
 
 __Constraints__
 
 Note the following constraints when trying to add tags:
 
-****
 * The index *must be a positive integer* 1, 2, 3, ...
 * Each index *must* be valid according to the current list of contacts.
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 * Every index must be separated by a comma.
 * Every tag must have a prefix.
-****
+
 
 ==== Removing tags from multiple contacts : `detag`
 
 <add a lead in to interact with the user>
+<replace persons with contacts>
+<replace with single sentence without "use:">
 To delete the specified tag of persons identified by the index number, use: +
 
 Format: `detag INDEX... [t/TAG]`
@@ -246,23 +250,23 @@ Format: `detag INDEX... [t/TAG]`
 <replace with "examples:">
 For example:
 
+<wrap tags with []>
+
 * `list` +
 `detag 2 t/friends` +
-Deletes the `friends` tag of the 2nd person in the address book. <replace with "entire contact list">
+Deletes the `friends` tag of the 2nd person in the address book.
 
 * `find Betsy` +
 `detag 1, 2, 4 t/OwesMoney` +
-Deletes the `OwesMoney` tag of the 1st, 2nd and 4th person in the results of the `find` command.
+Deletes the `OwesMoney` tag of the 1st, 2nd and 4th person in the results of the `find` command.<*contacts *result list>
 
 __Constraints__
 
 <add a "note the following constraints..." phrase>
 <add the other index constraints>
 
-****
-* INDEX refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent contact listing.
 * The index *must be a positive integer* 1, 2, 3, ...
-****
 
 ==== Editing contacts : `edit` +
 
@@ -272,17 +276,17 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [t/TAG
 
 [TIP]
 * All items are NOT mandatory for editing. +
-* Any number between one and multiple items might be given for successful edit. All items left out will continue to have their original parameters. +
+* Any number between one and multiple items might be given for a successful edit. All items left out will continue to have their original parameters. +
 
 Examples:
 
 *`edit 1 n/Jane Doe p/92413567 a/Singapore e/jane@gmail.com b/09-08-1997 t/sister` +
-Edits the name of the first person to be `Jane Doe`, phone number to be `92413567`, address to be `Singapore`, email to be `jane@gmail.com`,
-birthday to be `09-08-1997` and tag to be `sister`.
+Edits the name of the first contact to be `Jane Doe`, phone number to be `92413567`, address to be `Singapore`, email to be `jane@gmail.com`,
+birthday to be `09-08-1997` and tag to be [`sister`].
 * `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 +
 
@@ -290,15 +294,14 @@ __Constraints__
 
 Note the following constraints when editing contacts:
 
-****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing.
+* INDEX refers to the index number shown in the last contact listing.
 * The index *must be a positive integer* 1, 2, 3, ...
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If a tag prefix is given without a TAG parameter, then the tags will be replaced by a blank (deleted) i.e adding of tags is not cumulative.
 * You can remove all the contacts' tags by typing `t/` without specifying any tags after it.
-****
+
 
 ==== Listing contacts : `list` +
 To go back to the default list of contacts after a round of filtering, use the list command.
@@ -307,7 +310,7 @@ Format: `list`
 
 ==== Selecting contacts : `select`
 
-Selecting a contact is an easy way to locate a contact on Google Maps.
+Selecting a contact is an easy way to locate a contact's address on Google Maps.
 
 Format: `select INDEX`
 
@@ -315,16 +318,16 @@ Examples:
 
 * `list` +
 `select 2` +
-Selects the 2nd person in the address book. <replace with "entire contact list" and add detail about their location showing up>
+Selects the 2nd contact in the address book. <add detail about their location showing up>
 
 * `find Betsy` +
 `select 1` +
-Selects the 1st person in the results of the `find` command. <add detail about their location showing up>
+Selects the 1st contact in the results of the `find` command. <add detail about their location showing up>
 
 __Constraints__
 
 <add a "note the following constraints..." lead in line>
-<replace "edits" in the first constraint with "selects">
+<remove the "edits...INDEX" part>
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing.
@@ -347,7 +350,7 @@ Use prefixes:
 Format: `add DESCRIPTION [from START DATE] [by/on DEADLINE] [t/TAG]…`
 
 [NOTE]
-* If entering a date, it must follow the MONTH-DAY-YEAR format.
+* If you want to enter a date, it must follow the MONTH-DAY-YEAR format.
 
 * Words or phrases like 'tomorrow', 'yesterday', 'Tue', 'Tuesday', 'next Mon', 'day before yesterday', '5 Dec', '5/9/2017' and 'the 8th of Jan' are all valid dates.
 
@@ -357,19 +360,17 @@ Format: `add DESCRIPTION [from START DATE] [by/on DEADLINE] [t/TAG]…`
 Examples:
 
 * `add recess week from tomorrow by 15 Sep`
-Sets the description to "recess week" start date to the next day and the deadline to the 15th of September in the current or upcoming year.
+Sets the description to `recess week` start date to the next day and the deadline to the `15th of September` in the current or upcoming year.
 
 * `add get groceries`
-Sets the description to "get groceries" leaving the other parameters blank.
+Sets the description to `get groceries` leaving the other parameters blank.
 
 _Constraints_ +
 
 Note the following constraints when adding tasks:
 
-****
 * Dates *must* be preceded by one of the prefixes.
 * Invalid dates (such as 32 Jan) will not be flagged by Mobilize and will be replaced in a task card by an incorrect date (such as Feb 1 '48).
-****
 
 ==== Finding tasks by description or deadline: `find`
 <add lead in line about filtering to interact with user>
@@ -416,10 +417,11 @@ Format: `delete INDEX`
 __Constraints__
 
 <add lead in "Note the following...">
+<remove the first constraint, it's covered by the description>
 
 ****
 * Deletes the task at the specified `INDEX`.
-* INDEX refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent listing. <task listing*>
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
@@ -436,8 +438,8 @@ One or more parameters can be specified.
 For example:
 
 *`edit 1 exams from 4th Dec by 5th Dec` +
-Changes all parameters of the task at INDEX 1 to set task description to "exams", start date to "Mon, Dec 4, '17"
-and deadline to "Tue, Dec 5, '17"
+Changes all parameters of the task at INDEX 1 to set task description to `exams`, start date to `Mon, Dec 4, '17`
+and deadline to `Tue, Dec 5, '17`
 
 *`edit 2 from tomorrow` +
 Changes the start date of the task at INDEX 2 to the date of the following day.
@@ -447,7 +449,7 @@ __Constraints__
 Note the following constraints when editing tasks:
 
 ****
-* INDEX refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent task listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 * If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.
@@ -493,7 +495,7 @@ Format: `select INDEX`
 <add constraints label and lead in phrase>
 <constraints are what limit the usage of the command. they should be after examples>
 
-<replace the index in the second constraint with just INDEX>
+<replace the index in the second constraint with just INDEX + *recent task listing>
 ****
 * Selects the task at the specified `INDEX`.
 * The index refers to the index number shown in the most recent listing.
@@ -507,7 +509,7 @@ Examples:
 Selects the 2nd task in the task manager.
 * `find finish` +
 `select 1` +
-Selects the 1st task in the results of the `find` command.
+Selects the 1st task in the results of the `find` command. <*result list>
 
 <NOTEs are specifications of what makes the command easier to use.
 NOTEs should also be before the examples.>
@@ -537,6 +539,12 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
+__Constraints__
+
+Note the following constraint when viewing your command history:
+
+* Only the commands used while the application is open in the current session, can be viewed.
+
 // tag::undoredo[]
 ==== Undoing previous commands : `undo`
 
@@ -554,7 +562,8 @@ Examples:
 
 * `delete 1` +
 `list` +
-`undo` (reverses the `delete 1` command) +
+`undo` +
+Reverses the `delete 1` command +
 
 * `select 1` +
 `list` +
@@ -567,6 +576,15 @@ The `undo` command fails as there are no undoable commands executed previously.
 Reverses the `clear` command +
 `undo` +
 Reverses the `delete 1` command +
+
+__Constraints__
+
+Note the following constraint when undoing commands:
+
+
+* Only commands used while the application is open in an active session, can be undone.
+* If no commands were used previously, the undo command will not work.
+
 
 ==== Redoing previously undone commands : `redo`
 
@@ -601,9 +619,9 @@ __Constraints__
 
 Note the following constraint when redoing commands:
 
-****
+
 * If no commands were undone previously, the redo command will not work.
-****
+
 // end::undoredo[]
 
 ==== Clearing all entries : `clear`
@@ -620,8 +638,8 @@ Format: `exit`
 
 === Saving the data
 
-Mobilize data is saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
+Data from Mobilize is saved in the hard disk automatically after using any command that changes the data. +
+There is no need to save it manually.
 
 == FAQ
 
@@ -651,12 +669,10 @@ e.g. `switch ab` or `switch tm`
 __AddressBook__
 
 ****
-*Add* : `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague` +
-*Delete* : `delete INDEX` +
-e.g. `delete 3` +
-*Tag Multiple Contacts* : `tag [INDEX]... t/[TAG]...` +
-e.g. `tag 1,2 t/friend t/classmates` +
+Command | Format | Example
+*Add* | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague` +
+*Delete* | `delete INDEX` | `delete 3` +
+*Tag Multiple Contacts* | `tag [INDEX]... t/[TAG]...` | `tag 1,2 t/friend t/classmates` +
 *Delete Tags from Multiple Contacts* : `detag [INDEX]... [t/TAG]` +
 e.g. `detag 1, 2, 3 t/friends` +
 *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
