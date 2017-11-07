@@ -140,12 +140,11 @@ Examples: +
 
 * `add n/John Doe p/92435671 e/john_d888@gmail.com a/ 207 Upper Street, Islington, LONDON, N1 1RL b/15-11-1986 t/friend t/roommate` +
 Creates a new contact and sets the name to `John Doe`, email address to `john_d888@gmail.com`, address to `207 Upper Street, Islington, LONDON, N1 1RL`,
-birthday to `15-11-1996` and two tags to [`friend`] and [`roommate`].
+birthday to `15-11-1996` and two tags to [`friend`] and [`roommate`]. +
 
-********************************************************************************
-__Constraints:__
+__Constraints:__ +
 
-Note the following constraints when trying to add new contacts:
+Note the following constraints when trying to add new contacts: +
 
 ****
 * All fields must be provided and not blank.
@@ -156,7 +155,7 @@ are not allowed.
 * BIRTHDAY must be a eight-digit number in “dd-mm-yyyy” format.
 * Every TAG must be preceded by a tag prefix, t/.
 ****
-********************************************************************************
+
 
 ==== Finding contacts: `find`
 
