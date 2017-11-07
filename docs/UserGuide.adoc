@@ -663,13 +663,18 @@ The correct usage of all commands is summarized in the next section.
 
 == Command Summary
 
-* *Switch Modes* : `switch MODE` +
-e.g. `switch ab` or `switch tm`
+Forgot some commands? Fret not! Just look up what you need in the following table!
+
+.Switching Modes
+|===
+|Command |Forma |Example
+|*Switch Modes* | `switch MODE` |`switch ab` or `switch tm`
+|===
 
 __AddressBook__
 
 ****
-Command | Format | Example
+| Command | Format | Example
 *Add* | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague` +
 *Delete* | `delete INDEX` | `delete 3` +
 *Tag Multiple Contacts* | `tag [INDEX]... t/[TAG]...` | `tag 1,2 t/friend t/classmates` +
