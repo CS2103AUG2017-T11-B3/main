@@ -689,7 +689,7 @@ Forgot some commands? Fret not! Just look up what you need in the following tabl
 .__Task Manager__
 
 |===
-|*Add* |`add DESCRIPTION from START DATE to/by/on DEADLINE` |`addtask assignment due from tomorrow to thursday`
+|*Add* |`add DESCRIPTION from START DATE by/on DEADLINE` |`addtask assignment due from tomorrow to thursday`
 |*Delete* |`delete INDEX` |`delete 3`
 |*Edit* |`edit INDEX [DESCRIPTION] [from START DATE] [to/by/on DEADLINE]` |`edit 2 return books by the 8th of Dec`
 |*Archive* |`archive [INDEX]...` |`archive 3, 5`
