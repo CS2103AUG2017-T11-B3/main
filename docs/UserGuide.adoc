@@ -142,7 +142,7 @@ Examples: +
 Creates a new contact and sets the name to `John Doe`, email address to `john_d888@gmail.com`, address to `207 Upper Street, Islington, LONDON, N1 1RL`,
 birthday to `15-11-1996` and two tags to [`friend`] and [`roommate`].
 
-__Constraints:__
+. __Constraints:__
 
 Note the following constraints when trying to add new contacts:
 ****
