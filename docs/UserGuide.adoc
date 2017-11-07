@@ -145,14 +145,14 @@ birthday to `15-11-1996` and two tags to [`friend`] and [`roommate`].
 __Constraints:__
 
 Note the following constraints when trying to add new contacts:
-
-* All fields must be provided and not blank.
-* Duplicate contacts [where all parameters, except tags, are exactly the same] are not allowed.
-* NAME must only contain letters in upper or lower case.
-* PHONE must contain at least three numbers.
-* BIRTHDAY must be a eight-digit number in “dd-mm-yyyy” format.
-* Every TAG must be preceded by a tag prefix, t/.
-
+****
+*All fields must be provided and not blank.
+*Duplicate contacts [where all parameters, except tags, are exactly the same] are not allowed.
+*NAME must only contain letters in upper or lower case.
+*PHONE must contain at least three numbers.
+*BIRTHDAY must be a eight-digit number in “dd-mm-yyyy” format.
+*Every TAG must be preceded by a tag prefix, t/.
+****
 ==== Finding contacts: `find`
 
 Whether you’re a social butterfly or a networking pro, sifting through contacts can be a tedious task. To ease the process, you can filter your contact list by name, tag or birthday. +
@@ -437,11 +437,11 @@ One or more parameters can be specified.
 
 For example:
 
-*`edit 1 exams from 4th Dec by 5th Dec` +
+* `edit 1 exams from 4th Dec by 5th Dec` +
 Changes all parameters of the task at INDEX 1 to set task description to `exams`, start date to `Mon, Dec 4, '17`
 and deadline to `Tue, Dec 5, '17`
 
-*`edit 2 from tomorrow` +
+* `edit 2 from tomorrow` +
 Changes the start date of the task at INDEX 2 to the date of the following day.
 
 .__Constraints__
