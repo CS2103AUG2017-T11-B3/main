@@ -164,6 +164,7 @@ Format: `find [NAME] [TAG] [BIRTHDAY]` +
 
 <replace persons with contacts in all the following>
 
+[TIP]
 * The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends`
  and BIRTHDAY, in the format of DD-MM, will match DD-MM_YYYY. e.g `17-07` will match `17-07-1995` +
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` +
@@ -290,8 +291,6 @@ birthday to be `09-08-1997` and tag to be [`sister`].
 Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
-
-+
 
 __Constraints__
 
