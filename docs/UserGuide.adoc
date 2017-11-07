@@ -165,10 +165,10 @@ Format: `find [NAME] [TAG] [BIRTHDAY]` +
 <replace persons with contacts in all the following>
 
 [TIP]
-* The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends`
+The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends`
  and BIRTHDAY, in the format of DD-MM, will match DD-MM_YYYY. e.g `17-07` will match `17-07-1995` +
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` +
-* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`,
+The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` +
+Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`,
  `Bo Yang` +
 
 <wrap tags with []>
