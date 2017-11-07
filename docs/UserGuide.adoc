@@ -665,55 +665,48 @@ The correct usage of all commands is summarized in the next section.
 
 Forgot some commands? Fret not! Just look up what you need in the following table!
 
-.Switching Modes
+.__Switching Modes__ +
+
 |===
 |Command |Forma |Example
 |*Switch Modes* | `switch MODE` |`switch ab` or `switch tm`
 |===
 
-__AddressBook__
+.__AddressBook__
 
-****
-| Command | Format | Example
-*Add* | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague` +
-*Delete* | `delete INDEX` | `delete 3` +
-*Tag Multiple Contacts* | `tag [INDEX]... t/[TAG]...` | `tag 1,2 t/friend t/classmates` +
-*Delete Tags from Multiple Contacts* : `detag [INDEX]... [t/TAG]` +
-e.g. `detag 1, 2, 3 t/friends` +
-*Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com` +
-*Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake friends 1707` +
-*Select* : `select INDEX` +
-e.g.`select 2` +
-*List* : `list`
-****
+|===
+|Command |Format |Example
+|*Add* |`add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` |`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague`
+|*Delete* |`delete INDEX` |`delete 3`
+|*Tag* |`tag [INDEX]... t/[TAG]...` |`tag 1,2 t/friend t/classmates`
+|*Delete Tags* |`detag [INDEX]... [t/TAG]` |`detag 1, 2, 3 t/friends`
+|*Edit* |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` |`edit 2 n/James Lee e/jameslee@example.com`
+|*Find* | `find KEYWORD [MORE_KEYWORDS]` |`find James Jake friends 1707`
+|*Select* |`select INDEX` |`select 2`
+|*List* | `list`
+|===
 
-__TaskManager__
+.__TaskManager__
 
-****
-*Add* : `add DESCRIPTION from START DATE to/by/on DEADLINE` +
-e.g. `addtask assignment due from tomorrow to thursday` +
-*Delete* `delete INDEX` +
-e.g. `delete 3` +
-*Edit* : `edit INDEX [DESCRIPTION] [from START DATE] [to/by/on DEADLINE]` +
-e.g. `edit 2 return books by the 8th of Dec` +
-*Archive* : `archive [INDEX]...` +
-e.g. `archive 3, 5` +
-*Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `findtask finish task 17-07-1995` +
-*Select* : `select INDEX` +
-e.g.`select 2` +
-*List* : `list`
-****
+|===
+|*Add* |`add DESCRIPTION from START DATE to/by/on DEADLINE` |`addtask assignment due from tomorrow to thursday`
+|*Delete* |`delete INDEX` |`delete 3`
+|*Edit* |`edit INDEX [DESCRIPTION] [from START DATE] [to/by/on DEADLINE]` |`edit 2 return books by the 8th of Dec`
+|*Archive* |`archive [INDEX]...` |`archive 3, 5`
+|*Find* |`find KEYWORD [MORE_KEYWORDS]` |`findtask finish task 17-07-1995`
+|*Select* |`select INDEX` |`select 2`
+|*List* |`list`
+|===
 
-__Common__
-****
-*Help* : `help` +
-*History* : `history` +
-*Undo* : `undo` +
-*Redo* : `redo` +
-*Clear* : `clear` +
-*Exit* : `exit`
-****
+.__Common__
+
+|===
+|Command |Format
+|*Help* |`help`
+|*History* |`history`
+|*Undo* |`undo`
+|*Redo* |`redo`
+|*Clear* |`clear`
+|*Exit* |`exit`
+|===
 
