@@ -668,7 +668,7 @@ Forgot some commands? Fret not! Just look up what you need in the following tabl
 .__Switching Modes__ +
 
 |===
-|Command |Forma |Example
+|Command |Format |Example
 |*Switch Modes* | `switch MODE` |`switch ab` or `switch tm`
 |===
 
