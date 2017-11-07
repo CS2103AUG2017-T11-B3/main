@@ -444,16 +444,16 @@ and deadline to `Tue, Dec 5, '17`
 *`edit 2 from tomorrow` +
 Changes the start date of the task at INDEX 2 to the date of the following day.
 
-__Constraints__
+.__Constraints__
 
 Note the following constraints when editing tasks:
 
-****
+******
 * INDEX refers to the index number shown in the most recent task listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 * If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.
-****
+******
 
 [Coming in v2.0]
 ==== Archiving completed tasks: `archive`
