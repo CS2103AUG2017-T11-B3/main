@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Tan Pei Quan - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Tan Pei Quan - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-mobilize"><a class="link" href="#project-mobilize">Project: Mobilize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobilize is a organizing and planning desktop application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T11-B3/main/blob/master/collated/main/tpq95.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T11-B3/main/blob/master/collated/test/tpq95.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-detag"><a class="link" href="#enhancement-added-detag">Enhancement Added: Detag</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="removing-tags-from-multiple-contacts-code-detag-code"><a class="link" href="#removing-tags-from-multiple-contacts-code-detag-code">Removing tags from multiple contacts : <code>detag</code></a></h4>
+<div class="paragraph">
+<p>When a tag is no longer in used, you can use the detag command to remove the tag from multiple contacts.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>detag INDEX&#8230;&#8203; [t/TAG]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>detag 2 t/friends</code><br>
+Deletes the [<code>friends</code>] tag of the 2nd contact in the address book.</p>
+</li>
+<li>
+<p><code>find Betsy</code><br>
+<code>detag 1, 2, 4 t/OwesMoney</code><br>
+Deletes the [<code>OwesMoney</code>] tag of the 1st, 2nd and 4th contact in the result list of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Constraints</em></p>
+</div>
+<div class="paragraph">
+<p>Note the following constraints when trying to remove tag:<br>
+* INDEX refers to the index number shown in the most recent listing.<br>
+* The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;<br>
+* Every index must be separated by a comma.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>With many contacts added to the application, when one specific tag is no longer in used, it will be troublesome for the users to remove tag from the contacts individually.</p>
+</div>
+<div class="paragraph">
+<p>Hence, by specifying the tag to be removed and the contacts having the tag, users can determine multiple contacts to be removed with the tag. The command requires specifying of contacts so that it can function in the situation where the tag is currently still using but only certain group of contacts does not need it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="detag-mechanism"><a class="link" href="#detag-mechanism">Detag mechanism</a></h3>
+<div class="paragraph">
+<p>The detag mechanism is facilitated by the <code>DetagCommand</code> class which is inherited from the <code>UndoableCommand</code> class. It allows for the removal of existing tags from multiple contacts, i.e. detag. The minimum number of contacts that can be specified is 1 and the maximum number is the number of contacts in the current list.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user executes the command <code>detag</code> using the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>`detag 1, 2 t/friends`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>DetagCommandParser</code> class will check for the validity of the indices specified, i.e. within the range of the filtered list. Afterwards, the <code>LogicManager</code> invokes the method <code>deleteTag</code>, which removes the specific tag from the <code>Set</code> of tags from the specified contacts, and updates the storage.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If one or more of the contacts specified by the indices does not contain the specified tag to remove, the removal will not be executed even for those contacts that have the tag.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The current detag mechanism does not support multiple tag removal, i.e. remove 2 different tags in one command line.
+</td>
+</tr>
+</table>
+</div>
+<h4 id="design-considerations" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of <code>DetagCommand</code><br>
+<strong>Alternative 1 (current choice):</strong> Directly removes the tag from <code>Set</code> of person(s)<br>
+<strong>Pros:</strong> Easier and more specific command to remove tag, and allows removal from multiple persons in one command<br>
+<strong>Cons:</strong> Introducing of new additional command specifically for removal of tag may not be necessary<br>
+<strong>Alternative 2:</strong> Just use the <code>EditCommand</code> to change the tag<br>
+<strong>Pros:</strong> Use of one command to edit any details of a person is more organised<br>
+<strong>Cons:</strong> Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-calendar"><a class="link" href="#enhancement-added-calendar">Enhancement Added: Calendar</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-the-calendar"><a class="link" href="#using-the-calendar">Using the calendar</a></h3>
+<div class="paragraph">
+<p>A calendar is useful for marking the important dates. When you have many deadlines and birthdays to take note, the calendar allows you to view all these important dates at a glance.<br></p>
+</div>
+<div class="sect3">
+<h4 id="marking-the-dates"><a class="link" href="#marking-the-dates">Marking the dates</a></h4>
+<div class="paragraph">
+<p>With many contacts and tasks to manage, differentiating the birthdays and deadlines on the calendar can be done with the use of colours.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The marking of date is done automatically when a contact/task is added, edited or deleted.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A task has deadline on <code>17-07-2017</code>.<br>
+The corresponding date on the calendar is marked <strong>red</strong>.<br></p>
+</li>
+<li>
+<p>A contact has birthday on <code>09-12-2017</code>.<br>
+The corresponding date on the calendar is marked <strong>pink</strong>.<br></p>
+</li>
+<li>
+<p><code>17-07-2017</code> is a date that is a task&#8217;s deadline and a contact&#8217;s birthday.<br>
+The corresponding date on the calendar is marked <strong>yellow</strong>.<br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Constraints</em></p>
+</div>
+<div class="paragraph">
+<p>The colour of the date on the calendar is <strong>only updated</strong> when next/previous button for month/year is clicked or when a date on the calendar is clicked.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clicking-of-date-on-the-calendar"><a class="link" href="#clicking-of-date-on-the-calendar">Clicking of date on the calendar</a></h4>
+<div class="paragraph">
+<p>When there is many deadlines or birthdays on the same date, instead of switching between <code>CommandMode</code> and using the <code>find</code> command, you can just click on the date itself.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>17</code> on the calendar that represents <code>17-07-2017</code> is being clicked.<br>
+Returns task list and contacts list that contains tasks with deadline on <code>17-07-2017</code> and contacts with birthday on <code>17-07-2017</code> respectively.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Constraint</em></p>
+</div>
+<div class="paragraph">
+<p>When a date is clicked and it is not a deadline or not a birthday or both, an empty task list or an empty contacts list or both will be shown, which will be represented by a blank field on the application.<br></p>
+</div>
+<div class="paragraph">
+<p>To return back to original task list or contacts list, you can use the <code>list</code> command.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>With many tasks and contacts added to the application, it is useful to have a calendar interface for the user to interact and view the overview of upcoming important events.</p>
+</div>
+<div class="paragraph">
+<p>Hence, with the marking of dates with colour on the calendar, users can easily identify what is upcoming and be more prepared.</p>
+</div>
+<div class="paragraph">
+<p>The returning of tasks list and contacts list afflicted with the date clicked is also important as users can easily find out what is happening on that specific date with just one click. Thus, saving users' time and effort to conduct <code>find</code> on contacts list and tasks list.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calendar-mechanism"><a class="link" href="#calendar-mechanism">Calendar mechanism</a></h3>
+<div class="paragraph">
+<p>The calendar mechanism is facilitated by the <code>DatePickerSkin</code> skin instance which capture the pop-up content from the <code>DatePicker</code> control in <code>JavaFX</code>. It allows the user to have a calendar view of all contacts' <code>Birthday</code>  and tasks' <code>Deadline</code>.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the address book is modified (e.g. using <code>add</code>, <code>edit</code>, <code>addtask</code>, <code>deletetask</code>).</p>
+</div>
+<div class="paragraph">
+<p>After the modification of the address book i.e. saving of data to the <code>addressbook.xml</code> file, <code>ObservableList</code> of <code>Person</code> and <code>Task</code> classes stored in the address book are passed into the <code>CalendarPanel</code> Ui through <code>Model</code>.</p>
+</div>
+<div class="paragraph">
+<p>Next, <code>getDayCellFactory</code> will format the <code>DateCell</code> of the <code>DatePicker</code>. The formatting is done with <code>Birthday</code> and <code>Deadline</code> as conditions and colour and tooltip of <code>DateCell</code> as variables to be change by the formatter.</p>
+</div>
+<div class="paragraph">
+<p>By selecting the date on the calendar, the date value from the <code>DatePicker</code> will be captured and be parsed as a string. The string is then pass to <code>Logic</code> to execute the <code>FindCommand</code> which will show all persons and tasks having <code>Birthday</code> and <code>Deadline</code> on that specific date.</p>
+</div>
+<div class="paragraph">
+<p>[NOTE] Implementation of CLI for the calendar is still ongoing.</p>
+</div>
+<div class="paragraph">
+<p>The following are examples of colour and tooltip of the calendar:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CalendarDeadlineTooltip.png" alt="CalendarDeadlineTooltip" width="height"100"">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.11.a: Tooltip and colour for Deadline</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CalendarBirthdayTooltip.png" alt="CalendarBirthdayTooltip" width="height"100"">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.11.b: Tooltip and colour for Birthday</p>
+</div>
+<h4 id="design-considerations-2" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of Calendar<br>
+<strong>Alternative 1 (current choice):</strong> Use <code>DatePickerSkin</code> to get the calendar look and function.<br>
+<strong>Pros:</strong> Less coding needed as the template, <code>DatePicker</code>, is already available. Thus, more time can be spent on other functions related to the calendar.<br>
+<strong>Cons:</strong> Overall look is fixed.<br>
+<strong>Alternative 2:</strong> Design a calendar using <code>JavaFX</code><br>
+<strong>Pros:</strong> Fully customizable.<br>
+<strong>Cons:</strong> Much effort required to ensure it is bug free.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Loading of data to Calendar<br>
+<strong>Alternative 1 (current choice):</strong> Use address book data that is passed to the <code>CalendarPanel</code> through <code>Model</code><br>
+<strong>Pros:</strong> Able to retrieve updated data from <code>UniquePersonList</code> and <code>UniqueTaskList</code> that are already available.<br>
+<strong>Cons:</strong> Increase coupling with <code>Person</code> and <code>Task</code>.<br>
+<strong>Alternative 2:</strong> Create a separate <code>UniqueMarkDateList</code> that stores required dates with relevant information (e.g. Person&#8217;s name and Task&#8217;s description)<br>
+<strong>Pros:</strong> Reduces coupling as the data will be stored during initialisation of address book and addition/deletion of person/task.<br>
+<strong>Cons:</strong> We must ensure that the data stored is bound to the individual person and task, such that editing of such person/task will be reflected.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-proposed-commandline-interface-for-calendar-and-adding-of-deadlines-birthdays-directly-through-the-calendar"><a class="link" href="#enhancement-proposed-commandline-interface-for-calendar-and-adding-of-deadlines-birthdays-directly-through-the-calendar">Enhancement Proposed: Commandline interface for calendar and adding of deadlines/birthdays directly through the calendar</a></h3>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>As Mobilize is designed to be a Commandline interface application, interaction with the calendar should also be done with just the commandline.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="possible-idea"><a class="link" href="#possible-idea">Possible idea</a></h4>
+<div class="paragraph">
+<p>One possible idea is the addition of <code>Calendar</code> mode to the current <code>AddressBook</code> and <code>TaskManager</code> mode. Under this mode, possible commands should include controlling the display month and year, controlling the current selected date with the arrow keys and adding of deadlines or birthday directly through the calendar.</p>
+</div>
+<div class="paragraph">
+<p>This idea allows for more convenience offered to the users when interacting with the application and will definitely save time and effort to organise and look through the upcoming events.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI color scheme (Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/18">#18</a>)</p>
+</li>
+<li>
+<p>Added colour for task cards and sorting of task cards list and person cards list (Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/101">#101</a>)</p>
+</li>
+<li>
+<p>Helped reported bugs for other team&#8217;s product (Issue <a href="https://github.com/CS2103AUG2017-W13-B4/main/issues/256">#256</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-09 07:08:14 +00:00
+</div>
+</div>
+</body>
+</html>

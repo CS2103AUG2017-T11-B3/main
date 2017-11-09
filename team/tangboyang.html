@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Tang Bo Yang - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Tang Bo Yang - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-mobilize"><a class="link" href="#project-mobilize">Project: Mobilize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobilize is a organizing and planning desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T11-B3/main/blob/master/collated/main/tby1994.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T11-B3/main/blob/master/collated/test/tby1994.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-switch"><a class="link" href="#enhancement-added-switch">Enhancement Added: switch</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="switching-between-address-book-and-task-manager-code-switch-code"><a class="link" href="#switching-between-address-book-and-task-manager-code-switch-code">Switching Between Address Book and Task Manager : <code>switch</code></a></h3>
+<div class="paragraph">
+<p>To help you save time to remember all the commands in Mobilize, you can toggle between address book and task manager using:</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>switch ab</code> or <code>switch tm</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The default system of Mobilize will be address book.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>With the integration of address book and task manager, users are required to memorize many commands. User would need to type a longer command keyword such as: <code>addtask</code> and <code>addperson</code>.</p>
+</div>
+<div class="paragraph">
+<p>Hence, adding switch command mode feature allows user to remember less commands. It will shorten the command keywords from <code>addtask</code> and <code>addperson</code> to just <code>add</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="switchmode-mechanism"><a class="link" href="#switchmode-mechanism">SwitchMode mechanism</a></h3>
+<div class="paragraph">
+<p>The switchMode mechanism is facilitated by the ChangeModeCommand class which inherits from Command class. It allows the user switch between 2 sets of command for either addressbook or taskmanager.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the ChangeMode using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>switch addressbook(ab) or taskmanager(tm).</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In any command mode, the execute() function of the LogicManager class is first called, which calls Model.getCommandMode() to check the current command mode and goes on to pass the command string and command mode string into the parseCommand() function of the AddressBookParser class. This, in turn, determines that the ChangeModeCommand feature is being evoked and calls the ChangeModeCommandParser to parse the string and compare with the current set of command: addressbook(ab) or taskmanager(tm). After validating the input with command mode prefix, ChangeModeCommand(input) is created and calles the excute() feature in ChangeModeCommand which then call Model.changeCommandMode(input) to change the current command mode and return a CommandResult object.</p>
+</div>
+<div class="paragraph">
+<p>A diagram is shown below to illustrate this mechanism.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ChangeModeDiagram.png" alt="ChangeModeDiagram" width="800" height="500">
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-find-task"><a class="link" href="#enhancement-added-find-task">Enhancement Added: find task</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="finding-tasks-by-description-or-deadline-code-find-code"><a class="link" href="#finding-tasks-by-description-or-deadline-code-find-code">Finding tasks by description or deadline: <code>find</code></a></h4>
+<div class="paragraph">
+<p>To find people whose description contain any of the given keywords, use<br>
+Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
+</div>
+<div class="paragraph">
+<p>To find people by deadlines, use<br>
+Format: <code>find DD-MM-YYYY</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find finish</code><br>
+Returns <code>finish task tonight</code> and <code>finish task tomorrow</code></p>
+</li>
+<li>
+<p><code>find finish task tonight</code><br>
+Returns any task having descriptions <code>finish</code>, <code>task</code>, or <code>tonight</code></p>
+</li>
+<li>
+<p><code>find 29-10-2017</code><br>
+Returns any task having deadlines on <code>29-10-2017</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Constraints:</em></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>finish</code> will match <code>Finish</code>.</p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Finish task</code> will match <code>task finish</code>.</p>
+</li>
+<li>
+<p>Only the description and deadline is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g <code>Finish</code> will not match <code>Finished</code>.</p>
+</li>
+<li>
+<p>Only valid date will be matched e.g <code>291017</code> will not match <code>29-10-2017</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>With many tasks to the application, it is hard to browse through each task to find the target task</p>
+</div>
+<div class="paragraph">
+<p>Hence, with find task feature, user can easily search for the target task</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="findtask-mechanism"><a class="link" href="#findtask-mechanism">FindTask mechanism</a></h3>
+<div class="paragraph">
+<p>The FindTask mechanism is facilitated by the <code>FindTaskCommand</code> class which inherits from <code>Command</code> class. It allows the user to find tasks using descriptions. User can search using multiple descriptions too.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the <code>FindTaskCommand</code> using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>`find finish cs2103 17-07-1995`.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At first, the <code>execute()</code> function of the <code>LogicManager</code> class is called, which goes on to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>FindTaskCommand</code> feature is being evoked and calls the <code>FindTaskCommandParser</code> to parse the string and compare the descriptions. These are validated and formatted by the <code>TaskContainsKeywordsPredicate</code> and return as a <code>TaskContainsKeywordsPredicate</code> object to be used to call the <code>FindTaskCommand</code> class. The <code>LogicManager</code> then calls the <code>execute()</code> in the <code>FindTaskCommand</code> class which creates and return a <code>CommandResult</code> object.</p>
+</div>
+<h4 id="design-considerations" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Implementation of FindTaskCommand<br>
+<strong>Alternative 1 (current choice):</strong> Use String Util.containsword() to find tasks.<br>
+<strong>Pros:</strong> Easy to find matching descriptions among all the tasks accurately.<br>
+<strong>Cons:</strong> The keywords have to be exactly the save i.e friend is not the same as friends.<br>
+<strong>Alternative 2:</strong> Use string.contains() to find tasks.<br>
+<strong>Pros:</strong> Keywords do not have to be exactly the same as those in the description of tasks.<br>
+<strong>Cons:</strong> The search result might not be accurate. For e.g. if the user searches using the keyword 'a' all the tasks&#8217;descriptions that contains the character 'a' will appear.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-select-task"><a class="link" href="#enhancement-added-select-task">Enhancement Added: select task</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-task-code-select-code"><a class="link" href="#selecting-a-task-code-select-code">Selecting a task: <code>select</code></a></h4>
+<div class="paragraph">
+<p>To select the task identified by the index number used in the last task listing, use:<br>
+Format: <code>select INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Selects the task at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>list</code><br>
+<code>select 2</code><br>
+Selects the 2nd task in the task manager.</p>
+</li>
+<li>
+<p><code>find finish</code><br>
+<code>select 1</code><br>
+Selects the 1st task in the results of the <code>find</code> command.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The selected task will show involved people in the address book. If there are no involved personnel, there will be no changes in the displayed list of contacts.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>The task tag feature allows user to include contacts that are involved in the task.</p>
+</div>
+<div class="paragraph">
+<p>Hence, with the select task feature, when user selects the task select task feature will auto search for the contacts who are involved in the task.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecttask-mechanism"><a class="link" href="#selecttask-mechanism">SelectTask mechanism</a></h3>
+<div class="paragraph">
+<p>The SelectTask mechanism is facilitated by the <code>SelectTaskCommand</code> class which inherits from <code>Command</code> class. It allows the user to select the task at specific index.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the <code>SelectTaskCommand</code> using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>`select 2`</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At first, the <code>execute()</code> function of the <code>LogicManager</code> class is called, which goes on to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>SelectTaskCommand</code> feature is being evoked and calls the <code>SelectTaskCommandParser</code> to parse the string and check if the index is valid. After validation the <code>SelectTaskCommand</code> class is been called. <code>SelectTaskCommand</code> will then paraphrase the tag of selected task and pass it through <code>conductSearch</code>. <code>conductSearch</code> will call <code>model.updateFilteredPersonList()</code> with <code>PersonContainsKeywordsPredicate</code> with keyword <code>tag</code> as parameter to find the tag among person list and update person list. If there are no match found, all person will be listed. Then <code>LogicManager</code> then calls the <code>execute()</code> in the <code>SelectTaskCommand</code> class which calls <code>EventCenter</code> with the parameter of <code>JumpToTaskListRequestEvent</code> class to highlight selected task card in Ui at target index. Then <code>execute()</code> creates and return a <code>CommandResult</code> object.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-list-task"><a class="link" href="#enhancement-added-list-task">Enhancement Added: list task</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-4"><a class="link" href="#external-behavior-4">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="listing-tasks-code-list-code-br"><a class="link" href="#listing-tasks-code-list-code-br">Listing tasks : <code>list</code><br></a></h4>
+<div class="paragraph">
+<p>To go back to the default list of tasks after a round of filtering, use:</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>list</code></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-4"><a class="link" href="#justification-4">Justification</a></h4>
+<div class="paragraph">
+<p>After user conduct a search for task, the user the user can view back the whole task list with <code>list</code> feature.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listtask-mechanism"><a class="link" href="#listtask-mechanism">ListTask mechanism</a></h3>
+<div class="paragraph">
+<p>The ListTask mechanism is facilitated by the <code>ListTaskCommand</code> class which inherits from <code>Command</code> class. It allows the user to list out all the current tasks.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the <code>ListTaskCommand</code> using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>`list`.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At first, the <code>execute()</code> function of the <code>LogicManager</code> class is called, which goes on to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>ListTaskCommand</code> feature is being evoked and calls the <code>execute()</code> in the <code>ListTaskCommand</code> class which update the current list to show all tasks creates and return a <code>CommandResult</code> object.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="possible-idea"><a class="link" href="#possible-idea">Possible idea</a></h3>
+<div class="paragraph">
+<p>One possible idea is to include notification for task deadline. User will be notified if the deadline is on the day itself. Notification will be shown when user opens Mobilize.</p>
+</div>
+<div class="paragraph">
+<p>This feature can remind the user about the task deadline.</p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Updated the GUI for command mode(Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/114">#114</a>)</p>
+</li>
+<li>
+<p>Updated the GUI for task tags(Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/100">#100</a>)</p>
+</li>
+<li>
+<p>Updated the GUI for task manager(Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/60">#60</a>)</p>
+</li>
+<li>
+<p>Added some GUI test files for the team to conduct system tests(Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/60">#60</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-09 07:08:14 +00:00
+</div>
+</div>
+</body>
+</html>
