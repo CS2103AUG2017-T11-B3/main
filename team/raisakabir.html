@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.3">
+<title>Raisa Kabir - Project Portfolio</title>
+<link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Raisa Kabir - Project Portfolio</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="project-mobilize"><a class="link" href="#project-mobilize">Project: Mobilize</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mobilize is a desktop application built to help people organize their contacts and tasks. It is primarily written
+in Java and uses the Object Oriented Paradigm. The user interacts with it using a CLI, and it has a GUI created with JavaFX.</p>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed</strong>: [<a href="https://github.com/CS2103AUG2017-T11-B3/main/blob/master/collated/main/raisa2010.md">Functional code</a>] [<a href="https://github.com/CS2103AUG2017-T11-B3/main/blob/master/collated/test/raisa2010.md">Test code</a>]</p>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-add-task"><a class="link" href="#enhancement-added-add-task">Enhancement Added: Add Task</a></h3>
+<div class="sect3">
+<h4 id="external-behavior"><a class="link" href="#external-behavior">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adding-tasks-code-add-code"><a class="link" href="#adding-tasks-code-add-code">Adding tasks: <code>add</code></a></h4>
+<div class="paragraph">
+<p>Whether it is a host of pending submissions, a get-together or a multiday program, adding it to Mobilize can easily help you keep track of it all.<br></p>
+</div>
+<div class="paragraph">
+<p>Use prefixes:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>from</code> to denote the date in which the event begins.</p>
+</li>
+<li>
+<p><code>to</code>, <code>on</code> or <code>by</code> to denote the date in which the task is due to be completed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The command follows:<br>
+Format: <code>add DESCRIPTION from START DATE by/on DEADLINE t/[TAG]…</code></p>
+</li>
+<li>
+<p>As the task is added to a new Task Card, the Result Display shows:
+<code>Task has been added: DESCRIPTION From: START DATE To: DEADLINE Tags: [TAG]</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Dates can be in any format as long as the month precedes the date.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Words or phrases like 'tomorrow', 'yesterday', 'Tue', 'Tuesday', 'next Mon', 'day before yesterday', '5 Dec', '5/9/2017' and 'the 8th of Jan' are all valid dates.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A person can opt to leave out a single or all dates.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add recess week from tomorrow by 15 Sep</code>
+Sets the description to "recess week" start date to the next day and the deadline to the 15th of September in the current or upcoming year.</p>
+</li>
+<li>
+<p><code>add get groceries</code>
+Sets the description to "get groceries" leaving the other parameters blank.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>Constraints</em><br></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Dates MUST be preceded by one of the prefixes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
+<div class="paragraph">
+<p>Expands the breadth of the original code&#8217;s function by allowing users to add tasks and plan their accordingly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="addtask-mechanism"><a class="link" href="#addtask-mechanism">AddTask mechanism</a></h3>
+<div class="paragraph">
+<p>The Add Task mechanism is facilitated by the <code>AddTaskCommand</code> class which inherits from the <code>UndoableCommand</code> class. It allows for the addition of new tasks to the application with a starting date and a deadline. Both dates are optional and may be omitted.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the <code>add</code> command using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>`add CS assignment from 15-10-2017 to tomorrow`.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At first, the <code>execute()</code> function of the <code>LogicManager</code> class is called, which goes on to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>AddTask</code> feature is being evoked and calls the <code>AddTaskCommandParser</code> to parse the String and separate it into three components: <code>Description</code>, <code>StartDate</code> and <code>Deadline</code>. These are validated and formatted by the <code>Task</code> class and returned as a <code>Task</code> object to be used to call the <code>AddTaskCommand</code> class. The <code>LogicManager</code> then calls the <code>executeUndoableFunction()</code> in the <code>AddTaskCommand</code> class which creates and returns a <code>CommandResult</code> object.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes how this operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AddTaskCommandSequenceDiagram.png" alt="AddTaskCommandSequenceDiagram" width="800" height="500">
+</div>
+</div>
+<h4 id="design-considerations" class="discrete">Design Considerations</h4>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Creating classes for StartDate and Deadline<br>
+<strong>Alternative 1 (current choice):</strong> Use Strings to contains the StartDates and Deadlines.<br>
+<strong>Pros:</strong> * Easy to assign an empty string to the instance variable so that the dates are optional and do not show up in the UI.
+In addition, dates can be stored after being formatted to a more user-friendly style (i.e. Tue, Oct 24, '17). This prevents dates from becoming confusing (i.e. distinguishing between dd-MM-yyyy and mm-DD-yyyy)<br>
+<strong>Cons:</strong> Dates are not stored the correct format. This makes it more difficult to compare and validate later on as they have to be reformatted into Date objects every time. For example,
+ in validating whether a start date is indeed before a deadline.<br>
+<strong>Alternative 2:</strong> Use java.time.LocalDate class.<br>
+<strong>Pros:</strong> Dates are in correct format. Validation becomes easier and reformatting is not necessary.<br>
+<strong>Cons:</strong> LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard.<br>
+<strong>Alternative 3:</strong>  Use java.util.Optional class for instance variables along with the LocalDate class.<br>
+<strong>Pros:</strong> Easy to understand reasoning, for new developers looking to contribute. Easy to format specifically for display (once) and allows empty values when no dates are supplied.<br>
+<strong>Cons</strong> The general agreement in the software engineering community seems to be that it is better not to use extra wrapping for an instance variable, that might pose problems in unwrapping later on.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Natural Language Processing<br>
+<strong>Alternative 1 (current choice):</strong> Use an external library (PrettyTime) to process dates in natural language <em>after</em> they have been tokenized by their respective prefixes
+and categorized according to type.<br>
+<strong>Pros</strong> Dates are sure to be instantiated according to the correct class.<br>
+<strong>Cons</strong> Command format becomes less flexible.<br>
+<strong>Alternative 2:</strong> Parse all dates first then scan the argument string for keywords.<br>
+<strong>Pros</strong> More flexible command format and consequently, more user-friendly.<br>
+<strong>Cons</strong> Open to more mistakes in setting starting dates and deadlines.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Assigning starting dates and deadlines<br>
+<strong>Alternative 1 (current choice):</strong> Use an abstract parent TaskDates class to hold all validator and formatting methods.<br>
+<strong>Pros</strong> Prevents code duplication for common methods and prevents abstract class from being instantiated ensuring that
+there are only two types of task dates.<br>
+<strong>Cons</strong> Other classes have no direct interaction with parent class.<br>
+<strong>Alternative 2:</strong> Use a single TaskDates class and set instance variables to contain starting and deadline dates.<br>
+<strong>Pros</strong> Easier to implement.<br>
+<strong>Cons</strong> Might violate SRP as the class is now concerned with two different kinds of dates.<br></p>
+</div>
+<hr>
+<div class="paragraph">
+<p><strong>Aspect:</strong> Setting prefixes for adding tasks<br>
+<strong>Alternative 1 (current choice):</strong> Use natural language prefixes i.e. from, to, by<br>
+<strong>Pros</strong> Easier to type and remember.<br>
+<strong>Cons</strong> Difficult to implement as descriptions containing these words must be separated from dates.<br>
+<strong>Alternative 2</strong> Use slashes such as in task commands i.e. f/, o/, b/ etc.<br>
+<strong>Pros</strong> Faster to type.<br>
+<strong>Cons</strong> Description might contain slashes. t/ (to) would clash with t/ prefix for tags so to/ would have to be used.
+Limits possibilities of adding new prefixes and making the format more flexible in the future.<br></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-edit-task"><a class="link" href="#enhancement-added-edit-task">Enhancement Added: Edit Task</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-2"><a class="link" href="#external-behavior-2">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="editing-tasks-code-edit-code"><a class="link" href="#editing-tasks-code-edit-code">Editing tasks: <code>edit</code></a></h4>
+<div class="paragraph">
+<p>Change of plans? The edit feature offers a hassle-free solution to change any parameter of an existing task.</p>
+</div>
+<div class="paragraph">
+<p>All you have to do is type in:</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>edit INDEX DESCRIPTION from START DATE to DEADLINE</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+One or more parameters can be specified.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="paragraph">
+<p>*<code>edit 1 exams from 4th Dec to 5th Dec</code><br>
+Changes all parameters of the task at INDEX 1 to set DESCRIPTION to "exams", START DATE to "Mon, Dec 4, '17"
+and DEADLINE to "Tue, Dec 5, '17"</p>
+</div>
+<div class="paragraph">
+<p>*<code>edit 2 from tomorrow</code><br>
+Changes the START DATE of the task at INDEX 2 to the date of the following day.</p>
+</div>
+<div class="paragraph">
+<p><em>Constraints</em></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
+<div class="paragraph">
+<p>Tagging multiple contacts at the same time will enable users to easily use the tag function for various reasons including keeping track of tasks done by contacts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-2"><a class="link" href="#implementation-2">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhancement-added-tag-multiple-contacts-and-tasks"><a class="link" href="#enhancement-added-tag-multiple-contacts-and-tasks">Enhancement Added: Tag Multiple Contacts and Tasks</a></h3>
+<div class="sect3">
+<h4 id="external-behavior-3"><a class="link" href="#external-behavior-3">External behavior</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: User Guide]</mark></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="tagging-multiple-contacts-code-tag-code-br"><a class="link" href="#tagging-multiple-contacts-code-tag-code-br">Tagging multiple contacts : <code>tag</code><br></a></h4>
+<div class="paragraph">
+<p>Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Instead, use:
+Format: <code>tag [INDEX]… t/[TAG]…</code></p>
+</li>
+<li>
+<p>Multiple contacts will be tagged by the tag(s) set in the parameter.</p>
+</li>
+<li>
+<p>The Contact Cards will be updated to display the new tags.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can add multiple tags to multiple contacts by repeating the tag prefix.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To illustrate, the command:</p>
+</div>
+<div class="paragraph">
+<p><code>tag 1, 2, 3 t/friend t/family</code><br>
+Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] and [family].</p>
+</div>
+<div class="paragraph">
+<p><em>Constraints</em></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Each index MUST be valid according to the current list of contacts.</p>
+</li>
+<li>
+<p>If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.</p>
+</li>
+<li>
+<p>Every INDEX must be separated by a comma.</p>
+</li>
+<li>
+<p>Every TAG must have a prefix.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
+<div class="paragraph">
+<p>Tagging multiple contacts at the same time will enable users to easily use the tag function for various reasons including keeping track of tasks done by contacts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">Implementation</a></h4>
+<hr>
+<div class="paragraph">
+<p><mark>Start of Extract [from: Developer Guide]</mark></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tag-mechanism"><a class="link" href="#tag-mechanism">Tag mechanism</a></h3>
+<div class="paragraph">
+<p>The Tag mechanism is a specialised form of the edit feature that allows users to tag multiple contacts with multiple tags.
+The mechanism is facilitated by the TagCommand class which inherits from the UndoableCommand class, indicating that it can be undone.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the <code>TagCommand</code> using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>`tag 1,2 t/friend t/classmate`.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At first the <code>execute()</code> function of the <code>Logic Manager</code> is called, which passes the command string to the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This determines that the <code>TagCommand</code> feature is being evoked
+and calls the <code>TagCommandParser</code> class.</p>
+</div>
+<div class="paragraph">
+<p>Here, the arguments are validated and tokenized and new <code>TagCommand</code> object is returned with parsed indices and tags.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ModelManager</code> class in the <code>Model</code> component is then called to update all the tags of the respective people using the <code>updatePersonTags()</code> method.</p>
+</div>
+<div class="paragraph">
+<p>The Storage and UI are subsequently updated with the new information.</p>
+</div>
+<div class="paragraph">
+<p><mark>End of Extract</mark></p>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Added autocomplete feature (Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/96">#96</a>)</p>
+</li>
+<li>
+<p>Discovered bug during trial acceptance testing (<a href="https://github.com/CS2103AUG2017-T09-B4/main/issues/103">Issue #103</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-11-09 07:45:14 +00:00
+</div>
+</div>
+</body>
+</html>

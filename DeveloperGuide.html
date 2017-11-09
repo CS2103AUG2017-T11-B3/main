@@ -58,11 +58,9 @@
 <li><a href="#add-contact-mechanism-birthday-parameter">4.2. Add contact mechanism: birthday parameter</a></li>
 <li><a href="#detag-mechanism">4.3. Detag mechanism</a></li>
 <li><a href="#findtag-mechanism">4.4. FindTag mechanism</a></li>
-<li><a href="#tag-mechanism">4.5. Tag mechanism</a></li>
-<li><a href="#addtask-mechanism">4.6. AddTask mechanism</a></li>
-<li><a href="#deletetask-mechanism">4.7. DeleteTask mechanism</a></li>
-<li><a href="#findtask-mechanism">4.8. FindTask mechanism</a></li>
-<li><a href="#undo-redo-mechanism">4.9. Undo/Redo mechanism</a></li>
+<li><a href="#deletetask-mechanism">4.5. DeleteTask mechanism</a></li>
+<li><a href="#findtask-mechanism">4.6. FindTask mechanism</a></li>
+<li><a href="#undo-redo-mechanism">4.7. Undo/Redo mechanism</a></li>
 </ul>
 </li>
 <li><a href="#logging">5. Logging</a></li>
@@ -784,9 +782,10 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
     }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>tag::tag[]
+=== Tag mechanism</p>
 </div>
-<div class="sect2">
-<h3 id="tag-mechanism"><a class="link" href="#tag-mechanism">4.5. Tag mechanism</a></h3>
 <div class="paragraph">
 <p>The Tag mechanism is a specialised form of the edit feature that allows users to tag multiple contacts with multiple tags.
 The mechanism is facilitated by the TagCommand class which inherits from the UndoableCommand class, indicating that it can be undone.</p>
@@ -812,9 +811,13 @@ and calls the <code>TagCommandParser</code> class.</p>
 <div class="paragraph">
 <p>The Storage and UI are subsequently updated with the new information.</p>
 </div>
+<div class="paragraph">
+<p>end::tag[]</p>
 </div>
-<div class="sect2">
-<h3 id="addtask-mechanism"><a class="link" href="#addtask-mechanism">4.6. AddTask mechanism</a></h3>
+<div class="paragraph">
+<p>tag::addtask[]
+=== AddTask mechanism</p>
+</div>
 <div class="paragraph">
 <p>The Add Task mechanism is facilitated by the <code>AddTaskCommand</code> class which inherits from the <code>UndoableCommand</code> class. It allows for the addition of new tasks to the application with a starting date and a deadline. Both dates are optional and may be omitted.</p>
 </div>
@@ -885,9 +888,12 @@ there are only two types of task dates.<br>
 <strong>Cons</strong> Description might contain slashes. t/ (to) would clash with t/ prefix for tags so to/ would have to be used.
 Limits possibilities of adding new prefixes and making the format more flexible in the future.<br></p>
 </div>
+<div class="paragraph">
+<p>end::addtask[]</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="deletetask-mechanism"><a class="link" href="#deletetask-mechanism">4.7. DeleteTask mechanism</a></h3>
+<h3 id="deletetask-mechanism"><a class="link" href="#deletetask-mechanism">4.5. DeleteTask mechanism</a></h3>
 <div class="paragraph">
 <p>The Delete Task mechanism is facilitated by the <code>DeleteTaskCommand</code> class which inherits from the <code>UndoableCommand</code> class. It allows for the removal of a task at a specified index.</p>
 </div>
@@ -923,7 +929,7 @@ Limits possibilities of adding new prefixes and making the format more flexible 
 </div>
 </div>
 <div class="sect2">
-<h3 id="findtask-mechanism"><a class="link" href="#findtask-mechanism">4.8. FindTask mechanism</a></h3>
+<h3 id="findtask-mechanism"><a class="link" href="#findtask-mechanism">4.6. FindTask mechanism</a></h3>
 <div class="paragraph">
 <p>The FindTask mechanism is facilitated by the <code>FindTaskCommand</code> class which inherits from <code>Command</code> class. It allows the user to find tasks using descriptions. User can search using multiple descriptions too.</p>
 </div>
@@ -1038,7 +1044,7 @@ Limits possibilities of adding new prefixes and making the format more flexible 
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.9. Undo/Redo mechanism</a></h3>
+<h3 id="undo-redo-mechanism"><a class="link" href="#undo-redo-mechanism">4.7. Undo/Redo mechanism</a></h3>
 <div class="paragraph">
 <p>The undo/redo mechanism is facilitated by an <code>UndoRedoStack</code>, which resides inside <code>LogicManager</code>. It supports undoing and redoing of commands that modifies the state of the address book (e.g. <code>add</code>, <code>edit</code>). Such commands will inherit from <code>UndoableCommand</code>.</p>
 </div>
@@ -2916,7 +2922,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 07:08:14 +00:00
+Last updated 2017-11-09 07:45:14 +00:00
 </div>
 </div>
 </body>

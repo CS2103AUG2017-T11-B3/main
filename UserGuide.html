@@ -45,21 +45,16 @@
 <li><a href="#adding-new-contacts-code-add-code">5.1.1. Adding new contacts : <code>add</code></a></li>
 <li><a href="#finding-contacts-code-find-code">5.1.2. Finding contacts: <code>find</code></a></li>
 <li><a href="#deleting-contacts-code-delete-code">5.1.3. Deleting contacts : <code>delete</code></a></li>
-<li><a href="#tagging-multiple-contacts-code-tag-code-br">5.1.4. Tagging multiple contacts : <code>tag</code><br></a></li>
-<li><a href="#removing-tags-from-multiple-contacts-code-detag-code">5.1.5. Removing tags from multiple contacts : <code>detag</code></a></li>
-<li><a href="#editing-contacts-code-edit-code-br">5.1.6. Editing contacts : <code>edit</code><br></a></li>
-<li><a href="#listing-contacts-code-list-code-br">5.1.7. Listing contacts : <code>list</code><br></a></li>
-<li><a href="#selecting-contacts-code-select-code">5.1.8. Selecting contacts : <code>select</code></a></li>
+<li><a href="#removing-tags-from-multiple-contacts-code-detag-code">5.1.4. Removing tags from multiple contacts : <code>detag</code></a></li>
+<li><a href="#editing-contacts-code-edit-code-br">5.1.5. Editing contacts : <code>edit</code><br></a></li>
+<li><a href="#listing-contacts-code-list-code-br">5.1.6. Listing contacts : <code>list</code><br></a></li>
+<li><a href="#selecting-contacts-code-select-code">5.1.7. Selecting contacts : <code>select</code></a></li>
 </ul>
 </li>
 <li><a href="#managing-tasks">5.2. Managing Tasks</a>
 <ul class="sectlevel3">
-<li><a href="#adding-tasks-code-add-code">5.2.1. Adding tasks: <code>add</code></a></li>
-<li><a href="#finding-tasks-by-description-or-deadline-code-find-code">5.2.2. Finding tasks by description or deadline: <code>find</code></a></li>
-<li><a href="#deleting-tasks-code-delete-code">5.2.3. Deleting tasks : <code>delete</code></a></li>
-<li><a href="#editing-tasks-code-edit-code">5.2.4. Editing tasks: <code>edit</code></a></li>
-<li><a href="#archiving-completed-tasks-code-archive-code">5.2.5. Archiving completed tasks: <code>archive</code></a></li>
-<li><a href="#listing-tasks-code-list-code-br">5.2.6. Listing tasks : <code>list</code><br></a></li>
+<li><a href="#deleting-tasks-code-delete-code">5.2.1. Deleting tasks : <code>delete</code></a></li>
+<li><a href="#listing-tasks-code-list-code-br">5.2.2. Listing tasks : <code>list</code><br></a></li>
 </ul>
 </li>
 <li><a href="#managing-common-features">5.3. Managing Common Features</a>
@@ -517,9 +512,10 @@ Deletes the 1st person in the results of the <code>find</code> command.</p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>tag::tag[]
+==== Tagging multiple contacts : <code>tag</code><br></p>
 </div>
-<div class="sect3">
-<h4 id="tagging-multiple-contacts-code-tag-code-br"><a class="link" href="#tagging-multiple-contacts-code-tag-code-br">5.1.4. Tagging multiple contacts : <code>tag</code><br></a></h4>
 <div class="paragraph">
 <p>Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.</p>
 </div>
@@ -579,9 +575,12 @@ Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] an
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>end::tag[]</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="removing-tags-from-multiple-contacts-code-detag-code"><a class="link" href="#removing-tags-from-multiple-contacts-code-detag-code">5.1.5. Removing tags from multiple contacts : <code>detag</code></a></h4>
+<h4 id="removing-tags-from-multiple-contacts-code-detag-code"><a class="link" href="#removing-tags-from-multiple-contacts-code-detag-code">5.1.4. Removing tags from multiple contacts : <code>detag</code></a></h4>
 <div class="paragraph">
 <p>When a tag is no longer in used, you can use the detag command to remove the tag from multiple contacts.<br></p>
 </div>
@@ -616,7 +615,7 @@ Deletes the [<code>OwesMoney</code>] tag of the 1st, 2nd and 4th contact in the 
 </div>
 </div>
 <div class="sect3">
-<h4 id="editing-contacts-code-edit-code-br"><a class="link" href="#editing-contacts-code-edit-code-br">5.1.6. Editing contacts : <code>edit</code><br></a></h4>
+<h4 id="editing-contacts-code-edit-code-br"><a class="link" href="#editing-contacts-code-edit-code-br">5.1.5. Editing contacts : <code>edit</code><br></a></h4>
 <div class="paragraph">
 <p>Editing existing contacts is an easy way to keep track of people who might be changing                numbers, addresses or even their role in your life.
 All you need to do is input a command in the following format to edit a person’s details:</p>
@@ -706,7 +705,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-contacts-code-list-code-br"><a class="link" href="#listing-contacts-code-list-code-br">5.1.7. Listing contacts : <code>list</code><br></a></h4>
+<h4 id="listing-contacts-code-list-code-br"><a class="link" href="#listing-contacts-code-list-code-br">5.1.6. Listing contacts : <code>list</code><br></a></h4>
 <div class="paragraph">
 <p>To go back to the default list of contacts after a round of filtering, use:</p>
 </div>
@@ -715,7 +714,7 @@ Edits the name of the 2nd person to be <code>Betsy Crower</code> and clears all 
 </div>
 </div>
 <div class="sect3">
-<h4 id="selecting-contacts-code-select-code"><a class="link" href="#selecting-contacts-code-select-code">5.1.8. Selecting contacts : <code>select</code></a></h4>
+<h4 id="selecting-contacts-code-select-code"><a class="link" href="#selecting-contacts-code-select-code">5.1.7. Selecting contacts : <code>select</code></a></h4>
 <div class="paragraph">
 <p>Selecting a contact is an easy way to click on their Contact Card without having to use the pointer on the screen.
 To execute this command, type:</p>
@@ -767,8 +766,10 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 </div>
 <div class="sect2">
 <h3 id="managing-tasks"><a class="link" href="#managing-tasks">5.2. Managing Tasks</a></h3>
-<div class="sect3">
-<h4 id="adding-tasks-code-add-code"><a class="link" href="#adding-tasks-code-add-code">5.2.1. Adding tasks: <code>add</code></a></h4>
+<div class="paragraph">
+<p>tag::addtask[]
+==== Adding tasks: <code>add</code></p>
+</div>
 <div class="paragraph">
 <p>Whether it is a host of pending submissions, a get-together or a multiday program, adding it to Mobilize can easily help you keep track of it all.<br></p>
 </div>
@@ -866,9 +867,13 @@ Sets the description to "get groceries" leaving the other parameters blank.</p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>end::addtask[]</p>
 </div>
-<div class="sect3">
-<h4 id="finding-tasks-by-description-or-deadline-code-find-code"><a class="link" href="#finding-tasks-by-description-or-deadline-code-find-code">5.2.2. Finding tasks by description or deadline: <code>find</code></a></h4>
+<div class="paragraph">
+<p>tag::find[]
+==== Finding tasks by description or deadline: <code>find</code></p>
+</div>
 <div class="paragraph">
 <p>To find people whose description contain any of the given keywords, use<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
@@ -922,9 +927,8 @@ Returns any task having deadlines on <code>29-10-2017</code></p>
 </div>
 </div>
 </div>
-</div>
 <div class="sect3">
-<h4 id="deleting-tasks-code-delete-code"><a class="link" href="#deleting-tasks-code-delete-code">5.2.3. Deleting tasks : <code>delete</code></a></h4>
+<h4 id="deleting-tasks-code-delete-code"><a class="link" href="#deleting-tasks-code-delete-code">5.2.1. Deleting tasks : <code>delete</code></a></h4>
 <div class="paragraph">
 <p>To delete the specified task from the task manager, use:<br></p>
 </div>
@@ -954,9 +958,10 @@ Returns any task having deadlines on <code>29-10-2017</code></p>
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>tag::edittask[]
+==== Editing tasks: <code>edit</code></p>
 </div>
-<div class="sect3">
-<h4 id="editing-tasks-code-edit-code"><a class="link" href="#editing-tasks-code-edit-code">5.2.4. Editing tasks: <code>edit</code></a></h4>
 <div class="paragraph">
 <p>Change of plans? The edit feature offers a hassle-free solution to change any parameter of an existing task.</p>
 </div>
@@ -1013,9 +1018,10 @@ Changes the START DATE of the task at INDEX 2 to the date of the following day.<
 </div>
 </div>
 </div>
+<div class="paragraph">
+<p>end::edittask[]
+==== Archiving completed tasks: <code>archive</code> [Coming in V2.0]</p>
 </div>
-<div class="sect3">
-<h4 id="archiving-completed-tasks-code-archive-code"><a class="link" href="#archiving-completed-tasks-code-archive-code">5.2.5. Archiving completed tasks: <code>archive</code></a></h4>
 <div class="paragraph">
 <p>Done with your task? Congratulations! To mark it as done, just key in:</p>
 </div>
@@ -1062,7 +1068,7 @@ You can specify multiple indices to archive multiple tasks at once.
 </div>
 </div>
 <div class="sect3">
-<h4 id="listing-tasks-code-list-code-br"><a class="link" href="#listing-tasks-code-list-code-br">5.2.6. Listing tasks : <code>list</code><br></a></h4>
+<h4 id="listing-tasks-code-list-code-br"><a class="link" href="#listing-tasks-code-list-code-br">5.2.2. Listing tasks : <code>list</code><br></a></h4>
 <div class="paragraph">
 <p>To go back to the default list of tasks after a round of filtering, use:</p>
 </div>
@@ -1456,7 +1462,7 @@ e.g.<code>select 2</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-09 07:08:14 +00:00
+Last updated 2017-11-09 07:45:14 +00:00
 </div>
 </div>
 </body>
