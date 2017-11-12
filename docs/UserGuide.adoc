@@ -237,6 +237,7 @@ __Constraints__
 
 Note the following constraints when trying to add tags:
 
+****
 * The index *must be a positive integer* 1, 2, 3, ...
 * Each index *must* be valid according to the current list of contacts.
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
@@ -247,7 +248,6 @@ Note the following constraints when trying to add tags:
 // end::tag[]
 
 // tag::detag[]
-
 ==== Removing tags from multiple contacts : `detag`
 
 When a tag is no longer in used, you can use the detag command to remove the tag from multiple contacts. +
@@ -451,19 +451,25 @@ Note the following constraints when deleting a task:
 
 Change of plans? The edit feature offers a hassle-free solution to change any parameter of an existing task.
 
-Format: `edit INDEX DESCRIPTION by DEADLINE`
+Format: `edit INDEX DESCRIPTION by DEADLINE at START TIME to END TIME`
 
 [TIP]
 One or more parameters can be specified.
 
+[WARNING]
+The time parameter can only be edited using the prefix `at`.
+
 For example:
 
-* `edit 1 exams from 4th Dec by 5th Dec` +
-Changes all parameters of the task at INDEX 1 to set task description to `exams`, start date to `Mon, Dec 4, '17`
-and deadline to `Tue, Dec 5, '17`
+* `edit 1 exam on 4th Dec at 8 pm to 9 pm` +
+Changes all parameters of the task at INDEX 1 to set task description to `exams`, deadline to `Mon, Dec 4, '17`
+and times to `20:00` and `21:00` respectively.
 
 * `edit 2 from tomorrow` +
-Changes the start date of the task at INDEX 2 to the date of the following day.
+Changes the deadline of the task at INDEX 2 to the date of the following day.
+
+* `edit 3 at 9 am`
+Changes the time of the task at INDEX 3 to `09:00`.
 
 .__Constraints__
 
@@ -473,6 +479,10 @@ Note the following constraints when editing tasks:
 * INDEX refers to the index number shown in the most recent task listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
+* The time parameter can only be changed using the `at` prefix.
+* When changing the times of a task, *both* start time and end time *must* be specified or repeated, even if only one time must be changed,
+e.g. to change the end time of `09:00 - 11:00` at INDEX 1, the command must be `edit 1 at 10 am to 11 am`. If `edit 1 at 10 am`, both times will
+be replaced by `10:00` only. If `edit 1 to 10 am` is used, then Mobilize will give an error.
 * If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.
 * Different deadline prefixes are *not* allowed in the same command, e.g. `edit 1 by friday on friday` will result in an error.
 * Multiple values for a single deadline prefix for a single task will only result in the *first* value being selected, e.g. the command `edit 1 by friday saturday` will set the deadline to the upcoming *Friday only* and *not* Saturday.
@@ -543,8 +553,9 @@ __Constraints__
 
 Note the following constraint when viewing your command history:
 
+****
 * Only the commands used while the application is open in the current session, can be viewed.
-
+****
 // tag::undoredo[]
 ==== Undoing previous commands : `undo`
 
@@ -554,7 +565,7 @@ Format: `undo`
 
 [NOTE]
 ====
-Undoable commands: those commands that modify Mobilize's content (`add`, `delete`, `tag`, `detag`,
+Undoable commands: Commands that modify Mobilize's content (`add`, `delete`, `tag`, `detag`,
 `edit`, `clear`).
 ====
 
@@ -563,7 +574,7 @@ Examples:
 * `delete 1` +
 `list` +
 `undo` +
-Reverses the `delete 1` command +
+Reverses the `delete 1` command. +
 
 * `select 1` +
 `list` +
@@ -573,17 +584,18 @@ The `undo` command fails as there are no undoable commands executed previously.
 * `delete 1` +
 `clear` +
 `undo` +
-Reverses the `clear` command +
+Reverses the `clear` command. +
 `undo` +
-Reverses the `delete 1` command +
+Reverses the `delete 1` command. +
 
 __Constraints__
 
 Note the following constraint when undoing commands:
 
-
+****
 * Only commands used while the application is open in an active session, can be undone.
 * If no commands were used previously, the undo command will not work.
+****
 
 ==== Redoing previously undone commands : `redo`
 
@@ -595,9 +607,9 @@ Examples:
 
 * `delete 1` +
 `undo` +
-Reverses the `delete 1` command +
+Reverses the `delete 1` command. +
 `redo` +
-Reapplies the `delete 1` command +
+Reapplies the `delete 1` command. +
 
 * `delete 1` +
 `redo` +
@@ -606,20 +618,21 @@ The `redo` command fails as there are no `undo` commands executed previously.
 * `delete 1` +
 `clear` +
 `undo` +
-Reverses the `clear` command +
+Reverses the `clear` command. +
 `undo` +
-Reverses the `delete 1` command +
+Reverses the `delete 1` command. +
 `redo` +
-Reapplies the `delete 1` command +
+Reapplies the `delete 1` command. +
 `redo` +
-Reapplies the `clear` command +
+Reapplies the `clear` command. +
 
 __Constraints__
 
 Note the following constraint when redoing commands:
 
-
+****
 * If no commands were undone previously, the redo command will not work.
+****
 
 // end::undoredo[]
 
@@ -640,7 +653,7 @@ Format: `exit`
 
 A calendar is useful for marking the important dates. When you have many deadlines and birthdays to take note, the calendar allows you to view all these important dates at a glance. +
 
-==== Marking the dates
+==== Marking dates
 
 With many contacts and tasks to manage, differentiating the birthdays and deadlines on the calendar can be done with the use of colours.
 
@@ -658,11 +671,15 @@ The corresponding date on the calendar is marked *yellow*. +
 
 __Constraints__
 
-The colour of the date on the calendar is *only updated* when next/previous button for month/year is clicked or when a date on the calendar is clicked.
+Note the following constraint on the colour of a date:
 
-==== Clicking dates on the calendar
+****
+* The colour of the date on the calendar is *only updated* when next/previous button for month/year is clicked or when a date on the calendar is clicked.
+****
 
-When there is many deadlines or birthdays on the same date, instead of switching between `CommandMode` and using the `find` command, you can just click on the date itself.
+==== Viewing deadlines and birthdays
+
+When there are many deadlines or birthdays on the same date, instead of switching between `CommandMode` and using the `find` command, you can just click on the date itself.
 
 Examples:
 
@@ -671,9 +688,11 @@ Returns task list and contacts list that contains tasks with deadline on `17-07-
 
 __Constraint__
 
-When a date is clicked and it is not a deadline or not a birthday or both, an empty task list or an empty contacts list or both will be shown, which will be represented by a blank field on the application. +
-
-To return to the original task list or contacts list, you can use the `list` command.
+Note the following constraints when clicking a date on a calendar:
+****
+* When a date is clicked and it is not a deadline or not a birthday or both, an empty task list or an empty contacts list or both will be shown, which will be represented by a blank field on the application. +
+* To return to the original task list or contacts list, you can use the `list` command.
+****
 // end::calendar[]
 
 === Saving the data
