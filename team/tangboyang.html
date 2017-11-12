@@ -40,7 +40,19 @@
 <p>To help you save time to remember all the commands in Mobilize, you can toggle between address book and task manager using:</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>switch ab</code> or <code>switch tm</code></p>
+<p>Format: <code>switch addressbook</code> or <code>switch taskmanager</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can use <code>ab</code> for <code>addressbook</code> and <code>tm</code> for <code>taskmanager</code> in the command.
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -49,7 +61,7 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The default system of Mobilize will be address book.
+The default mode of Mobilize will be address book.
 </td>
 </tr>
 </table>
@@ -116,11 +128,14 @@ The default system of Mobilize will be address book.
 <div class="sect3">
 <h4 id="finding-tasks-by-description-or-deadline-code-find-code"><a class="link" href="#finding-tasks-by-description-or-deadline-code-find-code">Finding tasks by description or deadline: <code>find</code></a></h4>
 <div class="paragraph">
-<p>To find people whose description contain any of the given keywords, use<br>
+<p>Want to find a task? The find feature allows you to find task(s) by descriptions or deadlines.</p>
+</div>
+<div class="paragraph">
+<p>To find task(s) whose descriptions contain any of the given keywords, use<br>
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="paragraph">
-<p>To find people by deadlines, use<br>
+<p>To find task(s) by deadlines, use<br>
 Format: <code>find DD-MM-YYYY</code></p>
 </div>
 <div class="paragraph">
@@ -156,13 +171,13 @@ Returns any task having deadlines on <code>29-10-2017</code></p>
 <p>The order of the keywords does not matter. e.g. <code>Finish task</code> will match <code>task finish</code>.</p>
 </li>
 <li>
-<p>Only the description and deadline is searched.</p>
+<p>Only the description and deadline are searched.</p>
 </li>
 <li>
 <p>Only full words will be matched e.g <code>Finish</code> will not match <code>Finished</code>.</p>
 </li>
 <li>
-<p>Only valid date will be matched e.g <code>291017</code> will not match <code>29-10-2017</code>.</p>
+<p>Only valid dates will be matched e.g <code>291017</code> will not match <code>29-10-2017</code>.</p>
 </li>
 </ul>
 </div>
@@ -206,6 +221,38 @@ Returns any task having deadlines on <code>29-10-2017</code></p>
 <div class="paragraph">
 <p>At first, the <code>execute()</code> function of the <code>LogicManager</code> class is called, which goes on to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>FindTaskCommand</code> feature is being evoked and calls the <code>FindTaskCommandParser</code> to parse the string and compare the descriptions. These are validated and formatted by the <code>TaskContainsKeywordsPredicate</code> and return as a <code>TaskContainsKeywordsPredicate</code> object to be used to call the <code>FindTaskCommand</code> class. The <code>LogicManager</code> then calls the <code>execute()</code> in the <code>FindTaskCommand</code> class which creates and return a <code>CommandResult</code> object.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="directive">public</span> <span class="type">class</span> <span class="class">TaskContainsKeywordsPredicate</span> <span class="directive">implements</span> <span class="predefined-type">Predicate</span>&lt;ReadOnlyTask&gt; {
+    <span class="directive">private</span> <span class="directive">final</span> <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; keywords;
+
+    <span class="directive">public</span> TaskContainsKeywordsPredicate(<span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; keywords) {
+        <span class="local-variable">this</span>.keywords = keywords;
+    }
+
+    <span class="annotation">@Override</span>
+    <span class="directive">public</span> <span class="type">boolean</span> test(ReadOnlyTask task) {
+        <span class="predefined-type">String</span> testDate = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>;
+        <span class="predefined-type">String</span> tag = <span class="predefined-type">Arrays</span>.toString(task.getTags().toArray())
+                .replaceAll(<span class="string"><span class="delimiter">&quot;</span><span class="content">[</span><span class="char">\\</span><span class="content">[</span><span class="char">\\</span><span class="content">](),{}]</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>);
+
+        <span class="keyword">if</span> (!task.getDeadline().isEmpty()) {
+            <span class="keyword">try</span> {
+                <span class="predefined-type">Date</span> date = ParserUtil.parseDate(task.getDeadline().date);
+                <span class="predefined-type">DateFormat</span> dateFormat = <span class="keyword">new</span> <span class="predefined-type">SimpleDateFormat</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">dd-MM-yyyy</span><span class="delimiter">&quot;</span></span>);
+                testDate = dateFormat.format(date);
+            } <span class="keyword">catch</span> (IllegalValueException e) {
+                e.printStackTrace();
+            }
+        }
+        <span class="predefined-type">String</span> finalTestDate = testDate;
+        <span class="keyword">return</span> keywords.stream()
+                .anyMatch(keyword -&gt; StringUtil.containsWordIgnoreCase(task.getDescription().taskDescription, keyword)
+                || StringUtil.containsWordIgnoreCase(finalTestDate, keyword)
+                || StringUtil.containsWordIgnoreCase(tag, keyword));
+    }</code></pre>
+</div>
+</div>
 <h4 id="design-considerations" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of FindTaskCommand<br>
@@ -233,25 +280,24 @@ Returns any task having deadlines on <code>29-10-2017</code></p>
 <div class="sect3">
 <h4 id="selecting-a-task-code-select-code"><a class="link" href="#selecting-a-task-code-select-code">Selecting a task: <code>select</code></a></h4>
 <div class="paragraph">
-<p>To select the task identified by the index number used in the last task listing, use:<br>
-Format: <code>select INDEX</code></p>
+<p>You can use the select command to select the task identified by the index number used in the last task listing.</p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Selects the task at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the most recent listing.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Format: <code>select INDEX</code></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All contacts involved in the selected task will be listed. There will be no changes in the displayed list of contacks if there are no involved personnel.</p>
 </div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -270,19 +316,25 @@ Selects the 1st task in the results of the <code>find</code> command.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
 <div class="paragraph">
-<p>The selected task will show involved people in the address book. If there are no involved personnel, there will be no changes in the displayed list of contacts.</p>
+<p><em>Constraints:</em></p>
 </div>
-</td>
-</tr>
-</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Selects the task at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the most recent listing.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -339,7 +391,7 @@ Selects the 1st task in the results of the <code>find</code> command.</p>
 <div class="sect3">
 <h4 id="listing-tasks-code-list-code-br"><a class="link" href="#listing-tasks-code-list-code-br">Listing tasks : <code>list</code><br></a></h4>
 <div class="paragraph">
-<p>To go back to the default list of tasks after a round of filtering, use:</p>
+<p>You can use the list command to go back to the default list of tasks after a search.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>list</code></p>
@@ -418,7 +470,7 @@ Selects the 1st task in the results of the <code>find</code> command.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-11 13:13:27 +00:00
+Last updated 2017-11-12 02:19:40 +00:00
 </div>
 </div>
 </body>
