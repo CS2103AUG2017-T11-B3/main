@@ -192,7 +192,6 @@ Note the following constraint when trying to find contacts:
 * Only full words will be matched e.g `Han` will not match `Hans`, `friend` will not match `friends` and `1707` will not match `17-07`
 // end::findtag[]
 
-
 ==== Deleting contacts : `delete`
 
 If you need to clean up your contact list, just delete all those redundant contacts!
@@ -218,6 +217,7 @@ Note the following constraints when trying to delete contacts:
 * The index *must be a positive integer* 1, 2, 3, ...
 
 // tag::tag[]
+
 ==== Tagging multiple contacts : `tag` +
 
 Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.
@@ -247,6 +247,7 @@ Note the following constraints when trying to add tags:
 // end::tag[]
 
 // tag::detag[]
+
 ==== Removing tags from multiple contacts : `detag`
 
 When a tag is no longer in used, you can use the detag command to remove the tag from multiple contacts. +
@@ -338,6 +339,7 @@ Note the following constraints when selecting contacts:
 === Managing Tasks
 
 // tag::addtask[]
+
 ==== Adding tasks: `add`
 
 Whether it is a host of pending submissions, a get-together or a multiday program, adding it to Mobilize can easily help you keep track of it all. +
@@ -387,6 +389,7 @@ as a *single* time for the task.
 // end::addtask[]
 
 // tag::find[]
+
 ==== Finding tasks by description or deadline: `find`
 
 Want to find a task? The find feature allows you to find task(s) by descriptions or deadlines.
@@ -423,6 +426,7 @@ Note the following constraints when finding tasks:
 // end::find[]
 
 // tag::deletetask[]
+
 ==== Deleting tasks : `delete`
 
 Due to our fast changing lives, if your task was cancelled suddenly and you would like to delete the task from your task manager, the delete function is here to save your day!
@@ -442,6 +446,7 @@ Note the following constraints when deleting a task:
 // end::deletetask[]
 
 // tag::edittask[]
+
 ==== Editing tasks: `edit`
 
 Change of plans? The edit feature offers a hassle-free solution to change any parameter of an existing task.
@@ -474,9 +479,11 @@ Note the following constraints when editing tasks:
 * Multiple copies of the same deadline prefix with multiple values each will result in the *last* value being selected, e.g. the command `edit 1 by friday by saturday` will set the deadline to the upcoming *Saturday only* and *not* Friday.
 * Multiple values for each time prefix is *not allowed* and will result in incorrect time values being registered for a task card without warning.
 ******
+
 // end::edittask[]
 
 // tag::list[]
+
 ==== Listing tasks : `list` +
 
 You can use the list command to go back to the default list of tasks after a search.
