@@ -21,10 +21,6 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.TagNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-<<<<<<< HEAD
-import seedu.address.logic.parser.DateTimeFormatter;
-=======
->>>>>>> 504090a20815f7d30d374bf0546d10fb545be3f5
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.EventTime;
 import seedu.address.model.task.ReadOnlyTask;
