@@ -467,75 +467,6 @@ a newly edited person is created and the Model is called to update the task usin
 </div>
 </div>
 <div class="sect3">
-<h4 id="tagging-multiple-tasks-code-tag-code-br"><a class="link" href="#tagging-multiple-tasks-code-tag-code-br">Tagging multiple tasks : <code>tag</code><br></a></h4>
-<div class="paragraph">
-<p>Tags are a useful way of grouping and labeling tasks. But editing them manually, one by one, can be a tedious process.
-Instead, you can use the tag command to tag multiple tasks simultaneously.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>tag INDEX… t/[TAG]…</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can add multiple tags to multiple tasks by repeating the tag prefix.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="paragraph">
-<p><code>tag 1, 2, 3 t/urgent t/family</code><br>
-Results in all contacts in indices 1, 2 and 3 being tagged with both [<code>urgent</code>] and [<code>family</code>].</p>
-</div>
-<div class="paragraph">
-<p><em>Constraints</em></p>
-</div>
-<div class="paragraph">
-<p>Note the following constraints when trying to add tags:</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>Each index <strong>must</strong> be valid according to the current list of tasks.</p>
-</li>
-<li>
-<p>If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.</p>
-</li>
-<li>
-<p>Every INDEX must be separated by a comma.</p>
-</li>
-<li>
-<p>Every TAG must be preceded by a tag prefix, t/.</p>
-</li>
-<li>
-<p>If a mix of valid and invalid indices are given, then tags will only be added to the valid INDEX without warning. If all indices are invalid, Mobilize will show an error message.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p><mark>End of Extract</mark></p>
-</div>
-<hr>
-<hr>
-<div class="paragraph">
-<p><mark>Start of Extract [from: User Guide]</mark></p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="tagging-multiple-contacts-code-tag-code-br"><a class="link" href="#tagging-multiple-contacts-code-tag-code-br">Tagging multiple contacts : <code>tag</code><br></a></h4>
 <div class="paragraph">
 <p>Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.
@@ -740,7 +671,7 @@ public static Index[] filterValidIndices(int lastShownListSize, Index[] indices)
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 17:04:19 +00:00
+Last updated 2017-11-13 16:50:31 +00:00
 </div>
 </div>
 </body>
