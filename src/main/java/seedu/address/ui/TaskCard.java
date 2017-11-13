@@ -36,6 +36,8 @@ public class TaskCard extends UiPart<Region> {
     private static HashMap<String, String> tagColours = new HashMap<String, String>();
     private static Random random = new Random();
 
+    private Logger logger = LogsCenter.getLogger(this.getClass());
+
     public final ReadOnlyTask task;
 
     @FXML
@@ -55,8 +57,6 @@ public class TaskCard extends UiPart<Region> {
 
     @FXML
     private FlowPane tags;
-
-    Logger logger = LogsCenter.getLogger(this.getClass());
 
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);

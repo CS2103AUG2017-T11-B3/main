@@ -41,7 +41,8 @@ public class TagTaskCommand extends UndoableCommand {
 
     private final Index[] indices;
     private final Set<Tag> newTags;
-    Logger logger = LogsCenter.getLogger(this.getClass());
+
+    private Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * @param indices of the tasks in the filtered task list to tag

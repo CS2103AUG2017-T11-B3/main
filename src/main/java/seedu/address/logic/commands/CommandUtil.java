@@ -16,7 +16,7 @@ public class CommandUtil {
     public static Index[] filterValidIndices(int lastShownListSize, Index[] indices) {
         assert indices != null;
         assert lastShownListSize != 0;
-         return Arrays.stream(indices)
+        return Arrays.stream(indices)
                 .filter(currentIndex -> currentIndex.getZeroBased() < lastShownListSize)
                 .toArray(Index[]::new);
     }
