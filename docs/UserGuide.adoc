@@ -497,6 +497,36 @@ be replaced by `10:00` only. If `edit 1 to 10 am` is used, then Mobilize will gi
 
 // end::edittask[]
 
+// tag::tagtask[]
+==== Tagging multiple tasks : `tag` +
+
+Tags are a useful way of grouping and labeling tasks. But editing them manually, one by one, can be a tedious process.
+Instead, you can use the tag command to tag multiple tasks simultaneously.
+
+Format: `tag INDEX… t/[TAG]…`
+
+[TIP]
+You can add multiple tags to multiple tasks by repeating the tag prefix.
+
+Example:
+
+`tag 1, 2, 3 t/urgent t/family` +
+Results in all contacts in indices 1, 2 and 3 being tagged with both [`urgent`] and [`family`].
+
+__Constraints__
+
+Note the following constraints when trying to add tags:
+
+****
+* The index *must be a positive integer* 1, 2, 3, ...
+* Each index *must* be valid according to the current list of tasks.
+* If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
+* Every INDEX must be separated by a comma.
+* Every TAG must be preceded by a tag prefix, t/.
+* If a mix of valid and invalid indices are given, then tags will only be added to the valid INDEX without warning. If all indices are invalid, Mobilize will show an error message.
+****
+// end::tagtask[]
+
 // tag::list[]
 
 ==== Listing tasks : `list` +
