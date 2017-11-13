@@ -69,12 +69,12 @@ This project follows https://github.com/oss-generic/process/blob/master/docs/Cod
 
 . Go to `File` > `Settings...` (Windows/Linux), or `IntelliJ IDEA` > `Preferences...` (macOS)
 . Select `Editor` > `Code Style` > `Java`
-. Click on the `Imports` tab to set the order
+. Click on the `Imports` tab to set the order:
 
-* For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set to `999` to prevent IntelliJ from contracting the import statements
-* For `Import Layout`: The order is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
+* For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set these to `999` to prevent IntelliJ from contracting the import statements.
+* For `Import Layout`: Set these in order beginning with `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*` and ending with `import all other imports`. Add a `<blank line>` between each `import`.
 
-Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
+Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check if your code is compliant with our style.
 
 ==== Setting up CI
 
@@ -83,45 +83,44 @@ Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingT
 Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, UsingAppVeyor.adoc>>).
 
 [NOTE]
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
+Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based).
 
 ==== Getting started with coding
 
 When you are ready to start coding,
 
 1. Get some sense of the overall design by reading the link:#architecture[Architecture] section.
-2. Take a look at the section link:#implementation[Implementation] to understand how some of the key features are implemented.
+2. Take a look at the link:#implementation[Implementation] section to understand how some of the key features are implemented.
 
 == Design
 
 === Architecture
 
+The *_Architecture Diagram_* given below displays the high-level design of the Application.
+
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
-The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-[TIP]
-The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
+Given below is a quick overview of each component:
 
 `Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
 
-* At app launch: Initializing the components in the correct sequence, and connects them up with each other.
-* At shut down: Shutting down the components and invokes cleanup method where necessary.
+* Initializing the components in the correct sequence, and connecting them to each other, when the application is launched.
+* Shutting down the components and invokes cleanup method where necessary, when the application is shut down.
 
-link:#common-classes[*`Commons`*] represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
+link:#common-classes[*`Commons`*] represents a collection of classes used by multiple components. Two of those classes play important roles at the architecture level.
 
 * `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
-* `LogsCenter` : Used by many classes to write log messages to the App's log file.
+* `LogsCenter` : This class is used by many classes to write log messages to the Application's log file.
 
-The rest of the App consists of four components.
+The rest of the Application consists of four components.
 
-* link:#ui-component[*`UI`*] : The UI of the App.
+* link:#ui-component[*`UI`*] : The User Interface of Mobilize.
 * link:#logic-component[*`Logic`*] : The command executor.
-* link:#model-component[*`Model`*] : Holds the data of the App in-memory.
-* link:#storage-component[*`Storage`*] : Reads data from, and writes data to, the hard disk.
+* link:#model-component[*`Model`*] : The in-memory data store of the application.
+* link:#storage-component[*`Storage`*] : The reader and writer of data to the hard disk.
 
-Each of the four components
+Each of the four components:
 
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
@@ -134,23 +133,22 @@ _Figure 2.1.2 : Class Diagram of the Logic Component_
 [discrete]
 ==== Events-Driven nature of the design
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+The events-driven nature of the design enables events to be propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this event-driven approach helps us reduce direct coupling between components.
+
+The _Sequence Diagram_ below illustrates an example, showing how the components interact for the scenario where the user issues the command `delete 1`.
 
 image::SDforDeletePerson.png[width="800"]
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
 [NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+Note how the `Model` simply raises an `AddressBookChangedEvent` when the Address Book data is changed, instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
 image::SDforDeletePersonEventHandling.png[width="800"]
 _Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
 
-[NOTE]
-Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-
-The sections below give more details of each component.
+The next few sections give more details of each component.
 
 ==== UI component
 
@@ -162,14 +160,8 @@ _Figure 2.2.1 : Structure of the UI Component_
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel`, `TaskListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
-
-The `UI` component does the following:
-
-* Executes user commands using the `Logic` component.
-* Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
-* Responds to events raised from various parts of the App and updates the UI accordingly.
+It Executes user commands using the `Logic` component and binds itself to some data in the `Model` so that the UI can update automatically when data in the `Model` changes. It is also responsible for updating the UI based on events raised from various parts of the Application.
 
 ==== Logic component
 
@@ -189,12 +181,7 @@ _Figure 2.3.2 : Structure of Commands in the Logic Component. This diagram shows
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-When a `Command` is executed, the `Logic` Component does the following:
-
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
-.  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
-.  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+When a `Command` is executed, the `Logic` Component uses the `AddressBookParser` class to parse the user command. This results in a `Command` object which is executed by the `LogicManager`, which can subsequently affect the `Model` (e.g. adding a person) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -210,12 +197,9 @@ _Figure 2.4.1 : Structure of the Model Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
-The `Model` Component does the following:
-
-* stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+The `Model` Component does the following stores Mobilize date and a `UserPref` object that represents the user's preferences.
+It exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that it automatically updates when the data in the list changes.
+The Model does not depend on any of the other three components.
 
 ==== Storage component
 
@@ -226,10 +210,7 @@ _Figure 2.5.1 : Structure of the Storage Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
-The `Storage` component,
-
-* can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in xml format and read it back.
+The `Storage` component saves `UserPref` objects in json format and read it back. It is also responsible for saving Mobilize data in XML format and reading it back.
 
 === Common classes
 
@@ -294,12 +275,12 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
 [discrete]
 ==== Design Considerations
 **Aspect:** Implementation of `DetagCommand` +
-**Alternative 1 (current choice):** Directly removes the tag from `Set` of person(s) +
-**Pros:** Easier and more specific command to remove tag, and allows removal from multiple persons in one command +
-**Cons:** Introducing of new additional command specifically for removal of tag may not be necessary +
+**Alternative 1 (current choice):** Directly removes the tag from `Set` of contact(s) +
+**Pros:** Easier and more specific command to remove a tag, and allows removal from multiple contacts in one command +
+**Cons:** Introduction of new command specifically for the removal of a tag may not be necessary. +
 **Alternative 2:** Just use the `EditCommand` to change the tag +
-**Pros:** Use of one command to edit any details of a person is more organised +
-**Cons:** Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed +
+**Pros:** Use of one command to edit any details of a person is more organised. +
+**Cons:** Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed. +
 // end::detag[]
 
 // tag::findtag[]
@@ -346,7 +327,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<ReadOnlyPerson
 === Tag mechanism
 
 The Tag mechanism is a specialised form of the edit feature that allows users to tag multiple contacts with multiple tags.
-The mechanism is facilitated by the TagCommand class which inherits from the UndoableCommand class, indicating that it can be undone.
+The mechanism is facilitated by the `TagCommand` class which inherits from the UndoableCommand class, indicating that it can be undone.
 
 Suppose the user has just executed the `TagCommand` using:
 
@@ -390,7 +371,7 @@ image::AddTaskCommandSequenceDiagram.png[width="800", height="500"]
 **Pros:** * Easy to assign an empty string to the instance variable so that the dates are optional and do not show up in the UI.
 In addition, dates can be stored after being formatted to a more user-friendly style (i.e. Tue, Oct 24, '17). This prevents dates from becoming confusing (i.e. distinguishing between dd-MM-yyyy and mm-DD-yyyy) +
 **Cons:** Dates are not stored the correct format. This makes it more difficult to compare and validate later on as they have to be reformatted into Date objects every time. For example,
- in validating whether a start date is indeed before a deadline. +
+in validating whether a start date is indeed before a deadline. +
 **Alternative 2:** Use java.time.LocalDate class. +
 **Pros:** Dates are in correct format. Validation becomes easier and reformatting is not necessary. +
 **Cons:** LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard. +
@@ -557,11 +538,11 @@ The calendar mechanism is facilitated by the `DatePickerSkin` skin instance whic
 
 Suppose the address book is modified (e.g. using `add`, `edit`, `addtask`, `deletetask`).
 
-After the modification of the address book i.e. saving of data to the `addressbook.xml` file, `ObservableList` of `Person` and `Task` classes stored in the address book are passed into the `CalendarPanel` Ui through `Model`.
+After the modification of Mobilize's address book (i.e. saving of data to the `addressbook.xml` file), `ObservableList` of `Person` and `Task` classes stored in the address book are passed into the `CalendarPanel` Ui through `Model`.
 
-Next, `getDayCellFactory` will format the `DateCell` of the `DatePicker`. The formatting is done with `Birthday` and `Deadline` as conditions and colour and tooltip of `DateCell` as variables to be change by the formatter.
+Next, `getDayCellFactory` will format the `DateCell` of the `DatePicker`. The formatting is done with birthday and deadline as conditions and colour and tooltip of `DateCell` as variables to be change by the formatter.
 
-By selecting the date on the calendar, the date value from the `DatePicker` will be captured and be parsed as a string. The string is then pass to `Logic` to execute the `FindCommand` which will show all persons and tasks having `Birthday` and `Deadline` on that specific date.
+By selecting the date on the calendar, the date value from the `DatePicker` will be captured and be parsed as a string. The string is then passed to `Logic` to execute the `FindCommand` which will show all contacts and tasks having `Birthday` and `Deadline` on that specific date.
 
 [NOTE] Implementation of CLI for the calendar is still ongoing.
 

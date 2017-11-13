@@ -22,6 +22,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
+//@@author raisa2010
 public class TagCommandSystemTest extends AddressBookSystemTest {
 
     @Test
@@ -117,6 +118,7 @@ public class TagCommandSystemTest extends AddressBookSystemTest {
         assertStatusBarUnchangedExceptSyncStatus();
     }
 
+    //@@author
     /**
      * Executes {@code command} and in addition,<br>
      * 1. Asserts that the command box displays {@code command}.<br>

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeFormatter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
@@ -20,7 +21,6 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.TagNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.task.DateTimeFormatter;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.EventTime;
 import seedu.address.model.task.ReadOnlyTask;
@@ -233,8 +233,8 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //@@author raisa2010
     /**
-     * Updates the tags of an existing {@code person} in the addressbook by adding the {@code newTags}
-     * to the person's existing tags.
+     * Updates the tags of an existing {@code person} in the addressbook by adding the
+     * {@code newTags} to the person's existing tags.
      * @throws PersonNotFoundException if the person index provided is invalid.
      */
     public void updatePersonTags(ReadOnlyPerson person, Set<Tag> newTags)
@@ -254,8 +254,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Updates the tags of an existing {@code task} in the task manager by adding the {@code newTags}
-     * to the task's existing tags.
+     * Updates the tags of an existing {@code task} in the task manager by adding the
+     * {@code newTags} to the task's existing tags.
      * @throws TaskNotFoundException if the task index provided is invalid.
      */
     public void updateTaskTags(ReadOnlyTask task, Set<Tag> newTags)
