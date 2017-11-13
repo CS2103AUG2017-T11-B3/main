@@ -117,6 +117,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      * @return the index of the task to be edited.
      */
     public String getIndexForEdit(String preamble) {
+        assert preamble != null;
         String trimmedPreamble = preamble.trim();
         return (trimmedPreamble.indexOf(' ') == -1) ? trimmedPreamble
                 : trimmedPreamble.substring(0, trimmedPreamble.indexOf(' '));
@@ -131,6 +132,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      */
     public Optional<Description> parseDescriptionForEdit(String preamble)
             throws IllegalValueException {
+        assert preamble != null;
         int indexLength = getIndexForEdit(preamble).length();
         String description = (indexLength == preamble.length()) ? ""
                 : preamble.substring(indexLength, preamble.length());

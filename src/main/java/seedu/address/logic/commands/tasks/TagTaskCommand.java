@@ -69,6 +69,8 @@ public class TagTaskCommand extends UndoableCommand {
         logger.info("Number of invalid indices skipped: " + numInvalidValues);
 
         for (Index currentIndex : validIndices) {
+            assert currentIndex != null;
+            assert currentIndex.getZeroBased() >= 0;
             ReadOnlyTask taskToEdit = lastShownList.get(currentIndex.getZeroBased());
 
             try {

@@ -64,6 +64,8 @@ public class TagCommand extends UndoableCommand {
         }
 
         for (Index currentIndex : validIndices) {
+            assert currentIndex != null;
+            assert currentIndex.getZeroBased() >= 0;
             ReadOnlyPerson personToEdit = lastShownList.get(currentIndex.getZeroBased());
 
             try {
