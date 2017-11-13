@@ -24,7 +24,14 @@ include::../UserGuide.adoc[tag=addtask]
 
 ==== Justification
 
-Expands the breadth of the original code's function by allowing users to add tasks and plan their accordingly.
+The Add Task command was the first step in expanding Mobilize's capabilities. In
+allowing users to add pending tasks to their application, Mobilize has adopted
+the responsibility of organizing its user's life.
+
+The Add Task uses a Natural Language Parsing Library, http://ocpsoft.org/prettytime/nlp/[PrettyTime],
+in order to make it more user-friendly, by allowing task dates to be set using natural language dates
+and times. This makes the command format of the application less rigid and increases its appeal to
+potential users.
 
 ==== Implementation
 
@@ -52,7 +59,7 @@ include::../UserGuide.adoc[tag=edittask]
 
 ==== Justification
 
-Tagging multiple contacts at the same time will enable users to easily use the tag function for various reasons including keeping track of tasks done by contacts.
+Editing tasks is a natural extension of the add task feature
 
 ==== Implementation
 
@@ -80,7 +87,18 @@ include::../UserGuide.adoc[tag=tag]
 
 ==== Justification
 
-Tagging multiple contacts at the same time will enable users to easily use the tag function for various reasons including keeping track of tasks done by contacts.
+The rationale behind adding a special feature to add tags cumulatively, was primarily to open up a world of
+possibilities of the tags themselves, to a user. Not only can they be used to effectively, yet easily organize contacts
+and tasks - that too, by multiple parameters - but they can also be used to __link__ the two with the same tag
+to keep track of tasks with which people are associated and vice versa. +
+
+That being said, the caveat to consider was whether to create a new command or modify the edit command itself
+to allow for tagging cumulatively. In the end, it was decided that separating the two would help achieve the goal
+of helping users be better organized, as the edit function focuses solely on __replacing__ existing tags or removing
+them altogether while the tag command serves to increment them. In addition, the flexible indexing for the tag command helps users tag their desired contact or task even if they make
+some mistakes in typing the index unlike the edit command.
+
+Overall the tag command achieves the application's purposes of organizing its user's life much more efficiently.
 
 ==== Implementation
 
@@ -95,6 +113,10 @@ include::../DeveloperGuide.adoc[tag=tag]
 
 === Other contributions
 
-* Added autocomplete feature (Pull request https://github.com/CS2103AUG2017-T11-B3/main/pull/96[#96])
-* Discovered bug during trial acceptance testing (https://github.com/CS2103AUG2017-T09-B4/main/issues/103[Issue #103])
-
+* Added autocomplete feature using ControlsFX Library (Pull request https://github.com/CS2103AUG2017-T11-B3/main/pull/96[#96]).
+* Discovered bug during trial acceptance testing (https://github.com/CS2103AUG2017-T09-B4/main/issues/103[Issue #103]).
+* Rewrote large parts of the User Guide to enhance it (Pull Request ).
+* Reviewed and edited the language and structure of all documentation (Pull Requests ).
+* Generated SampleData.xml file (Pull Request ).
+* Set up organization, Milestones (until V1.?) and Issues (until V1.?).
+* Assisted other students in Slack and Forums (Issue ).

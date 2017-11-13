@@ -17,9 +17,9 @@ By: `Team T11-B3`      Since: `Sep 2017`      Adapted from AddressBook-Level4, b
 
 ==  Introduction +
 
-Mobilize is a organizing and planning application for the desktop, that allows you to manage your contacts
-and tasks easily. Using the default Command Line Interface, you can store, edit, filter and remove contacts
-and to-do lists without using the touch pad or a mouse.
+Mobilize is an organizing and planning application for the desktop, that allows you to manage your contacts
+and tasks easily. You can store, edit, filter and remove contacts
+and to-do lists by simply typing commands into the text box.
 
 With its sophisticated yet user-friendly features, Mobilize can help you easily plan and organize your day
 with only a few clicks on the keyboard.
@@ -29,15 +29,17 @@ with only a few clicks on the keyboard.
 This User Guide will lead you through the process of downloading and using Mobilize, along with a brief overview of its features and
 the different commands which will help you use these features.
 
-A summary of all commands can be found at the end of the guide.
+All commands are summarized at the end of the guide.
 
 ==  Key Features +
+
+Mobilize facilitates planning and management by combining two important features: an address book and a task manager.
 
 === Address Book
 
 The address book allows you to add, delete, tag, detag, list, find, select and edit contacts.
 
-It offers the following parameters:
+It accepts the following parameters:
 
 * Name
 * Phone
@@ -48,9 +50,9 @@ It offers the following parameters:
 
 === Task Manager
 
-The task manager allows you to add, delete, tag, archive, list, find, select and edit tasks.
+The task manager allows you to add, delete, tag, list, find, select and edit tasks.
 
-It offers the following parameters:
+It accepts the following parameters:
 
 * Task Description
 * Starting Date
@@ -61,6 +63,8 @@ It offers the following parameters:
 
 === Launching the Application
 
+To launch the application:
+
 .  Ensure you have Java version `1.8.0_60` or later installed in your Computer.
 +
 [NOTE]
@@ -69,31 +73,34 @@ This app will not work with earlier versions of Java 8.
 +
 .  Download the latest version of `Mobilize` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to store Mobilize in.
-.  Double click on the icon to launch the application.
+.  Double click on the icon to get started.
 
 
-=== Knowing the Interface
+=== Understanding the Screen Layout
 
-Mobilize comes with a simple interface to facilitate easy planning. It contains six main components that allow you to interact with the application: +
+Mobilize comes with a simple screen layout to facilitate easy planning. The screen contains six main parts that allow you to interact with the application: +
 
 image::Ui.png[width="790"]
 
-__Fig: Components of the Mobilize Interface__
+__Fig: Parts of the Mobilize Screen__
 
 
-Each component has different functions:
+Each part has different functions:
 
-* *`Command Line`:* This is your primary mode of input. All major functions have a command in the command line.
+* *`Command Line`:* This is the your primary mode of input. All major functions have a command in the command line.
 * **`Result Display`:** This is your primary mode of interaction with the application. You will be notified of all successful or failed commands, along with their correct usages through the Result Display.
-* **`Contact Cards`:** These are arranged in a panel to display all the contacts you add into the application. Contact Cards show you all entered fields of a contact.
-* *`Task Cards`:* These are arranged in a panel to display all the tasks you add into the application. Task Cards show you all entered fields of a task.
-* *`Browser`:* This is built into the application to redirects you to the location of a contact’s address when a Contact Card is clicked.
+* **`Contact Cards`:** These are arranged in a panel to display all the contacts you add into the application. Contact Cards show you all entered fields of a contact and are arranged in alphabetical order
+according to the names of your contacts.
+* *`Task Cards`:* These are arranged in a panel to display all the tasks you add into the application. Task Cards show you all entered fields of a task and are arranged according to urgency starting from the
+nearest deadline.
+* *`Calendar`:* This is a calendar that gives a color coded view of all task deadlines and contact birthdays.
+* *`Browser`:* This is built into the application to redirect you to the location of a contact’s address when a Contact Card is selected.
 
-== Using Mobilize
+== Features
 
-=== Formatting Commands
+=== Using Mobilize
 
-For the following tutorials, command formatting will be explained using the following syntax:
+Command formats will be explained using the following syntax:
 
 * Words or letters followed by a slash (/) are prefixes, to mark the place of a specific parameter. +
   For example, in the syntax n/NAME, the combination of “n/” forms a prefix to signal that the parameter that follows should be a name.
@@ -104,12 +111,8 @@ For the following tutorials, command formatting will be explained using the foll
 * Items followed by “…” can be repeated multiple times. +
   For example, if a command syntax contains the item [t/TAG]…, then the final command can contain multiple ‘tags’, such as t/friend, t/family, t/classmate.
 * Parameters that are preceded by a prefix, can occur in any order. +
-  For example, if a command syntax contains the item add n/NAME p/PHONE a/ADDRESS, then the final command can contain these items in mixed order, such as add a/ADDRESS n/NAME p/PHONE.
+  For example, if a command syntax contains the item add n/NAME p/PHONE a/ADDRESS, then the final command can contain these items in a different order, such as add a/ADDRESS n/NAME p/PHONE.
 
-[NOTE]
-This is not applicable for parameters without a prefix.
-For example, if a command syntax uses: edit INDEX n/NAME, then the INDEX parameter MUST be in the
-exact position as in the syntax, in this case, after the command word i.e. edit.
 
 // tag::switch[]
 === Switching Between Address Book and Task Manager : `switch`
@@ -125,6 +128,7 @@ You can use `ab` for `addressbook` and `tm` for `taskmanager` in the command.
 The default mode of Mobilize will be address book.
 
 // end::switch[]
+
 === Managing Contacts
 
 // tag::birthday[]
@@ -132,61 +136,48 @@ The default mode of Mobilize will be address book.
 
 Whether you’ve just met a new colleague or reconnected with an old friend, adding new contacts to Mobilize is easy! +
 
-. Simply key in your contact details in the following way: +
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…` +
 
-. Hit enter and you should see a success message in the Result Display: +
-`New Person Added: NAME Phone: PHONE Email: EMAIL Address: ADDRESS Birthday: [BIRTHDAY] Tags: [TAG1][TAG2]…` +
-
-Here is an example to illustrate: +
+Examples: +
 
 * `add n/John Doe p/92435671 e/john_d888@gmail.com a/ 207 Upper Street, Islington, LONDON, N1 1RL b/15-11-1986 t/friend t/roommate` +
-   Result Display: +
-   `New Person Added: John Doe Phone: 92435671 Email: john_d888@gmail.com Address: 207 Upper Street, Islington, LONDON, N1 1RL Birthday: 15-11-1986 Tags: [friend][roommate]`
-
-
-Congratulations, you now have your first contact! +
+Creates a new contact and sets the name to `John Doe`, email address to `john_d888@gmail.com`, address to `207 Upper Street, Islington, LONDON, N1 1RL`,
+birthday to `15-11-1996` and two tags to [`friend`] and [`roommate`]. +
 
 [NOTE]
 Contacts are automatically sorted according to name.
 
-__Constraints:__
+__Constraints:__ +
+
+Note the following constraints when trying to add new contacts: +
 
 ****
 * All fields must be provided and not blank.
-* Duplicate contacts [where all parameters, except tags, are exactly the same] are not allowed.
+* Duplicate contacts [where all parameters, except tags, are exactly the same]
+are not allowed.
 * NAME must only contain letters in upper or lower case.
 * PHONE must contain at least three numbers.
 * BIRTHDAY must be a eight-digit number in “dd-mm-yyyy” format.
 * Every TAG must be preceded by a tag prefix, t/.
+* Using multiple parameters after a single prefix will result in only the last parameter being added, if it is valid. e.g. if `add n/John Doe n/Jane Doe` is used,
+then the contact will be named `Jane Doe`.
 ****
 // end::birthday[]
 
 // tag::findtag[]
 ==== Finding contacts: `find`
+Whether you’re a social butterfly or a networking pro, sifting through contacts can be a tedious task. To ease the process, you can filter your contact list by name, tag or birthday. +
 
-Whether you’re a social butterfly or a networking pro, sifting through contacts can be a tedious task. +
-
-To ease the process, use the find feature to filter people by name, tag or birthday: +
-
-Format: `find NAME TAG BIRTHDAY` +
-
-Consequently: +
-
-* The Result Display says “NUMBER persons listed!” to show you the NUMBER of people whose names and tags could be matched to NAME, TAG and BIRTHDAY. +
-
-* The list of Contact Cards is filtered to display only the card(s) of the contact(s) who are found.
+Format: `find [NAME] [TAG] [BIRTHDAY]` +
 
 [TIP]
-The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends` and BIRTHDAY, in the format of DD-MM, will match DD-MM_YYYY. e.g `17-07` will match `17-07-1995` +
+* The search is case insensitive. e.g `hans` will match `Hans`, `friends` will match `Friends`
+ and BIRTHDAY, in the format of DD-MM, will match DD-MM_YYYY. e.g `17-07` will match `17-07-1995` +
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` +
+* Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`,
+ `Bo Yang`
 
-[TIP]
-The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans` +
-
-[TIP]
-Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` +
-
-For example, the command: +
+Examples: +
 
 * `find John` +
 Returns `john` and `John Doe`
@@ -199,63 +190,63 @@ Returns any person having birthday on `17-07`
 
 __Constraints:__
 
+Note the following constraint when trying to find contacts:
+
 * Only full words will be matched e.g `Han` will not match `Hans`, `friend` will not match `friends` and `1707` will not match `17-07`
 // end::findtag[]
 
 ==== Deleting contacts : `delete`
 
-Deleting contacts requires just one simple command:
+If you need to clean up your contact list, just delete all those redundant contacts!
 
 Format : `delete INDEX`
 
-
-All information associated with the contact will be wiped away.
-
-To illustrate:
+Examples:
 
 * `list` +
 `delete 2` +
-Deletes the 2nd person in the address book.
+Deletes the 2nd contact in the list.
 
 * `find Betsy` +
 `delete 1` +
-Deletes the 1st person in the results of the `find` command.
+Deletes the 1st contact in the result list of the `find` command.
 
 __Constraints__
 
-****
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the most recent listing.
+Note the following constraints when trying to delete contacts:
+
+* Deletes the contact at the specified index.
+* INDEX refers to the index number shown in the most recent contact listing.
 * The index *must be a positive integer* 1, 2, 3, ...
-****
 
 // tag::tag[]
+
 ==== Tagging multiple contacts : `tag` +
 
 Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.
+Instead, you can use the tag command to tag multiple contacts simultaneously.
 
-. Instead, use:
-Format: `tag [INDEX]… t/[TAG]…`
-
-. Multiple contacts will be tagged by the tag(s) set in the parameter.
-
-. The Contact Cards will be updated to display the new tags.
+Format: `tag INDEX… t/[TAG]…`
 
 [TIP]
 You can add multiple tags to multiple contacts by repeating the tag prefix.
 
-To illustrate, the command:
+Example:
 
 `tag 1, 2, 3 t/friend t/family` +
-Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] and [family].
+Results in all contacts in indices 1, 2 and 3 being tagged with both [`friend`] and [`family`].
 
 __Constraints__
 
+Note the following constraints when trying to add tags:
+
 ****
-* Each index MUST be valid according to the current list of contacts.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Each index *must* be valid according to the current list of contacts.
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 * Every INDEX must be separated by a comma.
-* Every TAG must have a prefix.
+* Every TAG must be preceded by a tag prefix, t/.
+* If a mix of valid and invalid indices are given, then tags will only be added to the valid INDEX without warning. If all indices are invalid, Mobilize will show an error message.
 ****
 // end::tag[]
 
@@ -274,11 +265,13 @@ Deletes the [`friends`] tag of the 2nd contact in the address book.
 
 * `find Betsy` +
 `detag 1, 2, 4 t/OwesMoney` +
+
 Deletes the [`OwesMoney`] tag of the 1st, 2nd and 4th contact in the result list of the `find` command.
 
 __Constraints__
 
-Note the following constraints when trying to remove tag: +
+Note the following constraints when trying to remove a tag: +
+
 * INDEX refers to the index number shown in the most recent listing. +
 * The index *must be a positive integer* 1, 2, 3, ... +
 * Every index must be separated by a comma.
@@ -286,76 +279,56 @@ Note the following constraints when trying to remove tag: +
 
 ==== Editing contacts : `edit` +
 
+Editing existing contacts is an easy way to keep track of people who might be changing numbers, addresses or even their role in your life.
 
-Editing existing contacts is an easy way to keep track of people who might be changing                numbers, addresses or even their role in your life.
-All you need to do is input a command in the following format to edit a person’s details:
-
-Format: `edit INDEX n/NAME p/PHONE a/ADDRESS e/EMAIL b/BIRTHDAY t/TAG`
-
-When the command succeeds, the Result Display shows:
-
-`Edited Person: NAME Phone: PHONE Email: EMAIL Address: ADDRESS Birthday: [BIRTHDAY] Tags: [TAG]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [t/TAG]...`
 
 [TIP]
-All items are NOT mandatory for editing. Any number between one and multiple items might be given for successful edit. All items left out will continue to have their original PARAMETERS.
+* Any number between one and multiple items might be given for a successful edit. All items left out will continue to have their original parameters. +
 
-An example to illustrate this shows:
+Examples:
 
-`edit 1 n/Jane Doe p/92413567 a/Singapore e/jane@gmail.com b/09081997 t/sister`
-
-Result Display:
-
-`Edited Person: Jane Doe Phone: 92413567 Email: jane@gmail.com Address: Singapore Birthday: 09081997 Tags: [sister]`
-
-
-Other examples include:
-
+*`edit 1 n/Jane Doe p/92413567 a/Singapore e/jane@gmail.com b/09-08-1997 t/sister` +
+Edits the name of the first contact to be `Jane Doe`, phone number to be `92413567`, address to be `Singapore`, email to be `jane@gmail.com`,
+birthday to be `09-08-1997` and tag to be [`sister`]. +
 * `edit 1 p/91234567 e/johndoe@example.com` +
-Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-
-
+Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively. +
 * `edit 2 n/Betsy Crower t/` +
-Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-+
-So there you have it; an easy, editable contact!
+Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
 __Constraints__
 
-****
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing.
-* INDEX *must be a positive integer* 1, 2, 3, ...
+Note the following constraints when editing contacts:
+
+* INDEX refers to the index number shown in the last contact listing.
+* The index *must be a positive integer* 1, 2, 3, ...
 * If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* If a tag prefix is given without a TAG PARAMETER, then the tags will be replaced by a blank (deleted) i.e adding of tags is not cumulative.
-* You can remove all the person's tags by typing `t/` without specifying any tags after it.
-****
+* If a tag prefix is given without a TAG parameter, then the tags will be replaced by a blank (deleted) i.e adding of tags is not cumulative.
+* You can remove all the contacts' tags by typing `t/` without specifying any tags after it.
+
 
 ==== Listing contacts : `list` +
-
-To go back to the default list of contacts after a round of filtering, use:
+To go back to the default list of contacts after a round of filtering, use the list command.
 
 Format: `list`
 
 ==== Selecting contacts : `select`
 
-Selecting a contact is an easy way to click on their Contact Card without having to use the pointer on the screen.
-To execute this command, type:
+Selecting a contact is an easy way to locate a contact's address on Google Maps.
 
 Format: `select INDEX`
-
-This triggers the browser to display the address of the contact in the index.
 
 Examples:
 
 * `list` +
 `select 2` +
-Selects the 2nd person in the address book.
+Selects the 2nd contact in the address book. <add detail about their location showing up>
 
 * `find Betsy` +
 `select 1` +
-Selects the 1st person in the results of the `find` command.
+Selects the 1st contact in the results of the `find` command. <add detail about their location showing up>
 
 __Constraints__
 
@@ -369,58 +342,68 @@ Note the following constraints when selecting contacts:
 === Managing Tasks
 
 // tag::addtask[]
+
 ==== Adding tasks: `add`
 
 Whether it is a host of pending submissions, a get-together or a multiday program, adding it to Mobilize can easily help you keep track of it all. +
 
-
 Use prefixes:
 ****
-* `from` to denote the date in which the event begins.
-* `to`, `on` or `by` to denote the date in which the task is due to be completed.
+* `on` or `by` or `from` to denote the date in which the task is due to be completed or when a task is set to begin.
+* `at` to denote the starting time of the task and `to` to denote the ending time of the task.
 ****
 
-. The command follows: +
-Format: `add DESCRIPTION from START DATE by/on DEADLINE t/[TAG]…`
+Format: `add DESCRIPTION [by/on/from DEADLINE] [at START TIME to END TIME] [t/TAG]…`
 
-. As the task is added to a new Task Card, the Result Display shows: +
-`Task has been added: DESCRIPTION From: START DATE To: DEADLINE Tags: [TAG]`
-
-. The task added is automatically sorted according to the deadline. With expired tasks coming first, follow by tasks with deadline that are coming up next and lastly tasks without deadline.
+* The task added is automatically sorted according to the deadline. With expired tasks coming first, follow by tasks with deadline that are coming up next and lastly tasks without deadline.
 
 [NOTE]
-Dates can be in any format as long as the month precedes the date.
-
-[TIP]
-Words or phrases like 'tomorrow', 'yesterday', 'Tue', 'Tuesday', 'next Mon', 'day before yesterday', '5 Dec', '5/9/2017' and 'the 8th of Jan' are all valid dates.
-
-[TIP]
-A person can opt to leave out a single or all dates.
+* If you want to enter a date, it must follow the MONTH-DAY-YEAR format.
+* Words or phrases like 'tomorrow', 'yesterday', 'Tue', 'Tuesday', 'day after tomorrow', '5 Dec', '5/9/2017' and 'the 8th of Jan' are all valid dates.
+* `2 pm`, `2:00`, `02:00`, `1400` are all valid times.
+* Deadlines and times are optional items.
 
 
 Examples:
 
+* `add important meeting on 17 Nov at 9 am to 11 am`
+Sets the description to `important meetin`, deadline to the `15th of November` in the current or upcoming year and times to `09:00` and `11:00` respectively.
+
 * `add recess week from tomorrow by 15 Sep`
-Sets the description to "recess week" start date to the next day and the deadline to the 15th of September in the current or upcoming year.
+Sets the description to `recess week` start date to the next day and the deadline to the `15th of September` in the current or upcoming year.
 
 * `add get groceries`
-Sets the description to "get groceries" leaving the other parameters blank.
+Sets the description to `get groceries` leaving the other parameters blank.
 
 _Constraints_
 
+Note the following constraints when adding tasks:
+
 ****
-* Dates MUST be preceded by one of the prefixes.
+* Dates *must* be preceded by one of the prefixes.
+* Invalid dates (such as 32 Jan) will not be flagged by Mobilize and will be replaced in a task card by an incorrect date (such as Feb 1 '48).
+* Invalid times (such as 200 and 3 (without am or pm)) will not be flagged by Mobilize and will be replaced in a task card by an incorrect time (such as 00:00).
+* If one time (e.g. start time) is invalid while the other (e.g. end time) is valid, the incorrect time will be ignored by Mobilize and only the correct time will be added
+as a *single* time for the task.
+* If a prefix is used and no subsequent parameter is specified, the task will be added without the associated item, e.g. `add meeting on` will set an empty deadline for the task.
+* Different deadline prefixes are *not* allowed in the same command, e.g. `add submit assignment by friday on friday` will result in an error.
+* Multiple values for a single deadline prefix for a single task will only result in the *first* value being selected, e.g. the command `add finish quiz by friday saturday` will set the deadline to the upcoming *Friday only* and *not* Saturday.
+* Multiple copies of the same deadline prefix with multiple values each will result in the *last* value being selected, e.g. the command `add finish quiz by friday by saturday` will set the deadline to the upcoming *Saturday only* and *not* Friday.
+* Multiple values for each time prefix is *not allowed* and will result in incorrect time values being registered for a task card without warning.
 ****
 // end::addtask[]
 
 // tag::find[]
+
 ==== Finding tasks by description or deadline: `find`
+
 Want to find a task? The find feature allows you to find task(s) by descriptions or deadlines.
 
 To find task(s) whose descriptions contain any of the given keywords, use +
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 To find task(s) by deadlines, use +
+
 Format: `find DD-MM-YYYY`
 
 Examples:
@@ -429,12 +412,14 @@ Examples:
 Returns `finish task tonight` and `finish task tomorrow`
 
 * `find finish task tonight` +
-Returns any task having descriptions `finish`, `task`, or `tonight`
+Returns any task(s) having a description containing `finish`, `task`, or `tonight`
 
 * `find 29-10-2017` +
-Returns any task having deadlines on `29-10-2017`
+Returns any task(s) having deadlines on `29-10-2017`
 
 __Constraints:__
+
+Note the following constraints when finding tasks:
 
 ****
 * The search is case insensitive. e.g `finish` will match `Finish`.
@@ -459,7 +444,7 @@ Note the following constraints when deleting a task:
 
 ****
 * Deletes the task at the specified `INDEX`.
-* The index refers to the index number shown in the most recent listing.
+* INDEX refers to the index number shown in the most recent listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
 ****
@@ -471,52 +456,49 @@ Note the following constraints when deleting a task:
 
 Change of plans? The edit feature offers a hassle-free solution to change any parameter of an existing task.
 
-All you have to do is type in:
-
-Format: `edit INDEX DESCRIPTION from START DATE to DEADLINE`
+Format: `edit INDEX DESCRIPTION by/from/at DEADLINE at START TIME to END TIME`
 
 [TIP]
 One or more parameters can be specified.
 
+[WARNING]
+The time parameter can only be edited using the prefix `at`.
+
 For example:
 
-*`edit 1 exams from 4th Dec to 5th Dec` +
-Changes all parameters of the task at INDEX 1 to set DESCRIPTION to "exams", START DATE to "Mon, Dec 4, '17"
-and DEADLINE to "Tue, Dec 5, '17"
+* `edit 1 exam on 4th Dec at 8 pm to 9 pm` +
+Changes all parameters of the task at INDEX 1 to set task description to `exams`, deadline to `Mon, Dec 4, '17`
+and times to `20:00` and `21:00` respectively.
 
-*`edit 2 from tomorrow` +
-Changes the START DATE of the task at INDEX 2 to the date of the following day.
+* `edit 2 from tomorrow` +
+Changes the deadline of the task at INDEX 2 to the date of the following day.
 
-__Constraints__
+* `edit 3 at 9 am`
+Changes the time of the task at INDEX 3 to `09:00`.
 
-****
-* The index refers to the index number shown in the most recent listing.
+.__Constraints__
+
+Note the following constraints when editing tasks:
+
+******
+* INDEX refers to the index number shown in the most recent task listing.
 * If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.
 * The index *must be a positive integer* `1, 2, 3, ...`
+* The time parameter can only be changed using the `at` prefix.
+* When changing the times of a task, *both* start time and end time *must* be specified or repeated, even if only one time must be changed,
+e.g. to change the end time of `09:00 - 11:00` at INDEX 1, the command must be `edit 1 at 10 am to 11 am`. If `edit 1 at 10 am`, both times will
+be replaced by `10:00` only. If `edit 1 to 10 am` is used, then Mobilize will give an error.
 * If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.
-****
+* Different deadline prefixes are *not* allowed in the same command, e.g. `edit 1 by friday on friday` will result in an error.
+* Multiple values for a single deadline prefix for a single task will only result in the *first* value being selected, e.g. the command `edit 1 by friday saturday` will set the deadline to the upcoming *Friday only* and *not* Saturday.
+* Multiple copies of the same deadline prefix with multiple values each will result in the *last* value being selected, e.g. the command `edit 1 by friday by saturday` will set the deadline to the upcoming *Saturday only* and *not* Friday.
+* Multiple values for each time prefix is *not allowed* and will result in incorrect time values being registered for a task card without warning.
+******
 
 // end::edittask[]
-==== Archiving completed tasks: `archive` [Coming in V2.0]
 
-Done with your task? Congratulations! To mark it as done, just key in:
-
-Format: `archive [INDEX]...`
-
-Mobilize will move it over to its archive list!
-
-[TIP]
-You can specify multiple indices to archive multiple tasks at once.
-
-__Constraints:__
-
-****
-* Multiple INDEX MUST be separated by commas.
-* The index refers to the index number shown in the most recent listing.
-* If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.
-* The index *must be a positive integer* `1, 2, 3, ...`
-****
 // tag::list[]
+
 ==== Listing tasks : `list` +
 
 You can use the list command to go back to the default list of tasks after a search.
@@ -527,7 +509,6 @@ Format: `list`
 // tag::select[]
 ==== Selecting a task: `select`
 You can use the select command to select the task identified by the index number used in the last task listing.
-
 Format: `select INDEX`
 
 [NOTE]
@@ -542,9 +523,10 @@ Examples:
 Selects the 2nd task in the task manager.
 * `find finish` +
 `select 1` +
-Selects the 1st task in the results of the `find` command.
+Selects the 1st task in the results of the `find` command. <*result list>
 
 __Constraints:__
+
 ****
 * Selects the task at the specified `INDEX`.
 * The index refers to the index number shown in the most recent listing.
@@ -556,13 +538,14 @@ __Constraints:__
 
 ==== Showing help window : `help`
 
-To open up the help window, use: +
+Need some help? Use the help command to pull up the user guide! +
 
 Format: `help`
 
 ==== Display past commands : `history`
 
-To display all the commands that you have entered in reverse chronological order, use: +
+If you need a reminder about what command you used in the past, Mobilize has you covered!
+The history command can display a list of your typed commands in reverse chronological order! +
 
 Format: `history`
 
@@ -571,16 +554,23 @@ Format: `history`
 Pressing the kbd:[&uarr;] and kbd:[&darr;] arrows will display the previous and next input respectively in the command box.
 ====
 
+__Constraints__
+
+Note the following constraint when viewing your command history:
+
+****
+* Only the commands used while the application is open in the current session, can be viewed.
+****
 // tag::undoredo[]
 ==== Undoing previous commands : `undo`
 
-Accidentally made a change you don't want anymore? To restores Mobilize to the state before the previous _undoable_ command was executed, use: +
+If you have accidentally made an unintended change, you can easily restore Mobilize to the state before the previous _undoable_ command was executed! +
 
 Format: `undo`
 
 [NOTE]
 ====
-Undoable commands: those commands that modify Mobilize's content (`add`, `delete`, `tag`, `detag`,
+Undoable commands: Commands that modify Mobilize's content (`add`, `delete`, `tag`, `detag`,
 `edit`, `clear`).
 ====
 
@@ -588,7 +578,8 @@ Examples:
 
 * `delete 1` +
 `list` +
-`undo` (reverses the `delete 1` command) +
+`undo` +
+Reverses the `delete 1` command. +
 
 * `select 1` +
 `list` +
@@ -597,20 +588,33 @@ The `undo` command fails as there are no undoable commands executed previously.
 
 * `delete 1` +
 `clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
+`undo` +
+Reverses the `clear` command. +
+`undo` +
+Reverses the `delete 1` command. +
+
+__Constraints__
+
+Note the following constraint when undoing commands:
+
+****
+* Only commands used while the application is open in an active session, can be undone.
+* If no commands were used previously, the undo command will not work.
+****
 
 ==== Redoing previously undone commands : `redo`
 
-To reverse the most recent `undo` command, use: +
+Trying to reverse the most recent command you undid? Just redo it!
 
 Format: `redo`
 
 Examples:
 
 * `delete 1` +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
+`undo` +
+Reverses the `delete 1` command. +
+`redo` +
+Reapplies the `delete 1` command. +
 
 * `delete 1` +
 `redo` +
@@ -618,21 +622,34 @@ The `redo` command fails as there are no `undo` commands executed previously.
 
 * `delete 1` +
 `clear` +
-`undo` (reverses the `clear` command) +
-`undo` (reverses the `delete 1` command) +
-`redo` (reapplies the `delete 1` command) +
-`redo` (reapplies the `clear` command) +
+`undo` +
+Reverses the `clear` command. +
+`undo` +
+Reverses the `delete 1` command. +
+`redo` +
+Reapplies the `delete 1` command. +
+`redo` +
+Reapplies the `clear` command. +
+
+__Constraints__
+
+Note the following constraint when redoing commands:
+
+****
+* If no commands were undone previously, the redo command will not work.
+****
+
 // end::undoredo[]
 
 ==== Clearing all entries : `clear`
 
-Clearing all entries from Mobilize requires just one command: +
+For a fresh start, just clear up all entries in Mobilize!
 
 Format: `clear`
 
 ==== Exiting the program : `exit`
 
-To exit the program, without using the pointer, use: +
+If you are done organizing for the day, you can easily exit the application!
 
 Format: `exit`
 
@@ -641,7 +658,7 @@ Format: `exit`
 
 A calendar is useful for marking important dates. When you have many deadlines and birthdays to take note of, the calendar allows you to view all these important dates at a glance. +
 
-==== Marking the dates
+==== Marking dates
 
 With many contacts and tasks to manage, differentiating between birthdays and deadlines on the calendar can be done with the help of colours.
 
@@ -659,11 +676,13 @@ The corresponding date on the calendar is marked *yellow*. +
 
 __Constraints__
 
+Note the following constraint on the colour of a date:
+
 ****
-* The colour of the date on the calendar is *only updated* when the next/previous button for month/year is clicked or when a date on the calendar is clicked.
+* The colour of the date on the calendar is *only updated* when next/previous button for month/year is clicked or when a date on the calendar is clicked.
 ****
 
-==== Clicking of date on the calendar
+==== Viewing deadlines and birthdays
 
 When there are many deadlines or birthdays on the same date, instead of switching between `CommandMode` and using the `find` command, you can just click on the date itself.
 
@@ -674,19 +693,20 @@ Returns a list of tasks with deadlines on 17th July 2017 and a list of contacts 
 
 __Constraint__
 
+Note the following constraints when clicking a date on a calendar:
 ****
+* When a date is clicked and it is not a deadline or not a birthday or both, an empty task list or an empty contacts list or both will be shown, which will be represented by a blank field on the application. +
+* To return to the original task list or contacts list, you can use the `list` command.
 * When a clicked date is not a deadline, an empty task list is shown. +
 * When a clicked date is not a task, an empty contacts list is shown. +
 * When a clicked date contains netiher birthdays nor tasks, both task list and contacts list are emptied.
 ****
-
-To return to original task list or contacts list, you can use the `list` command.
 // end::calendar[]
 
 === Saving the data
 
-Mobilize data is saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
+Data from Mobilize is saved in the hard disk automatically after using any command that changes the data. +
+There is no need to save it manually.
 
 == FAQ
 
@@ -710,54 +730,50 @@ The correct usage of all commands is summarized in the next section.
 
 == Command Summary
 
-* *Switch Modes* : `switch MODE` +
-e.g. `switch ab` or `switch tm`
+Forgot some commands? Fret not! Just look up what you need in the following table!
 
-__AddressBook__
+.__Switching Modes__ +
 
-****
-*Add* : `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague` +
-*Delete* : `delete INDEX` +
-e.g. `delete 3` +
-*Tag Multiple Contacts* : `tag [INDEX]... t/[TAG]...` +
-e.g. `tag 1,2 t/friend t/classmates` +
-*Delete Tags from Multiple Contacts* : `detag [INDEX]... [t/TAG]` +
-e.g. `detag 1, 2, 3 t/friends` +
-*Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
-e.g. `edit 2 n/James Lee e/jameslee@example.com` +
-*Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake friends 1707` +
-*Select* : `select INDEX` +
-e.g.`select 2` +
-*List* : `list`
-****
+|===
+|Command |Format |Example
+|*Switch Modes* | `switch MODE` |`switch ab` or `switch tm`
+|===
 
-__TaskManager__
+.__Address Book__
 
-****
-*Add* : `add DESCRIPTION from START DATE to/by/on DEADLINE` +
-e.g. `addtask assignment due from tomorrow to thursday` +
-*Delete* `delete INDEX` +
-e.g. `delete 3` +
-*Edit* : `edit INDEX [DESCRIPTION] [from START DATE] [to/by/on DEADLINE]` +
-e.g. `edit 2 return books by the 8th of Dec` +
-*Archive* : `archive [INDEX]...` +
-e.g. `archive 3, 5` +
-*Find* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `findtask finish task 17-07-1995` +
-*Select* : `select INDEX` +
-e.g.`select 2` +
-*List* : `list`
-****
+|===
+|Command |Format |Example
+|*Add* |`add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]...` |`add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/040697 t/friend t/colleague`
+|*Delete* |`delete INDEX` |`delete 3`
+|*Tag* |`tag [INDEX]... t/[TAG]...` |`tag 1,2 t/friend t/classmates`
+|*Delete Tags* |`detag [INDEX]... [t/TAG]` |`detag 1, 2, 3 t/friends`
+|*Edit* |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` |`edit 2 n/James Lee e/jameslee@example.com`
+|*Find* | `find KEYWORD [MORE_KEYWORDS]` |`find James Jake friends 1707`
+|*Select* |`select INDEX` |`select 2`
+|*List* | `list`
+|===
 
-__Common__
-****
-*Help* : `help` +
-*History* : `history` +
-*Undo* : `undo` +
-*Redo* : `redo` +
-*Clear* : `clear` +
-*Exit* : `exit`
-****
+.__Task Manager__
+
+|===
+|*Add* |`add DESCRIPTION from START DATE by/on DEADLINE` |`addtask assignment due from tomorrow to thursday`
+|*Delete* |`delete INDEX` |`delete 3`
+|*Edit* |`edit INDEX [DESCRIPTION] [from START DATE] [to/by/on DEADLINE]` |`edit 2 return books by the 8th of Dec`
+|*Archive* |`archive [INDEX]...` |`archive 3, 5`
+|*Find* |`find KEYWORD [MORE_KEYWORDS]` |`findtask finish task 17-07-1995`
+|*Select* |`select INDEX` |`select 2`
+|*List* |`list`
+|===
+
+.__Common__
+
+|===
+|Command |Format
+|*Help* |`help`
+|*History* |`history`
+|*Undo* |`undo`
+|*Redo* |`redo`
+|*Clear* |`clear`
+|*Exit* |`exit`
+|===
 
