@@ -16,6 +16,9 @@ public class EventTime {
         this.time = trimmedTime;
     }
 
+    /**
+     * Returns a boolean specifying whether the given time is present.
+     */
     public boolean isPresent() {
         return !time.isEmpty();
     }

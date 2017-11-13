@@ -1,8 +1,10 @@
-package seedu.address.model.task;
+package seedu.address.logic.parser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import seedu.address.model.task.EventTime;
 
 //@@author raisa2010
 /**
@@ -69,6 +71,7 @@ public abstract class DateTimeValidator {
 
     /**
      * Determines the specific dotted date format used by the {@code String} inputDate.
+     * Returns an empty string if it doesn not match the dotted date format.
      */
     public static String getDottedFormat(String inputDate) {
         for (String format : DOTTED_DATE_FORMATS) {
@@ -92,7 +95,7 @@ public abstract class DateTimeValidator {
     }
 
     /**
-     * Checks if the {@code String inputDate} matches the given {@code String validDateFormat}
+     * Checks if the {@code String inputDate} matches the given {@code String validDateFormat}.
      */
     public static boolean doesDateMatchValidFormat(String inputDate, String validDateFormat) {
         try {

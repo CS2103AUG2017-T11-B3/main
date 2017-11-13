@@ -17,7 +17,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTimeValidator;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EventTime;
@@ -41,9 +40,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE_ON, PREFIX_DEADLINE_BY, PREFIX_DEADLINE_FROM,
-                        PREFIX_TIME_AT, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE_ON, PREFIX_DEADLINE_BY,
+                PREFIX_DEADLINE_FROM, PREFIX_TIME_AT, PREFIX_TAG);
 
         if (!isDescriptionPresent(argMultimap) | !isSinglePrefixPresent(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));

@@ -112,6 +112,7 @@ public class ModelManager extends ComponentManager implements Model {
         }
     }
 
+    //@@author raisa2010
     @Override
     public void updatePersonTags(ReadOnlyPerson person, Set<Tag> newTags)
             throws PersonNotFoundException, DuplicatePersonException {
@@ -120,6 +121,7 @@ public class ModelManager extends ComponentManager implements Model {
         addressBook.updatePersonTags(person, newTags);
         indicateAddressBookChanged();
     }
+    //@@author
 
     //@@author tpq95
     @Override

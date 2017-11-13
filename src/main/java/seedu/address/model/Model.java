@@ -40,12 +40,17 @@ public interface Model {
     /** Delete tag of given person */
     void deleteTag(ReadOnlyPerson person, Tag tag) throws PersonNotFoundException,
             DuplicatePersonException, TagNotFoundException;
-    //@@author
+    //@@author raisa2010
 
-    /** Updates tags of a given person */
+    /**
+     * Updates the tags of an existing {@code person} in the addressbook by adding the
+     * {@code newTags} to the person's existing tags.
+     * @throws PersonNotFoundException if the person index provided is invalid.
+     */
     void updatePersonTags(ReadOnlyPerson person, Set<Tag> newTags)
             throws PersonNotFoundException, DuplicatePersonException;
 
+    //@@author
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      *
@@ -69,21 +74,27 @@ public interface Model {
     void addTask(ReadOnlyTask task) throws IllegalValueException;
     //@@author eryao95
     void deleteTask(ReadOnlyTask target) throws TaskNotFoundException;
-    //@@author
+
+    //@@author raisa2010
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
      *
-     * @throws DuplicateTaskException if updating the task's details causes the person to be equivalent to
-     *      another existing person in the list.
+     * @throws DuplicateTaskException if updating the task's details causes the task to be equivalent to
+     *      another existing task in the list.
      * @throws TaskNotFoundException if {@code target} could not be found in the list.
      */
     void updateTask(ReadOnlyTask target, ReadOnlyTask editedTask)
             throws DuplicateTaskException, TaskNotFoundException;
 
+    /**
+     * Updates the tags of an existing {@code task} in the task manager by adding the
+     * {@code newTags} to the task's existing tags.
+     * @throws TaskNotFoundException if the task index provided is invalid.
+     */
     void updateTaskTags(ReadOnlyTask task, Set<Tag> newTags)
         throws DuplicateTaskException, TaskNotFoundException;
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered task list */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
 
     /**

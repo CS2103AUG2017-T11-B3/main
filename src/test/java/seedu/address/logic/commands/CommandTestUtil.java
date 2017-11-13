@@ -26,7 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.task.DateTimeFormatter;
+import seedu.address.logic.parser.DateTimeFormatter;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;

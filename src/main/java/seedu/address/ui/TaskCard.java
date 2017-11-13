@@ -69,6 +69,7 @@ public class TaskCard extends UiPart<Region> {
     private void bindListeners(ReadOnlyTask task) {
         description.textProperty().bind(Bindings.convert(task.descriptionProperty()));
         deadline.textProperty().bind(Bindings.convert(task.deadlineProperty()));
+        //@@author raisa2010
         if (task.getStartTime().isPresent() && task.getEndTime().isPresent()) {
             StringBinding binding = Bindings.createStringBinding(() -> MessageFormat.format("{0} - {1}",
                 task.getStartTime(), task.getEndTime(), task.startTimeProperty()), task.endTimeProperty());
@@ -78,6 +79,8 @@ public class TaskCard extends UiPart<Region> {
         } else {
             time.textProperty().bind(Bindings.convert(task.endTimeProperty()));
         }
+        //@@author
+        //@@author tby1994
         task.tagProperty().addListener((observable, oldValue, newValue) -> {
             tags.getChildren().clear();
             initTags(task);

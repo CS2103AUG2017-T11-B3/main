@@ -22,7 +22,6 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
 /**
  * Tags multiple people in the address book.
  */
-//@@author raisa2010
 public class TagTaskCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "tag";

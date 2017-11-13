@@ -16,14 +16,13 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.tasks.EditTaskCommand;
 import seedu.address.logic.commands.tasks.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.DateTimeValidator;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.EventTime;
 
 //@@author raisa2010
 /**
- * Parses input arguments and creates a new EditTaskCommand object
+ * Parses input arguments and creates a new EditTaskCommand object.
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
