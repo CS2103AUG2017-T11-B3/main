@@ -133,7 +133,9 @@ _Figure 2.1.2 : Class Diagram of the Logic Component_
 [discrete]
 ==== Events-Driven nature of the design
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+The events-driven nature of the design enables events to be propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this event-driven approach helps us reduce direct coupling between components.
+
+The _Sequence Diagram_ below illustrates an example, showing how the components interact for the scenario where the user issues the command `delete 1`.
 
 image::SDforDeletePerson.png[width="800"]
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
@@ -146,10 +148,7 @@ The diagram below shows how the `EventsCenter` reacts to that event, which event
 image::SDforDeletePersonEventHandling.png[width="800"]
 _Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
 
-[NOTE]
-Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-
-The sections below give more details of each component.
+The next few sections give more details of each component.
 
 ==== UI component
 
@@ -161,14 +160,8 @@ _Figure 2.2.1 : Structure of the UI Component_
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `BrowserPanel`, `TaskListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
-
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
-
-The `UI` component does the following:
-
-* Executes user commands using the `Logic` component.
-* Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
-* Responds to events raised from various parts of the App and updates the UI accordingly.
+It Executes user commands using the `Logic` component and binds itself to some data in the `Model` so that the UI can update automatically when data in the `Model` changes. It is also responsible for updating the UI based on events raised from various parts of the Application.
 
 ==== Logic component
 
@@ -188,12 +181,7 @@ _Figure 2.3.2 : Structure of Commands in the Logic Component. This diagram shows
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-When a `Command` is executed, the `Logic` Component does the following:
-
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
-.  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
-.  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+When a `Command` is executed, the `Logic` Component uses the `AddressBookParser` class to parse the user command. This results in a `Command` object which is executed by the `LogicManager`, which can subsequently affect the `Model` (e.g. adding a person) and/or raise events. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -209,12 +197,9 @@ _Figure 2.4.1 : Structure of the Model Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
-The `Model` Component does the following:
-
-* stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
+The `Model` Component does the following stores Mobilize date and a `UserPref` object that represents the user's preferences.
+It exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that it automatically updates when the data in the list changes.
+The Model does not depend on any of the other three components.
 
 ==== Storage component
 
@@ -225,10 +210,7 @@ _Figure 2.5.1 : Structure of the Storage Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
-The `Storage` component,
-
-* can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in xml format and read it back.
+The `Storage` component saves `UserPref` objects in json format and read it back. It is also responsible for saving Mobilize data in XML format and reading it back.
 
 === Common classes
 
@@ -293,12 +275,12 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
 [discrete]
 ==== Design Considerations
 **Aspect:** Implementation of `DetagCommand` +
-**Alternative 1 (current choice):** Directly removes the tag from `Set` of person(s) +
-**Pros:** Easier and more specific command to remove tag, and allows removal from multiple persons in one command +
-**Cons:** Introducing of new additional command specifically for removal of tag may not be necessary +
+**Alternative 1 (current choice):** Directly removes the tag from `Set` of contact(s) +
+**Pros:** Easier and more specific command to remove a tag, and allows removal from multiple contacts in one command +
+**Cons:** Introduction of new command specifically for the removal of a tag may not be necessary. +
 **Alternative 2:** Just use the `EditCommand` to change the tag +
-**Pros:** Use of one command to edit any details of a person is more organised +
-**Cons:** Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed +
+**Pros:** Use of one command to edit any details of a person is more organised. +
+**Cons:** Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed. +
 // end::detag[]
 
 // tag::findtag[]
@@ -345,7 +327,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<ReadOnlyPerson
 === Tag mechanism
 
 The Tag mechanism is a specialised form of the edit feature that allows users to tag multiple contacts with multiple tags.
-The mechanism is facilitated by the TagCommand class which inherits from the UndoableCommand class, indicating that it can be undone.
+The mechanism is facilitated by the `TagCommand` class which inherits from the UndoableCommand class, indicating that it can be undone.
 
 Suppose the user has just executed the `TagCommand` using:
 

@@ -62,7 +62,7 @@ public class TagTaskCommand extends UndoableCommand {
 
         Index[] validIndices = CommandUtil.filterValidIndices(lastShownList.size(), indices);
 
-        if (indices.length == 0) {
+        if (validIndices.length == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
