@@ -186,7 +186,7 @@ Sets the description to "get groceries" leaving the other parameters blank.</p>
 <strong>Pros:</strong> * Easy to assign an empty string to the instance variable so that the dates are optional and do not show up in the UI.
 In addition, dates can be stored after being formatted to a more user-friendly style (i.e. Tue, Oct 24, '17). This prevents dates from becoming confusing (i.e. distinguishing between dd-MM-yyyy and mm-DD-yyyy)<br>
 <strong>Cons:</strong> Dates are not stored the correct format. This makes it more difficult to compare and validate later on as they have to be reformatted into Date objects every time. For example,
- in validating whether a start date is indeed before a deadline.<br>
+in validating whether a start date is indeed before a deadline.<br>
 <strong>Alternative 2:</strong> Use java.time.LocalDate class.<br>
 <strong>Pros:</strong> Dates are in correct format. Validation becomes easier and reformatting is not necessary.<br>
 <strong>Cons:</strong> LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard.<br>
@@ -415,7 +415,7 @@ Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] an
 <h3 id="tag-mechanism"><a class="link" href="#tag-mechanism">Tag mechanism</a></h3>
 <div class="paragraph">
 <p>The Tag mechanism is a specialised form of the edit feature that allows users to tag multiple contacts with multiple tags.
-The mechanism is facilitated by the TagCommand class which inherits from the UndoableCommand class, indicating that it can be undone.</p>
+The mechanism is facilitated by the <code>TagCommand</code> class which inherits from the UndoableCommand class, indicating that it can be undone.</p>
 </div>
 <div class="paragraph">
 <p>Suppose the user has just executed the <code>TagCommand</code> using:</p>
@@ -461,7 +461,7 @@ and calls the <code>TagCommandParser</code> class.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 12:09:13 +00:00
+Last updated 2017-11-13 14:13:48 +00:00
 </div>
 </div>
 </body>

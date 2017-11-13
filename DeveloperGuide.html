@@ -248,14 +248,14 @@ This will generate all resources required by the application and tests.</p>
 <p>Select <code>Editor</code> &gt; <code>Code Style</code> &gt; <code>Java</code></p>
 </li>
 <li>
-<p>Click on the <code>Imports</code> tab to set the order</p>
+<p>Click on the <code>Imports</code> tab to set the order:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set to <code>999</code> to prevent IntelliJ from contracting the import statements</p>
+<p>For <code>Class count to use import with '*'</code> and <code>Names count to use static import with '*'</code>: Set these to <code>999</code> to prevent IntelliJ from contracting the import statements.</p>
 </li>
 <li>
-<p>For <code>Import Layout</code>: The order is <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code>, <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code></p>
+<p>For <code>Import Layout</code>: Set these in order beginning with <code>import static all other imports</code>, <code>import java.*</code>, <code>import javax.*</code>, <code>import org.*</code>, <code>import com.*</code> and ending with <code>import all other imports</code>. Add a <code>&lt;blank line&gt;</code> between each <code>import</code>.</p>
 </li>
 </ul>
 </div>
@@ -263,7 +263,7 @@ This will generate all resources required by the application and tests.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>Optionally, you can follow the <a href="UsingCheckstyle.html">UsingCheckstyle.adoc</a> document to configure Intellij to check style-compliance as you write code.</p>
+<p>Optionally, you can follow the <a href="UsingCheckstyle.html">UsingCheckstyle.adoc</a> document to configure Intellij to check if your code is compliant with our style.</p>
 </div>
 </div>
 <div class="sect3">
@@ -281,7 +281,7 @@ This will generate all resources required by the application and tests.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
+Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based).
 </td>
 </tr>
 </table>
@@ -298,7 +298,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <p>Get some sense of the overall design by reading the <a href="#architecture">Architecture</a> section.</p>
 </li>
 <li>
-<p>Take a look at the section <a href="#implementation">Implementation</a> to understand how some of the key features are implemented.</p>
+<p>Take a look at the <a href="#implementation">Implementation</a> section to understand how some of the key features are implemented.</p>
 </li>
 </ol>
 </div>
@@ -311,6 +311,9 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="architecture"><a class="link" href="#architecture">3.1. Architecture</a></h3>
+<div class="paragraph">
+<p>The <strong><em>Architecture Diagram</em></strong> given below displays the high-level design of the Application.</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="images/Architecture.png" alt="Architecture" width="600">
@@ -320,19 +323,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 <p><em>Figure 2.1.1 : Architecture Diagram</em></p>
 </div>
 <div class="paragraph">
-<p>The <strong><em>Architecture Diagram</em></strong> given above explains the high-level design of the App. Given below is a quick overview of each component.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The <code>.pptx</code> files used to create diagrams in this document can be found in the <a href="https://github.com/CS2103AUG2017-T11-B3/main/docs/diagrams/">diagrams</a> folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose <code>Save as picture</code>.
-</td>
-</tr>
-</table>
+<p>Given below is a quick overview of each component:</p>
 </div>
 <div class="paragraph">
 <p><code>Main</code> has only one class called <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/MainApp.java"><code>MainApp</code></a>. It is responsible for,</p>
@@ -340,15 +331,15 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <div class="ulist">
 <ul>
 <li>
-<p>At app launch: Initializing the components in the correct sequence, and connects them up with each other.</p>
+<p>Initializing the components in the correct sequence, and connecting them to each other, when the application is launched.</p>
 </li>
 <li>
-<p>At shut down: Shutting down the components and invokes cleanup method where necessary.</p>
+<p>Shutting down the components and invokes cleanup method where necessary, when the application is shut down.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><a href="#common-classes"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.</p>
+<p><a href="#common-classes"><strong><code>Commons</code></strong></a> represents a collection of classes used by multiple components. Two of those classes play important roles at the architecture level.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -356,31 +347,31 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <p><code>EventsCenter</code> : This class (written using <a href="https://github.com/google/guava/wiki/EventBusExplained">Google&#8217;s Event Bus library</a>) is used by components to communicate with other components using events (i.e. a form of <em>Event Driven</em> design)</p>
 </li>
 <li>
-<p><code>LogsCenter</code> : Used by many classes to write log messages to the App&#8217;s log file.</p>
+<p><code>LogsCenter</code> : This class is used by many classes to write log messages to the Application&#8217;s log file.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The rest of the App consists of four components.</p>
+<p>The rest of the Application consists of four components.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#ui-component"><strong><code>UI</code></strong></a> : The UI of the App.</p>
+<p><a href="#ui-component"><strong><code>UI</code></strong></a> : The User Interface of Mobilize.</p>
 </li>
 <li>
 <p><a href="#logic-component"><strong><code>Logic</code></strong></a> : The command executor.</p>
 </li>
 <li>
-<p><a href="#model-component"><strong><code>Model</code></strong></a> : Holds the data of the App in-memory.</p>
+<p><a href="#model-component"><strong><code>Model</code></strong></a> : The in-memory data store of the application.</p>
 </li>
 <li>
-<p><a href="#storage-component"><strong><code>Storage</code></strong></a> : Reads data from, and writes data to, the hard disk.</p>
+<p><a href="#storage-component"><strong><code>Storage</code></strong></a> : The reader and writer of data to the hard disk.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Each of the four components</p>
+<p>Each of the four components:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -405,7 +396,10 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 </div>
 <h4 id="events-driven-nature-of-the-design" class="discrete">Events-Driven nature of the design</h4>
 <div class="paragraph">
-<p>The <em>Sequence Diagram</em> below shows how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
+<p>The events-driven nature of the design enables events to be propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this event-driven approach helps us reduce direct coupling between components.</p>
+</div>
+<div class="paragraph">
+<p>The <em>Sequence Diagram</em> below illustrates an example, showing how the components interact for the scenario where the user issues the command <code>delete 1</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -422,7 +416,7 @@ The <code>.pptx</code> files used to create diagrams in this document can be fou
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</code> when the Address Book data are changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
+Note how the <code>Model</code> simply raises an <code>AddressBookChangedEvent</code> when the Address Book data is changed, instead of asking the <code>Storage</code> to save the updates to the hard disk.
 </td>
 </tr>
 </table>
@@ -438,20 +432,8 @@ Note how the <code>Model</code> simply raises a <code>AddressBookChangedEvent</c
 <div class="paragraph">
 <p><em>Figure 2.1.3b : Component interactions for <code>delete 1</code> command (part 2)</em></p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Note how the event is propagated through the <code>EventsCenter</code> to the <code>Storage</code> and <code>UI</code> without <code>Model</code> having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
-<p>The sections below give more details of each component.</p>
+<p>The next few sections give more details of each component.</p>
 </div>
 <div class="sect3">
 <h4 id="ui-component"><a class="link" href="#ui-component">3.1.1. UI component</a></h4>
@@ -470,26 +452,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code>, <code>TaskListPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
-</div>
-<div class="paragraph">
-<p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
-</div>
-<div class="paragraph">
-<p>The <code>UI</code> component does the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Executes user commands using the <code>Logic</code> component.</p>
-</li>
-<li>
-<p>Binds itself to some data in the <code>Model</code> so that the UI can auto-update when data in the <code>Model</code> change.</p>
-</li>
-<li>
-<p>Responds to events raised from various parts of the App and updates the UI accordingly.</p>
-</li>
-</ul>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code>, <code>BrowserPanel</code>, <code>TaskListPanel</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.
+The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a>
+It Executes user commands using the <code>Logic</code> component and binds itself to some data in the <code>Model</code> so that the UI can update automatically when data in the <code>Model</code> changes. It is also responsible for updating the UI based on events raised from various parts of the Application.</p>
 </div>
 </div>
 <div class="sect3">
@@ -525,23 +490,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/logic/Logic.java"><code>Logic.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>When a <code>Command</code> is executed, the <code>Logic</code> Component does the following:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
-</li>
-<li>
-<p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
-</li>
-<li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person) and/or raise events.</p>
-</li>
-<li>
-<p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
-</li>
-</ol>
+<p>When a <code>Command</code> is executed, the <code>Logic</code> Component uses the <code>AddressBookParser</code> class to parse the user command. This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>, which can subsequently affect the <code>Model</code> (e.g. adding a person) and/or raise events. The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
 </div>
 <div class="paragraph">
 <p>Given below is the Sequence Diagram for interactions within the <code>Logic</code> component for the <code>execute("delete 1")</code> API call.</p>
@@ -572,23 +521,9 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Model</code> Component does the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
-</li>
-<li>
-<p>stores the Address Book data.</p>
-</li>
-<li>
-<p>exposes an unmodifiable <code>ObservableList&lt;ReadOnlyPerson&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
-</li>
-<li>
-<p>does not depend on any of the other three components.</p>
-</li>
-</ul>
+<p>The <code>Model</code> Component does the following stores Mobilize date and a <code>UserPref</code> object that represents the user&#8217;s preferences.
+It exposes an unmodifiable <code>ObservableList&lt;ReadOnlyPerson&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that it automatically updates when the data in the list changes.
+The Model does not depend on any of the other three components.</p>
 </div>
 </div>
 <div class="sect3">
@@ -608,17 +543,7 @@ Note how the event is propagated through the <code>EventsCenter</code> to the <c
 <p><strong>API</strong> : <a href="https://github.com/CS2103AUG2017-T11-B3/main/src/main/java/seedu/address/storage/Storage.java"><code>Storage.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The <code>Storage</code> component,</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>can save <code>UserPref</code> objects in json format and read it back.</p>
-</li>
-<li>
-<p>can save the Address Book data in xml format and read it back.</p>
-</li>
-</ul>
+<p>The <code>Storage</code> component saves <code>UserPref</code> objects in json format and read it back. It is also responsible for saving Mobilize data in XML format and reading it back.</p>
 </div>
 </div>
 </div>
@@ -733,12 +658,12 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
 <h4 id="design-considerations" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>DetagCommand</code><br>
-<strong>Alternative 1 (current choice):</strong> Directly removes the tag from <code>Set</code> of person(s)<br>
-<strong>Pros:</strong> Easier and more specific command to remove tag, and allows removal from multiple persons in one command<br>
-<strong>Cons:</strong> Introducing of new additional command specifically for removal of tag may not be necessary<br>
+<strong>Alternative 1 (current choice):</strong> Directly removes the tag from <code>Set</code> of contact(s)<br>
+<strong>Pros:</strong> Easier and more specific command to remove a tag, and allows removal from multiple contacts in one command<br>
+<strong>Cons:</strong> Introduction of new command specifically for the removal of a tag may not be necessary.<br>
 <strong>Alternative 2:</strong> Just use the <code>EditCommand</code> to change the tag<br>
-<strong>Pros:</strong> Use of one command to edit any details of a person is more organised<br>
-<strong>Cons:</strong> Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed<br></p>
+<strong>Pros:</strong> Use of one command to edit any details of a person is more organised.<br>
+<strong>Cons:</strong> Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed.<br></p>
 </div>
 </div>
 <div class="sect2">
@@ -792,7 +717,7 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
 <h3 id="tag-mechanism"><a class="link" href="#tag-mechanism">4.5. Tag mechanism</a></h3>
 <div class="paragraph">
 <p>The Tag mechanism is a specialised form of the edit feature that allows users to tag multiple contacts with multiple tags.
-The mechanism is facilitated by the TagCommand class which inherits from the UndoableCommand class, indicating that it can be undone.</p>
+The mechanism is facilitated by the <code>TagCommand</code> class which inherits from the UndoableCommand class, indicating that it can be undone.</p>
 </div>
 <div class="paragraph">
 <p>Suppose the user has just executed the <code>TagCommand</code> using:</p>
@@ -847,7 +772,7 @@ and calls the <code>TagCommandParser</code> class.</p>
 <strong>Pros:</strong> * Easy to assign an empty string to the instance variable so that the dates are optional and do not show up in the UI.
 In addition, dates can be stored after being formatted to a more user-friendly style (i.e. Tue, Oct 24, '17). This prevents dates from becoming confusing (i.e. distinguishing between dd-MM-yyyy and mm-DD-yyyy)<br>
 <strong>Cons:</strong> Dates are not stored the correct format. This makes it more difficult to compare and validate later on as they have to be reformatted into Date objects every time. For example,
- in validating whether a start date is indeed before a deadline.<br>
+in validating whether a start date is indeed before a deadline.<br>
 <strong>Alternative 2:</strong> Use java.time.LocalDate class.<br>
 <strong>Pros:</strong> Dates are in correct format. Validation becomes easier and reformatting is not necessary.<br>
 <strong>Cons:</strong> LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard.<br>
@@ -2955,7 +2880,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 12:09:13 +00:00
+Last updated 2017-11-13 14:13:48 +00:00
 </div>
 </div>
 </body>

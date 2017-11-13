@@ -132,12 +132,12 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
 <h4 id="design-considerations" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Implementation of <code>DetagCommand</code><br>
-<strong>Alternative 1 (current choice):</strong> Directly removes the tag from <code>Set</code> of person(s)<br>
-<strong>Pros:</strong> Easier and more specific command to remove tag, and allows removal from multiple persons in one command<br>
-<strong>Cons:</strong> Introducing of new additional command specifically for removal of tag may not be necessary<br>
+<strong>Alternative 1 (current choice):</strong> Directly removes the tag from <code>Set</code> of contact(s)<br>
+<strong>Pros:</strong> Easier and more specific command to remove a tag, and allows removal from multiple contacts in one command<br>
+<strong>Cons:</strong> Introduction of new command specifically for the removal of a tag may not be necessary.<br>
 <strong>Alternative 2:</strong> Just use the <code>EditCommand</code> to change the tag<br>
-<strong>Pros:</strong> Use of one command to edit any details of a person is more organised<br>
-<strong>Cons:</strong> Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed<br></p>
+<strong>Pros:</strong> Use of one command to edit any details of a person is more organised.<br>
+<strong>Cons:</strong> Cannot not remove tags of multiple contacts, and it is mandatory to retype the tags that do not need to be removed.<br></p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -377,7 +377,7 @@ Returns a list of tasks with deadlines on 17th July 2017 and a list of contacts 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 12:09:13 +00:00
+Last updated 2017-11-13 14:13:48 +00:00
 </div>
 </div>
 </body>
