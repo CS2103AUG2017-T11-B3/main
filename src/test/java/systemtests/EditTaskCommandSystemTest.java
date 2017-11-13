@@ -43,10 +43,6 @@ import seedu.address.logic.commands.tasks.EditTaskCommand;
 import seedu.address.logic.parser.DateTimeValidator;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-<<<<<<< HEAD
-import seedu.address.logic.parser.DateTimeValidator;
-=======
->>>>>>> 504090a20815f7d30d374bf0546d10fb545be3f5
 import seedu.address.model.task.Description;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.model.task.Task;
