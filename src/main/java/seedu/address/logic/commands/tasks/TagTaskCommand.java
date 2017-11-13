@@ -6,7 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -22,7 +24,6 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
 /**
  * Tags multiple people in the address book.
  */
-//@@author raisa2010
 public class TagTaskCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "tag";
@@ -41,6 +42,8 @@ public class TagTaskCommand extends UndoableCommand {
 
     private final Index[] indices;
     private final Set<Tag> newTags;
+
+    private Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * @param indices of the tasks in the filtered task list to tag
@@ -64,7 +67,12 @@ public class TagTaskCommand extends UndoableCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
+        int numInvalidValues = indices.length - validIndices.length;
+        logger.info("Number of invalid indices skipped: " + numInvalidValues);
+
         for (Index currentIndex : validIndices) {
+            assert currentIndex != null;
+            assert currentIndex.getZeroBased() >= 0;
             ReadOnlyTask taskToEdit = lastShownList.get(currentIndex.getZeroBased());
 
             try {

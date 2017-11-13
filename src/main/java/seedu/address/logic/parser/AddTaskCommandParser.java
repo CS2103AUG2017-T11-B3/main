@@ -12,7 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_AT;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,6 +34,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     private static final int INDEX_START_TIME = 0;
     private static final int INDEX_END_TIME = 1;
 
+    private Logger logger = LogsCenter.getLogger(this.getClass());
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
      * and returns an AddTaskCommand object for execution.
@@ -40,9 +44,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     public AddTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE_ON, PREFIX_DEADLINE_BY, PREFIX_DEADLINE_FROM,
-                        PREFIX_TIME_AT, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE_ON, PREFIX_DEADLINE_BY,
+                PREFIX_DEADLINE_FROM, PREFIX_TIME_AT, PREFIX_TAG);
 
         if (!isDescriptionPresent(argMultimap) | !isSinglePrefixPresent(argMultimap)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
@@ -63,6 +66,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
             if (deadline.isEmpty() && eventTimes[INDEX_END_TIME].isPresent()) {
                 deadline = ParserUtil.parseDeadline(Optional.of(new Date().toString())).get();
+                logger.fine("Time(s) specified without deadline. Setting deadline to " + deadline);
             }
 
             ReadOnlyTask task = new Task(description, deadline, eventTimes[INDEX_START_TIME],

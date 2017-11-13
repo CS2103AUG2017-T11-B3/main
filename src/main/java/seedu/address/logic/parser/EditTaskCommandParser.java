@@ -22,7 +22,7 @@ import seedu.address.model.task.EventTime;
 
 //@@author raisa2010
 /**
- * Parses input arguments and creates a new EditTaskCommand object
+ * Parses input arguments and creates a new EditTaskCommand object.
  */
 public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
@@ -33,9 +33,8 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      */
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE_BY, PREFIX_DEADLINE_ON, PREFIX_DEADLINE_FROM,
-                        PREFIX_TIME_AT, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE_BY, PREFIX_DEADLINE_ON,
+                PREFIX_DEADLINE_FROM, PREFIX_TIME_AT, PREFIX_TAG);
 
         Index index;
 
@@ -118,6 +117,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      * @return the index of the task to be edited.
      */
     public String getIndexForEdit(String preamble) {
+        assert preamble != null;
         String trimmedPreamble = preamble.trim();
         return (trimmedPreamble.indexOf(' ') == -1) ? trimmedPreamble
                 : trimmedPreamble.substring(0, trimmedPreamble.indexOf(' '));
@@ -132,6 +132,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
      */
     public Optional<Description> parseDescriptionForEdit(String preamble)
             throws IllegalValueException {
+        assert preamble != null;
         int indexLength = getIndexForEdit(preamble).length();
         String description = (indexLength == preamble.length()) ? ""
                 : preamble.substring(indexLength, preamble.length());
