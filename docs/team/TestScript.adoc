@@ -489,6 +489,170 @@ Task Descriptions containing deadline or time prefixes must be in double quotes 
 *Expected Result*: The task is not added and result box should display:
 Edited Task: do this Deadline: Tue, Nov 14, '17 At: 17:00 - 19:00 Tags: [urgent]
 
+== Deleting tasks
+
+== Case 1
+
+*Title*: Delete - Selected task will be deleted from task manager +
+*Description*: A task selected by a specified index will be successfully deleted from Mobilize +
+*Precondition*: A valid index is entered +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “delete 1”
+.  Click enter
+
+*Expected Result*: The result display is the following: +
+*Deleted Task: GER100 Assignment Due Deadline: Fri, Mar 21, '17 At: 4:55 - 8:07 Tags: [school]*
+
+== Case 2
+
+*Title*: Delete – selected task is not valid +
+*Description*: The task selected does not exist and the application can’t execute the command +
+*Precondition*: A out-of-bounds/invalid index is entered +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “delete -1”
+.  Click enter
+
+*Expected Result*: The result display is the following: +
+*The task index provided is invalid*
+
+== Finding tasks
+
+== Case 1
+
+*Title*: Find – Tasks with the same description successfully displayed +
+*Description*: Find tasks by description and the tasks that matches it will be displayed in the task panel +
+*Precondition*: Valid description +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “find group”
+.  Click enter
+
+*Expected Result*: The tasks list is updated with tasks containing “group” in description and the result display is the following: +
+*1 tasks listed!*
+
+== Case 2
+
+*Title*: Find – Tasks with the same deadline successfully displayed +
+*Description*: Find tasks by deadline and the tasks that matches it will be displayed in the task panel +
+*Precondition*: Valid deadline +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “find 21-03-2017”
+.  Click enter
+
+*Expected Result*: The tasks list is updated with tasks containing “21-03-2017” as deadline and the result display is the following: +
+*1 tasks listed!*
+
+== Case 3
+
+*Title*: Find – Invalid deadline and search is unsuccessful +
+*Description*: Find tasks by invalid deadline and the task panel should display empty list +
+*Precondition*: invalid deadline +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “find 21032017”
+.  Click enter
+
+*Expected Result*: The tasks list is updated with empty list and the result display is the following: +
+*0 tasks listed!*
+
+== Case 4
+
+*Title*: Find – Tasks with the same description or deadline successfully displayed +
+*Description*: Find tasks by deadline or description and the tasks that matches it will be displayed in the task panel +
+*Precondition*: Valid description or deadline +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “find group 21-03-2017”
+.  Click enter
+
+*Expected Result*: The tasks list is updated with tasks containing “group” in description and “21-03-2017” as deadline and the result display is the following: +
+*2 tasks listed!*
+
+== Selecting tasks
+
+== Case 1
+
+*Title*: Select – People involved in the task will be successfully displayed +
+*Description*: The selected task, with tags, will display contacts with the same tag in the contact list +
+*Precondition*: A valid index is entered +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “select 10”
+.  Click enter
+
+*Expected Result*: The contacts list is updated with contacts containing tag “cousins” and result display is the following: +
+*Selected Task: 10*
+
+== Case 2
+
+*Title*: Select - Selected index is out-of-bounds or invalid for task +
+*Description*: No changes will be made in Mobilize because there is no task selected +
+*Precondition*: An invalid index is entered +
+*Assumption*: Mobilize is in task manager mode +
+*Test steps*: +
+
+.  Key in “select -1”
+.  Click enter
+
+*Expected Result*: The result display is the following: +
+*The task index provided is invalid*
+
+== Using Calendar
+
+== Case 1
+
+*Title*: Calendar panel – Marking dates that are important +
+*Description*: Birthdays of contacts and deadlines of tasks should be able to show up on the calendar +
+*Precondition*: Birthdays and deadlines are valid +
+*Assumption*: Contacts and tasks are added to the application successfully +
+*Test Steps*: +
+
+.  Navigate to Mobilize App.
+.  Add contacts/tasks as recommended in the test cases shown earlier.
+.  Navigate to the date of interest (i.e. birthday or deadline) using ‘<’ and ‘>’ button.
+
+*Expected Result*: The calendar is updated with the important dates, birthday and deadline. The dates are marked red for dates with deadline only, pink for dates with birthday only and yellow for dates with both deadline and birthday. +
+
+== Case 2
+
+*Title*: Calendar panel – Clicking dates that are important +
+*Description*: Contacts list and tasks list should be updated to show contacts having birthday and tasks having deadline on the date clicked +
+*Precondition*: Date clicked is on the calendar and is valid +
+*Assumption*: Date clicked should be marked with colour +
+*Test Steps*: +
+
+.  Navigate to Calendar panel.
+.  Navigate to the date of interest using the ‘<’ and ‘>’ button.
+.  Click on the marked (i.e. coloured) date.
+
+*Expected Result*: The contacts list and tasks list of Mobilize App should be updated and display contacts having birthday and tasks having deadline on the date clicked. +
+
+== Case 3
+
+*Title*: Calendar panel – Clicking dates that are not important +
+*Description*: Contacts list and tasks list should be updated to show empty list +
+*Precondition*: Date clicked is on the calendar and is valid +
+*Assumption*: Date clicked should not be marked with colour +
+*Test Steps*: +
+
+.  Navigate to Calendar panel.
+.  Navigate to the date of interest using the ‘<’ and ‘>’ button.
+.  Click on the marked (i.e. non-coloured) date.
+
+*Expected Result*: The contacts list and tasks list of Mobilize App should be updated and display empty lists. +
+
+
+
 
 
 
