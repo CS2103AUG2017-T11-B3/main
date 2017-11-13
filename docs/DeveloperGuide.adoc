@@ -352,7 +352,7 @@ The Storage and UI are subsequently updated with the new information.
 
 The following sequence diagram summarizes how this operation works:
 
-image::TagCommandSequenceDiagram.png[width="800", height="500"]
+image::TagSequenceDiagram.png[width="800", height="500"]
 
 The TagCommand skips over the invalid indices and attempts to tag the contacts who are in the valid indices.
 If no valid indices are found, then an error is thrown. This is done by the following:
