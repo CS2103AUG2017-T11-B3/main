@@ -341,7 +341,7 @@ Suppose the user has just executed the `TagCommand` using:
 `tag 1,2 t/friend t/classmate`.
 ----
 
-At first the `execute()` function of the `Logic Manager` is called, which passes the command string to the `parseCommand()` function of the `AddressBookParser` class. This determines that the `TagCommand` feature is being evoked
+At first the command is called, which causes `LogicManager` to pass the command string to the `parseCommand()` function of the `AddressBookParser` class. This determines that the `TagCommand` feature is being evoked
 and calls the `TagCommandParser` class.
 
 Here, the arguments are validated and tokenized and new `TagCommand` object is returned with parsed indices and tags.
@@ -354,6 +354,39 @@ The following sequence diagram summarizes how this operation works:
 
 image::TagCommandSequenceDiagram.png[width="800", height="500"]
 
+The TagCommand skips over the invalid indices and attempts to tag the contacts who are in the valid indices.
+If no valid indices are found, then an error is thrown. This is done by the following:
+
+---
+
+    /**
+     * Filters the valid indices in a given array of indices.
+     */
+    public static Index[] filterValidIndices(int lastShownListSize, Index[] indices) {
+        assert indices != null;
+        assert lastShownListSize != 0;
+        return Arrays.stream(indices)
+                .filter(currentIndex -> currentIndex.getZeroBased() < lastShownListSize)
+                .toArray(Index[]::new);
+    }
+
+---
+
+---
+
+
+            Index[] validIndices = CommandUtil.filterValidIndices(lastShownList.size(), indices);
+
+            if (validIndices.length == 0) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+---
+
+=== TagTask Mechanism
+
+This works in a similar way to the above.
+
 // end::tag[]
 
 // tag::addtask[]
@@ -365,14 +398,52 @@ The Add Task mechanism is facilitated by the `AddTaskCommand` class which inheri
 Suppose the user has just executed the `add` command using:
 
 ----
-`add CS assignment from 15-10-2017 to tomorrow`.
+`add CS assignment by tomorrow at 23:59`.
 ----
 
-At first, the `execute()` function of the `LogicManager` class is called, which goes on to pass the command string into the `parseCommand()` function of the `AddressBookParser` class. This, in turn, determines that the `AddTask` feature is being evoked and calls the `AddTaskCommandParser` to parse the String and separate it into three components: `Description`, `StartDate` and `Deadline`. These are validated and formatted by the `Task` class and returned as a `Task` object to be used to call the `AddTaskCommand` class. The `LogicManager` then calls the `executeUndoableFunction()` in the `AddTaskCommand` class which creates and returns a `CommandResult` object.
+At first, the command is called is called, which causes the `LogicManager` to pass the command string into the `parseCommand()` function of the `AddressBookParser` class. This, in turn, determines that the `AddTask` feature is being evoked and calls the `AddTaskCommandParser` to parse the String and separate it into three components: `Description`, `StartDate` and `Deadline`. These are validated and formatted by the `Task` class and returned as a `Task` object to be used to call the `AddTaskCommand` class. The `LogicManager` then calls the `executeUndoableFunction()` in the `AddTaskCommand` class which creates and returns a `CommandResult` object.
 
 The following sequence diagram summarizes how this operation works:
 
 image::AddTaskCommandSequenceDiagram.png[width="800", height="500"]
+
+All parameters except the description are set to be optional wherein an empty string is added when no value is stated by a user.
+
+Natural Language Input is processed by the PrettyTime NLP, in the `ParserUtil` class in the following way:
+
+---
+    public static Optional<EventTime[]> parseEventTimes(Optional<String> dateTime) throws IllegalValueException {
+        requireNonNull(dateTime);
+        if (dateTime.isPresent()) {
+            List<DateGroup> dateGroup = new PrettyTimeParser().parseSyntax(dateTime.get().trim());
+            if (dateGroup.isEmpty()) {
+                throw new IllegalValueException(DateTimeValidator.MESSAGE_TIME_CONSTRAINTS);
+            }
+            List<Date> dates = dateGroup.get(dateGroup.size() - 1).getDates();
+
+            String endTime = DateTimeFormatter.formatTime(dates.get(dates.size() - 1));
+            String startTime = dates.size() > 1 ? DateTimeFormatter.formatTime(dates.get(dates.size() - 2)) : "";
+
+            return Optional.of(new EventTime[]{new EventTime(startTime), new EventTime(endTime)});
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Parses a {@code String naturalLanguageInput} using PrettyTime NLP, into a {@code Date}.
+     * @throws IllegalValueException if the date cannot be parsed from the phrase or if the given date is invalid.
+     */
+    public static Date parseDate(String naturalLanguageInput) throws IllegalValueException {
+        List<DateGroup> dateGroup = new PrettyTimeParser().parseSyntax(naturalLanguageInput.trim());
+        if (dateGroup.isEmpty() | !DateTimeValidator.isDateValid(naturalLanguageInput)) {
+            throw new IllegalValueException(DateTimeValidator.MESSAGE_DATE_CONSTRAINTS);
+        }
+        List<Date> dates = dateGroup.get(dateGroup.size() - 1).getDates();
+        return dates.get(dates.size() - 1);
+    }
+
+---
 
 [discrete]
 ==== Design Considerations
@@ -384,7 +455,7 @@ In addition, dates can be stored after being formatted to a more user-friendly s
 in validating whether a start date is indeed before a deadline. +
 **Alternative 2:** Use java.time.LocalDate class. +
 **Pros:** Dates are in correct format. Validation becomes easier and reformatting is not necessary. +
-**Cons:** LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard. +
+**Cons:** LocalDate cannot be initialized when no input is given. Using a phony value of 00:00 or the current date might cause errors in validation and sorting of dates. +
 **Alternative 3:**  Use java.util.Optional class for instance variables along with the LocalDate class. +
 **Pros:** Easy to understand reasoning, for new developers looking to contribute. Easy to format specifically for display (once) and allows empty values when no dates are supplied. +
 **Cons** The general agreement in the software engineering community seems to be that it is better not to use extra wrapping for an instance variable, that might pose problems in unwrapping later on. +
@@ -402,17 +473,6 @@ and categorized according to type. +
 
 ---
 
-**Aspect:** Assigning starting dates and deadlines +
-**Alternative 1 (current choice):** Use an abstract parent TaskDates class to hold all validator and formatting methods. +
-**Pros** Prevents code duplication for common methods and prevents abstract class from being instantiated ensuring that
-there are only two types of task dates. +
-**Cons** Other classes have no direct interaction with parent class. +
-**Alternative 2:** Use a single TaskDates class and set instance variables to contain starting and deadline dates. +
-**Pros** Easier to implement. +
-**Cons** Might violate SRP as the class is now concerned with two different kinds of dates. +
-
----
-
 **Aspect:** Setting prefixes for adding tasks +
 **Alternative 1 (current choice):** Use natural language prefixes i.e. from, to, by +
 **Pros** Easier to type and remember. +
@@ -426,9 +486,32 @@ Limits possibilities of adding new prefixes and making the format more flexible 
 // tag::edittask[]
 === EditTask Mechanism
 
+The EditTask Mechanism is facilitated by the `EditTaskCommand` class and allows th euser to edit any parameter of a given task.
+
+Suppose the user has just executed the command:
+
+---
+`edit 1 finish homework by sunday at 9 am to 12 pm`
+---
+
+The command is passed by the `LogicManager` class to the `AddressBookParser` which goes on to pass it to the `EditTaskCommandParser`
+class. Here a new `EditTaskDescriptor` is created using the newly specified parameters while old parameters are copied. Finally,
+a newly edited person is created and the Model is called to update the task using the `UpdateTask()` method.
+
 The following sequence diagram summarizes how this operation works:
 
 image::EditTaskCommandSequenceDiagram.png[width="800", height="500"]
+
+The optional parameters are assigned in the following manner in the `EditTaskCommandParser`:
+
+---
+            parseDescriptionForEdit(argMultimap.getPreamble()).ifPresent(editTaskDescriptor::setDescription);
+            parseDeadlineForEdit(argMultimap.getAllValues(PREFIX_DEADLINE_BY, PREFIX_DEADLINE_FROM, PREFIX_DEADLINE_ON))
+                    .ifPresent(editTaskDescriptor::setDeadline);
+            parseEventTimesForEdit(argMultimap.getAllValues(PREFIX_TIME_AT))
+                    .ifPresent(editTaskDescriptor::setEventTimes);
+            ParserUtil.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
+---
 
 // end::edittask[]
 // tag::deletetask[]
