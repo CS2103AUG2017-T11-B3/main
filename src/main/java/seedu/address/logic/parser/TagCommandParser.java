@@ -40,6 +40,11 @@ public class TagCommandParser implements Parser<TagCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage());
         }
+
+        if (tagList.isEmpty()) {
+            throw new ParseException(TagCommand.MESSAGE_NOT_TAGGED);
+        }
+
         return new TagCommand(parsedIndices, tagList);
     }
 }
