@@ -79,6 +79,15 @@ include::../DeveloperGuide.adoc[tag=edittask]
 ---
 #Start of Extract [from: User Guide]#
 
+include::../UserGuide.adoc[tag=tagtask]
+
+#End of Extract#
+
+---
+
+---
+#Start of Extract [from: User Guide]#
+
 include::../UserGuide.adoc[tag=tag]
 
 #End of Extract#
