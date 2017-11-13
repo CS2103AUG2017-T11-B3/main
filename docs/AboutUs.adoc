@@ -41,7 +41,7 @@ Responsibilities: Documentation [Standardization and Formatting] + Storage
 
 === Raisa Kabir
 image::raisa2010.png[width="150", height="150", align="left"]
-{empty} [https://github.com/raisa2010[github]] [<<raisakabir#, portfolio>>]
+{empty} [https://github.com/raisa2010[github]]  [<<raisakabir#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Documentation [Language and Structure] + Deadlines and Deliverables + Model

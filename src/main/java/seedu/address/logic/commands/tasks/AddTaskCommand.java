@@ -18,13 +18,13 @@ import seedu.address.model.task.Task;
 
 //@@author raisa2010
 /**
- * Adds a task to the task manager
+ * Adds a task to the task manager.
  */
 public class AddTaskCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task manager. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task. "
             + "Parameters: "
             + "DESCRIPTION "
             + PREFIX_DEADLINE_BY + "/" + PREFIX_DEADLINE_ON  + "/" + PREFIX_DEADLINE_FROM + " DEADLINE DATE "
@@ -32,13 +32,13 @@ public class AddTaskCommand extends UndoableCommand {
             + PREFIX_TAG + "TAG.\n"
             + "Task Descriptions containing deadline or time prefixes must be in double quotes [\"\"].";
 
-    public static final String MESSAGE_SUCCESS = "Task has been added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task manager";
+    public static final String MESSAGE_SUCCESS = "Task has been added: %1$s.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists!";
 
     private final Task toAdd;
 
     /**
-     * Creates an AddTaskCommand to add the specified {@code ReadOnlyTask}
+     * Creates an AddTaskCommand to add the specified {@code ReadOnlyTask}.
      */
     public AddTaskCommand(ReadOnlyTask task) {
         toAdd = new Task(task);

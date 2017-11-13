@@ -30,14 +30,15 @@ public class TagCommand extends UndoableCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags multiple people using the same tag(s) "
             + "by the index number used in the last person listing. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will NOT be overwritten by the input values.\n"
             + "Parameters: INDICES (must be positive integers and may be one or more) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1, 2, 3 "
             + PREFIX_TAG + "friend";
 
     public static final String MESSAGE_TAG_PERSONS_SUCCESS = "New tag added.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists!";
+    public static final String MESSAGE_NOT_TAGGED = "No tags to use!";
 
     private final Index[] indices;
     private final Set<Tag> newTags;
@@ -45,8 +46,8 @@ public class TagCommand extends UndoableCommand {
     private Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
-     * @param indices of the people in the filtered person list to tag
-     * @param tagList list of tags to tag the people with
+     * @param indices of the people in the filtered person list to tag.
+     * @param tagList list of tags to tag the people with.
      */
     public TagCommand(Index[] indices, Set<Tag> tagList) {
         requireNonNull(indices);

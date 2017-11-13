@@ -41,6 +41,10 @@ public class TagTaskCommandParser implements Parser<TagTaskCommand> {
             throw new ParseException(ive.getMessage());
         }
 
+        if (tagList.isEmpty()) {
+            throw new ParseException(TagTaskCommand.MESSAGE_NOT_TAGGED);
+        }
+
         return new TagTaskCommand(parsedIndices, tagList);
     }
 
