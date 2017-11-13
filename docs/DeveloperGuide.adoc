@@ -96,34 +96,31 @@ When you are ready to start coding,
 
 === Architecture
 
-The *_Architecture Diagram_* given below explains the high-level design of the App.
+The *_Architecture Diagram_* given below displays the high-level design of the Application.
 
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
-Given below is a quick overview of each component.
-
-[TIP]
-The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
+Given below is a quick overview of each component:
 
 `Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
 
-* At app launch: Initializing the components in the correct sequence, and connects them up with each other.
-* At shut down: Shutting down the components and invokes cleanup method where necessary.
+* Initializing the components in the correct sequence, and connecting them to each other, when the application is launched.
+* Shutting down the components and invokes cleanup method where necessary, when the application is shut down.
 
-link:#common-classes[*`Commons`*] represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
+link:#common-classes[*`Commons`*] represents a collection of classes used by multiple components. Two of those classes play important roles at the architecture level.
 
 * `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
-* `LogsCenter` : Used by many classes to write log messages to the App's log file.
+* `LogsCenter` : This class is used by many classes to write log messages to the Application's log file.
 
-The rest of the App consists of four components.
+The rest of the Application consists of four components.
 
-* link:#ui-component[*`UI`*] : The UI of the App.
+* link:#ui-component[*`UI`*] : The User Interface of Mobilize.
 * link:#logic-component[*`Logic`*] : The command executor.
-* link:#model-component[*`Model`*] : Holds the data of the App in-memory.
-* link:#storage-component[*`Storage`*] : Reads data from, and writes data to, the hard disk.
+* link:#model-component[*`Model`*] : The in-memory data store of the application.
+* link:#storage-component[*`Storage`*] : The reader and writer of data to the hard disk.
 
-Each of the four components
+Each of the four components:
 
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
@@ -142,7 +139,7 @@ image::SDforDeletePerson.png[width="800"]
 _Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
 
 [NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+Note how the `Model` simply raises an `AddressBookChangedEvent` when the Address Book data is changed, instead of asking the `Storage` to save the updates to the hard disk.
 
 The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
 
