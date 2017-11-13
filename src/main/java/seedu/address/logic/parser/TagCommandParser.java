@@ -14,13 +14,13 @@ import seedu.address.model.tag.Tag;
 
 //@@author raisa2010
 /**
- * Parses input arguments and creates a new TagCommand object
+ * Parses input arguments and creates a new TagCommand object.
  */
 public class TagCommandParser implements Parser<TagCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TagCommand
      * and returns a TagCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public TagCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -40,6 +40,11 @@ public class TagCommandParser implements Parser<TagCommand> {
         } catch (IllegalValueException ive) {
             throw new ParseException(ive.getMessage());
         }
+
+        if (tagList.isEmpty()) {
+            throw new ParseException(TagCommand.MESSAGE_NOT_TAGGED);
+        }
+
         return new TagCommand(parsedIndices, tagList);
     }
 }

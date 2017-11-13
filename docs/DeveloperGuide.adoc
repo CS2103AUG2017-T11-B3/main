@@ -369,6 +369,10 @@ The `ModelManager` class in the `Model` component is then called to update all t
 
 The Storage and UI are subsequently updated with the new information.
 
+The following sequence diagram summarizes how this operation works:
+
+image::TagCommandSequenceDiagram.png[width="800", height="500"]
+
 // end::tag[]
 
 // tag::addtask[]
@@ -438,8 +442,14 @@ there are only two types of task dates. +
 Limits possibilities of adding new prefixes and making the format more flexible in the future. +
 
 // end::addtask[]
+// tag::edittask[]
+=== EditTask Mechanism
 
+The following sequence diagram summarizes how this operation works:
 
+image::EditTaskCommandSequenceDiagram.png[width="800", height="500"]
+
+// end::edittask[]
 // tag::deletetask[]
 === DeleteTask mechanism
 

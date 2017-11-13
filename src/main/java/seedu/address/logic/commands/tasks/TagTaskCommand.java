@@ -29,7 +29,7 @@ public class TagTaskCommand extends UndoableCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags multiple tasks using the same tag(s) "
             + "by the index number used in the last task listing. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will NOT be overwritten by the input values.\n"
             + "Parameters: INDICES (must be positive integers and may be one or more) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1, 2, 3 "
@@ -37,6 +37,7 @@ public class TagTaskCommand extends UndoableCommand {
 
     public static final String MESSAGE_TAG_TASKS_SUCCESS = "New tag added.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book.";
+    public static final String MESSAGE_NOT_TAGGED = "No tags to use!";
 
     private final Index[] indices;
     private final Set<Tag> newTags;
