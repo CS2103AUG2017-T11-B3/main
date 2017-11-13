@@ -364,6 +364,18 @@ Result Display:<br>
 <div class="paragraph">
 <p>Congratulations, you now have your first contact!<br></p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Contacts are automatically sorted according to name.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p><em>Constraints:</em></p>
 </div>
@@ -602,7 +614,7 @@ Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] an
 <div class="sect3">
 <h4 id="removing-tags-from-multiple-contacts-code-detag-code"><a class="link" href="#removing-tags-from-multiple-contacts-code-detag-code">5.3.5. Removing tags from multiple contacts : <code>detag</code></a></h4>
 <div class="paragraph">
-<p>When a tag is no longer in used, you can use the detag command to remove the tag from multiple contacts.<br></p>
+<p>When a tag is no longer in use, you can use the detag command to remove the tag from multiple contacts.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>detag INDEX&#8230;&#8203; [t/TAG]</code></p>
@@ -815,8 +827,11 @@ Selects the 1st person in the results of the <code>find</code> command.</p>
 Format: <code>add DESCRIPTION from START DATE by/on DEADLINE t/[TAG]…</code></p>
 </li>
 <li>
-<p>As the task is added to a new Task Card, the Result Display shows:
+<p>As the task is added to a new Task Card, the Result Display shows:<br>
 <code>Task has been added: DESCRIPTION From: START DATE To: DEADLINE Tags: [TAG]</code></p>
+</li>
+<li>
+<p>The task added is automatically sorted according to the deadline. With expired tasks coming first, follow by tasks with deadline that are coming up next and lastly tasks without deadline.</p>
 </li>
 </ol>
 </div>
@@ -872,7 +887,7 @@ Sets the description to "get groceries" leaving the other parameters blank.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p><em>Constraints</em><br></p>
+<p><em>Constraints</em></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1294,12 +1309,12 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <div class="sect2">
 <h3 id="using-the-calendar"><a class="link" href="#using-the-calendar">5.6. Using the calendar</a></h3>
 <div class="paragraph">
-<p>A calendar is useful for marking the important dates. When you have many deadlines and birthdays to take note, the calendar allows you to view all these important dates at a glance.<br></p>
+<p>A calendar is useful for marking important dates. When you have many deadlines and birthdays to take note of, the calendar allows you to view all these important dates at a glance.<br></p>
 </div>
 <div class="sect3">
 <h4 id="marking-the-dates"><a class="link" href="#marking-the-dates">5.6.1. Marking the dates</a></h4>
 <div class="paragraph">
-<p>With many contacts and tasks to manage, differentiating the birthdays and deadlines on the calendar can be done with the use of colours.</p>
+<p>With many contacts and tasks to manage, differentiating between birthdays and deadlines on the calendar can be done with the help of colours.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1308,7 +1323,7 @@ The <code>redo</code> command fails as there are no <code>undo</code> commands e
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The marking of date is done automatically when a contact/task is added, edited or deleted.
+Dates are marked automatically when a contact/task is added, edited or deleted.
 </td>
 </tr>
 </table>
@@ -1319,15 +1334,15 @@ The marking of date is done automatically when a contact/task is added, edited o
 <div class="ulist">
 <ul>
 <li>
-<p>A task has deadline on <code>17-07-2017</code>.<br>
+<p>A task has a deadline on <code>17 July 2017</code>.<br>
 The corresponding date on the calendar is marked <strong>red</strong>.<br></p>
 </li>
 <li>
-<p>A contact has birthday on <code>09-12-2017</code>.<br>
+<p>A contact has his/her birthday on <code>09 December 2017</code>.<br>
 The corresponding date on the calendar is marked <strong>pink</strong>.<br></p>
 </li>
 <li>
-<p><code>17-07-2017</code> is a date that is a task&#8217;s deadline and a contact&#8217;s birthday.<br>
+<p><code>17th July 2017</code> is both a task&#8217;s deadline and a contact&#8217;s birthday.<br>
 The corresponding date on the calendar is marked <strong>yellow</strong>.<br></p>
 </li>
 </ul>
@@ -1335,14 +1350,22 @@ The corresponding date on the calendar is marked <strong>yellow</strong>.<br></p
 <div class="paragraph">
 <p><em>Constraints</em></p>
 </div>
-<div class="paragraph">
-<p>The colour of the date on the calendar is <strong>only updated</strong> when next/previous button for month/year is clicked or when a date on the calendar is clicked.</p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The colour of the date on the calendar is <strong>only updated</strong> when the next/previous button for month/year is clicked or when a date on the calendar is clicked.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="clicking-of-date-on-the-calendar"><a class="link" href="#clicking-of-date-on-the-calendar">5.6.2. Clicking of date on the calendar</a></h4>
 <div class="paragraph">
-<p>When there is many deadlines or birthdays on the same date, instead of switching between <code>CommandMode</code> and using the <code>find</code> command, you can just click on the date itself.</p>
+<p>When there are many deadlines or birthdays on the same date, instead of switching between <code>CommandMode</code> and using the <code>find</code> command, you can just click on the date itself.</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1350,19 +1373,33 @@ The corresponding date on the calendar is marked <strong>yellow</strong>.<br></p
 <div class="ulist">
 <ul>
 <li>
-<p><code>17</code> on the calendar that represents <code>17-07-2017</code> is being clicked.<br>
-Returns task list and contacts list that contains tasks with deadline on <code>17-07-2017</code> and contacts with birthday on <code>17-07-2017</code> respectively.</p>
+<p><code>17</code> on the calendar that represents <code>17th July 2017</code> is being clicked.<br>
+Returns a list of tasks with deadlines on 17th July 2017 and a list of contacts with birthdays on 17th July 2017, respectively.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p><em>Constraint</em></p>
 </div>
-<div class="paragraph">
-<p>When a date is clicked and it is not a deadline or not a birthday or both, an empty task list or an empty contacts list or both will be shown, which will be represented by a blank field on the application.<br></p>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>When a clicked date is not a deadline, an empty task list is shown.<br></p>
+</li>
+<li>
+<p>When a clicked date is not a task, an empty contacts list is shown.<br></p>
+</li>
+<li>
+<p>When a clicked date contains netiher birthdays nor tasks, both task list and contacts list are emptied.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
-<p>To return back to original task list or contacts list, you can use the <code>list</code> command.</p>
+<p>To return to original task list or contacts list, you can use the <code>list</code> command.</p>
 </div>
 </div>
 </div>
@@ -1488,7 +1525,7 @@ e.g.<code>select 2</code><br>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 11:18:52 +00:00
+Last updated 2017-11-13 12:09:13 +00:00
 </div>
 </div>
 </body>

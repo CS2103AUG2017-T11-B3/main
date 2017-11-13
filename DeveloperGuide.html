@@ -1027,13 +1027,13 @@ Limits possibilities of adding new prefixes and making the format more flexible 
 <p>Suppose the address book is modified (e.g. using <code>add</code>, <code>edit</code>, <code>addtask</code>, <code>deletetask</code>).</p>
 </div>
 <div class="paragraph">
-<p>After the modification of the address book i.e. saving of data to the <code>addressbook.xml</code> file, <code>ObservableList</code> of <code>Person</code> and <code>Task</code> classes stored in the address book are passed into the <code>CalendarPanel</code> Ui through <code>Model</code>.</p>
+<p>After the modification of Mobilize&#8217;s address book (i.e. saving of data to the <code>addressbook.xml</code> file), <code>ObservableList</code> of <code>Person</code> and <code>Task</code> classes stored in the address book are passed into the <code>CalendarPanel</code> Ui through <code>Model</code>.</p>
 </div>
 <div class="paragraph">
-<p>Next, <code>getDayCellFactory</code> will format the <code>DateCell</code> of the <code>DatePicker</code>. The formatting is done with <code>Birthday</code> and <code>Deadline</code> as conditions and colour and tooltip of <code>DateCell</code> as variables to be change by the formatter.</p>
+<p>Next, <code>getDayCellFactory</code> will format the <code>DateCell</code> of the <code>DatePicker</code>. The formatting is done with birthday and deadline as conditions and colour and tooltip of <code>DateCell</code> as variables to be change by the formatter.</p>
 </div>
 <div class="paragraph">
-<p>By selecting the date on the calendar, the date value from the <code>DatePicker</code> will be captured and be parsed as a string. The string is then pass to <code>Logic</code> to execute the <code>FindCommand</code> which will show all persons and tasks having <code>Birthday</code> and <code>Deadline</code> on that specific date.</p>
+<p>By selecting the date on the calendar, the date value from the <code>DatePicker</code> will be captured and be parsed as a string. The string is then passed to <code>Logic</code> to execute the <code>FindCommand</code> which will show all contacts and tasks having <code>Birthday</code> and <code>Deadline</code> on that specific date.</p>
 </div>
 <div class="paragraph">
 <p>[NOTE] Implementation of CLI for the calendar is still ongoing.</p>
@@ -2955,7 +2955,7 @@ for <code>RemarkCommandParser</code>.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 11:18:52 +00:00
+Last updated 2017-11-13 12:09:13 +00:00
 </div>
 </div>
 </body>
