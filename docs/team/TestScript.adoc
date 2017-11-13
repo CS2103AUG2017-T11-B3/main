@@ -402,6 +402,97 @@ Tag names must be alphanumeric
 
 *Expected Result*: The tags are not removed and result box should display invalid command format.
 
+== Adding tasks
+
+=== Case 1
+
+*Title*: Add – Adding a task to the task manager with all valid parameters +
+*Description*: A task can be added to Mobilize with a description, deadline and times +
+*Precondition*: All parameters are valid +
+*Assumption*: Mobilize is in task manager mode +
+*Test Steps*:
+
+. Switch to tm using `switch tm`
+. Click on the command box.
+. Enter command using the following, i.e. `add meeting by tomorrow at 5 pm to 7 pm t/urgent`.
+. Hit the enter button.
+
+*Expected Result*: The task is added and result box should display:
+Task has been added: meeting Deadline: [the date of the next day] At: 17:00 - 19:00 Tags: [urgent]
+
+=== Case 2
+
+*Title*: Add – Adding a task to the task manager with the description containing another prefix +
+*Description*: A task can be added to Mobilize with a description, deadline and times +
+*Precondition*: All parameters are valid +
+*Assumption*: Mobilize is in task manager mode +
+*Test Steps*:
+
+. Switch to tm using `switch tm`
+. Click on the command box.
+. Enter command using the following, i.e. `add "get book on defensive programming" on fri at 5 pm to 7 pm t/urgent`.
+. Hit the enter button.
+
+*Expected Result*: The task is added and result box should display:
+Task has been added: get book on defensive programming Deadline: [the date of the next friday] At: 17:00 - 19:00 Tags: [urgent]
+
+=== Case 3
+
+*Title*: Add – Adding a task to the task manager with some parameters +
+*Description*: A task can be added to Mobilize with a description, deadline and time +
+*Precondition*: All parameters are valid +
+*Assumption*: Mobilize is in task manager mode +
+*Test Steps*:
+
+. Switch to tm using `switch tm`
+. Click on the command box.
+. Enter command using the following, i.e. `add quiz on Dec 5 at 12 pm`.
+. Hit the enter button.
+
+*Expected Result*: The task is added and result box should display:
+Task has been added: quiz Deadline: Tue, Dec 5, '17 At: 12:00 Tags: [urgent]
+
+=== Case 5
+
+*Title*: Add – Adding a task to the task manager without description - Failed +
+*Description*: A task cannot be added without a description. +
+*Precondition*: All parameters are valid. Description is missing +
+*Assumption*: Mobilize is in task manager mode +
+*Test Steps*:
+
+. Switch to tm using `switch tm`
+. Click on the command box.
+. Enter command using the following, i.e. `add meeting at 5 pm to 7 pm t/urgent`.
+. Hit the enter button.
+
+*Expected Result*: The task is not added and result box should display:
+Invalid command format!  +
+add: Adds a task to the task manager. Parameters: DESCRIPTION by/on/from DEADLINE DATE at START TIME to END TIME t/TAG. +
+Task Descriptions containing deadline or time prefixes must be in double quotes [""].
+
+== Editing tasks
+
+=== Case 1
+
+
+*Title*: Add – Adding a task to the task manager without description - Failed +
+*Description*: A task cannot be added without a description. +
+*Precondition*: All parameters are valid. Description is missing +
+*Assumption*: Mobilize is in task manager mode +
+*Test Steps*:
+
+. Switch to tm using `switch tm`
+. Click on the command box.
+. Enter command using the following, i.e. `add meeting at 5 pm to 7 pm t/urgent`.
+. Hit the enter button.
+
+*Expected Result*: The task is not added and result box should display:
+Invalid command format!  +
+add: Adds a task to the task manager. Parameters: DESCRIPTION by/on/from DEADLINE DATE at START TIME to END TIME t/TAG. +
+Task Descriptions containing deadline or time prefixes must be in double quotes [""].
+
+
+
 
 
 
