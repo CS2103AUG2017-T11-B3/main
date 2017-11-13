@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.task.ReadOnlyTask;
@@ -54,6 +56,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    Logger logger = LogsCenter.getLogger(this.getClass());
+
     public TaskCard(ReadOnlyTask task, int displayedIndex) {
         super(FXML);
         this.task = task;
@@ -67,6 +71,9 @@ public class TaskCard extends UiPart<Region> {
      * so that they will be notified of any changes.
      */
     private void bindListeners(ReadOnlyTask task) {
+        //@@author raisa2010
+        logger.info("Binding UI elements.");
+        //@@author
         description.textProperty().bind(Bindings.convert(task.descriptionProperty()));
         deadline.textProperty().bind(Bindings.convert(task.deadlineProperty()));
         //@@author raisa2010

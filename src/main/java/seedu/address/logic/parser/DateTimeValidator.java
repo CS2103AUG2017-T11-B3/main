@@ -29,7 +29,8 @@ public abstract class DateTimeValidator {
             + "and any date not using the (M)M(d)d(YY)YY format.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Time is invalid! Invalid values include values such as "
             + "29:00, 29pm or 2900.\n"
-            + "Invalid formats include 100 (instead of 1:00), 1900 (instead of 19:00) and 11 (instead of 11 am or pm";
+            + "Invalid formats include 100 (instead of 1:00), 1900 (instead of 19:00) and 11 (instead of 11 am or pm)\n"
+            + "Start times cannot be after End times.";
 
     /**
      * Validates a given {@code inputDate} given in an MDY format.

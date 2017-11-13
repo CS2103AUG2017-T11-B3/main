@@ -12,7 +12,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_AT;
 import java.util.Date;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,6 +33,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
     private static final int INDEX_START_TIME = 0;
     private static final int INDEX_END_TIME = 1;
+
+    Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
@@ -62,6 +66,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
             if (deadline.isEmpty() && eventTimes[INDEX_END_TIME].isPresent()) {
                 deadline = ParserUtil.parseDeadline(Optional.of(new Date().toString())).get();
+                logger.fine("Time(s) specified without deadline. Setting deadline to " + deadline);
             }
 
             ReadOnlyTask task = new Task(description, deadline, eventTimes[INDEX_START_TIME],
