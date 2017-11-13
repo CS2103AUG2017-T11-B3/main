@@ -14,7 +14,7 @@ public class CommandUtil {
      * Filters the valid indices in a given array of indices.
      */
     public static Index[] filterValidIndices(int lastShownListSize, Index[] indices) {
-        return Arrays.stream(indices)
+         return Arrays.stream(indices)
                 .filter(currentIndex -> currentIndex.getZeroBased() < lastShownListSize)
                 .toArray(Index[]::new);
     }

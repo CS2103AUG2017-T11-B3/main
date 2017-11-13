@@ -12,6 +12,7 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.DateTimeFormatter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.UniquePersonList;
@@ -20,7 +21,6 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.TagNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.logic.parser.DateTimeFormatter;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.EventTime;
 import seedu.address.model.task.ReadOnlyTask;

@@ -6,7 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -39,6 +41,7 @@ public class TagTaskCommand extends UndoableCommand {
 
     private final Index[] indices;
     private final Set<Tag> newTags;
+    Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * @param indices of the tasks in the filtered task list to tag
@@ -58,9 +61,12 @@ public class TagTaskCommand extends UndoableCommand {
 
         Index[] validIndices = CommandUtil.filterValidIndices(lastShownList.size(), indices);
 
-        if (validIndices.length == 0) {
+        if (indices.length == 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
+
+        int numInvalidValues = indices.length - validIndices.length;
+        logger.info("Number of invalid indices entered: " + numInvalidValues);
 
         for (Index currentIndex : validIndices) {
             ReadOnlyTask taskToEdit = lastShownList.get(currentIndex.getZeroBased());
