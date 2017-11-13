@@ -1,0 +1,412 @@
+= Mobilize - Test Script
+:toc:
+:toclevels: 3
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:imagesDir: images
+:stylesDir: stylesheets
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+endif::[]
+ifdef::env-github,env-browser[:outfilesuffix: .adoc]
+:repoURL: https://github.com/CS2103AUG2017-T11-B3/main
+
+== Loading Sample Data
+
+*Title*: Getting started – Loading sample data into Mobilize. +
+*Description*: Mobilize should start with all the sample data loaded. +
+*Precondition*: sample data file is valid. +
+*Assumption*: Mobilize and sample data file used is of latest version. +
+
+*Test steps*: +
+
+. Run the mobilize.jar file +
+. Check if a folder named ‘data’ is in the same location as the jar file.
+. Add a contact/task using the guide below to create the data folder if it does not exist
+. Copy and paste the "[T11-B3][Mobilize]SampleData.xml" file from the "src/data/ManualTesting" file into the data folder. +
+. Rename the sample data file as ‘addressbook.xml’ and remove the old xml file +
+
+*Expected Result*: Mobilize App should now run with the sample data loaded.
+
+== Switching Command Modes
+
+=== Case 1
+
+*Title*: Switch - Command modes of Mobilize will be successfully changed to TaskManager +
+*Description*: Command mode of Mobilize will be changed according to the command inputted. +
+*Precondition*: A valid command is used. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*: +
+
+. Key in “switch tm”
+. Click enter +
+
+*Expected Result*: The result display shows the following: "Command mode changed to: TaskManager"
+
+=== Case 2
+
+*Title*: Switch - Command modes of Mobilize will be successfully changed to AddressBook +
+*Description*: Command mode of Mobilize will be changed according to the command inputted. +
+*Precondition*: A valid command is used. +
+*Assumption*: Mobilize is in task manager mode. +
+*Test steps*: +
+
+. Key in “switch ab”
+. Click enter
+
+*Expected Result*: The result display is the following: Command mode changed to: AddressBook
+
+=== Case 3
+
+*Title*: Switch - Command modes of Mobilize is not successfully changed +
+*Description*: Command mode of Mobilize should not be able to change according to the command input. +
+*Precondition*: A invalid command is used. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “switch TASK”
+. Click enter
+
+*Expected Result*: The result display is the following:
+The mode can only be either addressbook (ab) or taskmanager (tm)
+
+== Adding Contacts
+
+=== Case 1
+
+*Title*: Add – Contact with valid birthday added successful +
+*Description*: A new contact, using valid parameters, should be successfully created in Mobilize. +
+*Precondition*: All inputs must be valid. +
+*Assumption*: Mobilize is in address book mode. +
+*Test Steps*: +
+
+. key in “add n/eugene p/98989898 e/eugene@gmail.com a/123 kentridge b/12-12-1993”.
+. Click enter
+
+*Expected Result*: The result display is the following:
+New person added: eugene Phone: 98989898 Email: eugene@gmail.com Address: 123 kentridge Birthday: 12-12-1993 tags:
+
+=== Case 2
+
+*Title*: Add – Contact with invalid birthday added unsuccessful +
+*Description*: A new contact, using valid parameters but birthday in wrong format should not be added. +
+*Precondition*: all inputs but birthday is valid. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “add n/avas p/12312312 e/123@gmail.com a/123 amk b/12121999”.
+. Click enter
+
+*Expected Result*: The result display is the following:
+Birthday can only contain numbers and in the format dd-MM-yyyy
+
+=== Editing contacts
+
+=== Case 1
+
+*Title*: Edit – Editing contacts by adding birthday +
+*Description*: the selected contact will be edited with a new birthday using the birthday prefix. +
+*Precondition*: A valid index is entered. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “edit 1 b/12-12-1999”
+. Click enter
+
+*Expected Result*: The contact is updated with birthday and the result display is the following:
+*Edited Person*: Abdel Isacsson Phone: 2534283161 Email: aisacsson7@indiegogo.com Address: 5341 Mayfield Junction Birthday: 12-12-1999 tags: [bestie][cs2101Group][friend][ee2020Group][clubMates]
+
+=== Case 2
+
+*Title*: Edit – Editing contacts with multiples parameter +
+*Description*: the selected contact will be edited with new particulars with the entered prefixes +
+*Precondition*: a valid index is entered. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “edit 1 b/12-08-1995 t/tutor”
+. Click enter
+
+*Expected Result*: The contact is updated with birthday and tag and the result display is the following:
+Edited Person: Abdel Isacsson Phone: 2534283161 Email: aisacsson7@indiegogo.com Address: 5341 Mayfield Junction Birthday: 12-08-1995 tags: [tutor]
+
+== Finding Contacts
+
+=== Case 1
+
+*Title*: Find - Contacts with the specified tags will be displayed +
+*Description*: Contacts that contains the specified tags will be filtered out and displayed in the contact list. +
+*Precondition*: tags specified must be specific but does not need to be case sensitive. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “find friend”
+. Click enter
+
+*Expected Result*: The contacts list is updated with contacts having friend tag and the result display is the following:
+3 persons listed!
+
+=== Case 2
+
+*Title*: Find – Specified tags are not found in the contacts +
+*Description*: The contact list will show 0 contacts because the tags specified is not the same as the tags in the contacts. +
+*Precondition*: tags must be specified. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “find dog”
+. Click enter
+
+*Expected Result*: The result display is the following:
+0 persons listed!
+
+=== Case 3
+
+*Title*: Find – Contacts with the specified birthday will be displayed +
+*Description*: The contact list will show all contacts that matches the specified birthday. +
+*Precondition*: Valid birthday must be specified. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “find 24-10-2017”
+. Click enter
+
+*Expected Result*: The contacts list is updated with contacts with birthday on ’24-10-2017’ and the result display is the following:
+2 persons listed!
+
+=== Case 4
+
+*Title*: Find – Invalid birthday given +
+*Description*: The contact list should not show any contacts that matches the specified birthday in wrong format. +
+*Precondition*: Invalid birthday must be specified. +
+*Assumption*: Mobilize is in address book mode; no contact with name/tag with the specified birthday in wrong format. +
+*Test steps*:
+
+. Key in “find 24102017”
+. Click enter
+
+*Expected Result*: The contacts list is updated with no contacts listed and the result display is the following:
+0 persons listed!
+
+=== Case 5
+
+*Title*: Find – Contacts with the specified name, tags and birthday will be displayed +
+*Description*: The contact list will show all contacts that matches the specified name, tags and birthday. +
+*Precondition*: Valid name, tags and birthday must be specified +
+*Assumption*: Mobilize is in address book mode +
+
+*Test steps*:
+
+. Key in “find find angele owemoney”
+. Click enter
+
+*Expected Result*: The contacts list is updated with contacts with name “angele” and tag “owemoney” and the result display is the following:
+8 persons listed!
+
+== Selecting contacts
+
+=== Case 1
+
+*Title*: Select – Person selected will have the browser panel shows his address on map successfully +
+*Description*: The browser panel (right side of app) should display the address of the contact specified on google map. +
+*Precondition*: Address book not empty and index is valid. =
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “select 5”
+. Click enter
+
+*Expected Result*: The contacts list should highlight the person card, google map on browser panel should display a search of ’54 Westend Avenue’ and the result display is the following:
+Selected Person: 1
+
+=== Case 2
+
+*Title*: Select – Invalid index specified +
+*Description*: The browser panel (right side of app) should not perform a new search of selected contact’s address. +
+*Precondition*: Address book not empty and index is invalid. +
+*Assumption*: Mobilize is in address book mode. +
+*Test steps*:
+
+. Key in “select -1”
+. Click enter
+
+*Expected Result*: The result display is the following:
+Invalid command format! +
+select: Selects the person identified by the index number used in the last person listing. +
+Parameters: INDEX (must be a positive integer) +
+Example: select 1
+
+== Deleting contacts
+
+=== Case 1
+
+*Title*: Delete – Remove contact successfully +
+*Description*: The contact specified with index should be removed from the contacts list. +
+*Precondition*: A valid index is entered +
+*Assumption*: Mobilize is in address book mode +
+*Test steps*:
+
+. Key in “delete 1”
+. Click enter
+
+*Expected Result*: The contact is updated with birthday and the result display is the following:
+Deleted Person: Abdel Isacsson Phone: 2534283161 Email: aisacsson7@indiegogo.com Address: 5341 Mayfield Junction Birthday: 24-11-2017 tags: [bestie][cs2101Group][friend][ee2020Group][clubMates]
+
+=== Case 2
+
+*Title*: Delete – Remove contact unsuccessfully with invalid index +
+*Description*: No contacts should be removed from the contacts list with the invalid index specified. +
+*Precondition*: A invalid index is entered +
+*Assumption*: Mobilize is in address book mode; contacts list does not contain contacts having invalid index. +
+*Test steps*:
+
+. Key in “delete -1”
+. Click enter
+
+*Expected Result*: No contacts is changed and the result display is the following:
+Invalid command format! +
+delete: Deletes the person identified by the index number used in the last person listing. +
+Parameters: INDEX (must be a positive integer) +
+Example: delete 1
+
+== Tagging Contacts
+
+== Case 1
+
+*Title*: Tag - Tag contact successfully +
+*Description*: The contact specified with the index should have two new tags added +
+*Precondition*: At least one valid index is entered +
+*Assumption*: Mobilize is in address book mode +
+*Test steps*: +
+
+. Key in “tag 1, 2 t/bro t/owesMoney”
+. Click enter
+
+*Expected Result*: The contact is updated with the new tags and the result display is the following:
+"New tag added"
+
+== Case 2
+
+*Title*: Tag – Tag contact successfully with one valid index and one invalid index +
+*Description*: Only the contact with the valid index should have a new tag added +
+*Precondition*: One invalid index is entered and one valid index is entered +
+*Assumption*: Mobilize is in address book mode; contacts list does not contain contacts having invalid index. +
+*Test steps*:
+
+. Key in “tag 1, 50 t/me t/you”
+. Click enter
+
+*Expected Result*: Only one contact is tagged and the result display is the following:
+New tag added.
+
+=== Case 3
+
+*Title*: Tag – Unsuccessful tag with only one invalid index +
+*Description*: An error message should specify that the index provided is invalid +
+*Precondition*: A single or multiple invalid index/indices is/are entered +
+*Assumption*: Mobilize is in address book mode +
+*Test steps*:
+
+. Key in “tag 50 t/me”
+. Click enter
+
+*Expected Result*: No change is made to the contact list and the result display is the following:
+The person index provided is invalid
+
+=== Case 4
+
+*Title*: Tag – Unsuccessful tag with an invalid tag +
+*Description*: An error message should specify that the tag provided is invalid +
+*Precondition*: A single or multiple invalid tag(s) is/are entered +
+*Assumption*: Mobilize is in address book mode +
+*Test steps*:
+
+. Key in “tag 1, 2 t/??”
+. Click enter
+
+*Expected Result*: No change is made to the contact list and the result display is the following:
+Tag names must be alphanumeric
+
+== Deleting a tag from contacts
+
+=== Case 1
+
+*Title*: Detag – Removing tag from multiple contacts successfully +
+*Description*: A specific tag should be able to be removed from multiple contacts. +
+*Precondition*: command is entered with the correct format; the tag of targeted contacts and specified tag have the same letter case. +
+*Assumption*: indexes specified are valid; all targeted contacts have the specified tag. +
+
+*Test Steps*:
+
+. Click on the command box.
+. Enter command using the correct format, i.e. `detag INDEX... [t/TAG] `. For example: “detag 1,2 t/friend”
+. Hit the enter button.
+
+*Expected Result*: The targeted contacts should have their specified tag removed and changes can be seen on the contacts list.
+
+=== Case 2
+
+*Title*: Detag – Removing tag from single contact successfully +
+*Description*: A specific tag should be able to be removed from the contact. +
+*Precondition*: command is entered with the correct format; the tag of targeted contact and specified tag have the same letter case. +
+*Assumption*: indexes specified are valid; targeted contact has the specified tag. +
+*Test Steps*:
+
+. Click on the command box.
+. Enter command using the correct format, i.e. `detag INDEX... [t/TAG] `. For example: “detag 1 t/friend”
+. Hit the enter button.
+
+*Expected Result*: The targeted contact should have his/her specified tag removed and changes can be seen on the contacts list.
+
+=== Case 4
+
+*Title*: Detag – Removing tag from multiple contacts unsuccessfully, invalid index +
+*Description*: A specific tag should not be able to be removed from multiple contacts, if one of the index is invalid. +
+*Precondition*: command is entered with the correct format; the tag of targeted contacts and specified tag have the same letter case. +
+*Assumption*: contacts list is not empty. +
+*Test Steps*:
+
+. Click on the command box.
+. Enter command using the format with invalid index, i.e. `detag INDEX... [t/TAG] `. For example: “detag -1,-2 t/friends”
+. Hit the enter button.
+
+*Expected Result*: The tags are not removed and result box should display invalid command format.
+
+=== Case 5
+
+*Title*: Detag – Removing tag from multiple contacts unsuccessfully, invalid tag +
+*Description*: A specific tag should not be able to be removed from multiple contacts, if one of the contacts does not have the specified tag. +
+*Precondition*: command is entered with the correct format, indexes specified are valid. +
+*Assumption*: tags with different letter case are counted as different tag. +
+*Test Steps*:
+
+. Click on the command box.
+. Enter command using the format with invalid tag, i.e. `detag INDEX... [t/TAG] `. For example: “detag 1,2 t/fRiEnD”
+. Hit the enter button.
+
+*Expected Result*: The tags are not removed and result box should display “one or more person(s) don’t have this tag”.
+
+=== Case 6
+
+*Title*: Detag – Removing tag from multiple contacts unsuccessfully, invalid prefix +
+*Description*: A specific tag should not be able to be removed from multiple contacts, if the prefix is invalid. +
+*Precondition*: command is entered with the correct format except tag prefix; indexes specified are valid. +
+*Assumption*: contacts list is not empty. +
+*Test Steps*:
+
+. Click on the command box.
+. Enter command using the format without tag prefix, i.e. `detag INDEX... [TAG] `. For example: “detag 1,2 friend”
+. Hit the enter button.
+
+*Expected Result*: The tags are not removed and result box should display invalid command format.
+
+
+
+
+
+
+
+
+
