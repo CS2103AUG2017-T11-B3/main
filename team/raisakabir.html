@@ -144,7 +144,15 @@ Sets the description to "get groceries" leaving the other parameters blank.</p>
 <div class="sect3">
 <h4 id="justification"><a class="link" href="#justification">Justification</a></h4>
 <div class="paragraph">
-<p>Expands the breadth of the original code&#8217;s function by allowing users to add tasks and plan their accordingly.</p>
+<p>The Add Task command was the first step in expanding Mobilize&#8217;s capabilities. In
+allowing users to add pending tasks to their application, Mobilize has adopted
+the responsibility of organizing its user&#8217;s life.</p>
+</div>
+<div class="paragraph">
+<p>The Add Task uses a Natural Language Parsing Library, <a href="http://ocpsoft.org/prettytime/nlp/">PrettyTime</a>,
+in order to make it more user-friendly, by allowing task dates to be set using natural language dates
+and times. This makes the command format of the application less rigid and increases its appeal to
+potential users.</p>
 </div>
 </div>
 <div class="sect3">
@@ -165,11 +173,11 @@ Sets the description to "get groceries" leaving the other parameters blank.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>`add CS assignment from 15-10-2017 to tomorrow`.</pre>
+<pre>`add CS assignment by tomorrow at 23:59`.</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>At first, the <code>execute()</code> function of the <code>LogicManager</code> class is called, which goes on to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>AddTask</code> feature is being evoked and calls the <code>AddTaskCommandParser</code> to parse the String and separate it into three components: <code>Description</code>, <code>StartDate</code> and <code>Deadline</code>. These are validated and formatted by the <code>Task</code> class and returned as a <code>Task</code> object to be used to call the <code>AddTaskCommand</code> class. The <code>LogicManager</code> then calls the <code>executeUndoableFunction()</code> in the <code>AddTaskCommand</code> class which creates and returns a <code>CommandResult</code> object.</p>
+<p>At first, the command is called is called, which causes the <code>LogicManager</code> to pass the command string into the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This, in turn, determines that the <code>AddTask</code> feature is being evoked and calls the <code>AddTaskCommandParser</code> to parse the String and separate it into three components: <code>Description</code>, <code>StartDate</code> and <code>Deadline</code>. These are validated and formatted by the <code>Task</code> class and returned as a <code>Task</code> object to be used to call the <code>AddTaskCommand</code> class. The <code>LogicManager</code> then calls the <code>executeUndoableFunction()</code> in the <code>AddTaskCommand</code> class which creates and returns a <code>CommandResult</code> object.</p>
 </div>
 <div class="paragraph">
 <p>The following sequence diagram summarizes how this operation works:</p>
@@ -179,6 +187,57 @@ Sets the description to "get groceries" leaving the other parameters blank.</p>
 <img src="../images/AddTaskCommandSequenceDiagram.png" alt="AddTaskCommandSequenceDiagram" width="800" height="500">
 </div>
 </div>
+<div class="paragraph">
+<p>All parameters except the description are set to be optional wherein an empty string is added when no value is stated by a user.</p>
+</div>
+<div class="paragraph">
+<p>Natural Language Input is processed by the PrettyTime NLP, in the <code>ParserUtil</code> class in the following way:</p>
+</div>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>public static Optional&lt;EventTime[]&gt; parseEventTimes(Optional&lt;String&gt; dateTime) throws IllegalValueException {
+    requireNonNull(dateTime);
+    if (dateTime.isPresent()) {
+        List&lt;DateGroup&gt; dateGroup = new PrettyTimeParser().parseSyntax(dateTime.get().trim());
+        if (dateGroup.isEmpty()) {
+            throw new IllegalValueException(DateTimeValidator.MESSAGE_TIME_CONSTRAINTS);
+        }
+        List&lt;Date&gt; dates = dateGroup.get(dateGroup.size() - 1).getDates();</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>String endTime = DateTimeFormatter.formatTime(dates.get(dates.size() - 1));
+String startTime = dates.size() &gt; 1 ? DateTimeFormatter.formatTime(dates.get(dates.size() - 2)) : "";</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>        return Optional.of(new EventTime[]{new EventTime(startTime), new EventTime(endTime)});
+    } else {
+        return Optional.empty();
+    }
+}</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/**
+ * Parses a {@code String naturalLanguageInput} using PrettyTime NLP, into a {@code Date}.
+ * @throws IllegalValueException if the date cannot be parsed from the phrase or if the given date is invalid.
+ */
+public static Date parseDate(String naturalLanguageInput) throws IllegalValueException {
+    List&lt;DateGroup&gt; dateGroup = new PrettyTimeParser().parseSyntax(naturalLanguageInput.trim());
+    if (dateGroup.isEmpty() | !DateTimeValidator.isDateValid(naturalLanguageInput)) {
+        throw new IllegalValueException(DateTimeValidator.MESSAGE_DATE_CONSTRAINTS);
+    }
+    List&lt;Date&gt; dates = dateGroup.get(dateGroup.size() - 1).getDates();
+    return dates.get(dates.size() - 1);
+}</pre>
+</div>
+</div>
+<hr>
 <h4 id="design-considerations" class="discrete">Design Considerations</h4>
 <div class="paragraph">
 <p><strong>Aspect:</strong> Creating classes for StartDate and Deadline<br>
@@ -189,7 +248,7 @@ In addition, dates can be stored after being formatted to a more user-friendly s
 in validating whether a start date is indeed before a deadline.<br>
 <strong>Alternative 2:</strong> Use java.time.LocalDate class.<br>
 <strong>Pros:</strong> Dates are in correct format. Validation becomes easier and reformatting is not necessary.<br>
-<strong>Cons:</strong> LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard.<br>
+<strong>Cons:</strong> LocalDate cannot be initialized when no input is given. Using a phony value of 00:00 or the current date might cause errors in validation and sorting of dates.<br>
 <strong>Alternative 3:</strong>  Use java.util.Optional class for instance variables along with the LocalDate class.<br>
 <strong>Pros:</strong> Easy to understand reasoning, for new developers looking to contribute. Easy to format specifically for display (once) and allows empty values when no dates are supplied.<br>
 <strong>Cons</strong> The general agreement in the software engineering community seems to be that it is better not to use extra wrapping for an instance variable, that might pose problems in unwrapping later on.<br></p>
@@ -204,17 +263,6 @@ and categorized according to type.<br>
 <strong>Alternative 2:</strong> Parse all dates first then scan the argument string for keywords.<br>
 <strong>Pros</strong> More flexible command format and consequently, more user-friendly.<br>
 <strong>Cons</strong> Open to more mistakes in setting starting dates and deadlines.<br></p>
-</div>
-<hr>
-<div class="paragraph">
-<p><strong>Aspect:</strong> Assigning starting dates and deadlines<br>
-<strong>Alternative 1 (current choice):</strong> Use an abstract parent TaskDates class to hold all validator and formatting methods.<br>
-<strong>Pros</strong> Prevents code duplication for common methods and prevents abstract class from being instantiated ensuring that
-there are only two types of task dates.<br>
-<strong>Cons</strong> Other classes have no direct interaction with parent class.<br>
-<strong>Alternative 2:</strong> Use a single TaskDates class and set instance variables to contain starting and deadline dates.<br>
-<strong>Pros</strong> Easier to implement.<br>
-<strong>Cons</strong> Might violate SRP as the class is now concerned with two different kinds of dates.<br></p>
 </div>
 <hr>
 <div class="paragraph">
@@ -307,7 +355,7 @@ Changes the START DATE of the task at INDEX 2 to the date of the following day.<
 <div class="sect3">
 <h4 id="justification-2"><a class="link" href="#justification-2">Justification</a></h4>
 <div class="paragraph">
-<p>Tagging multiple contacts at the same time will enable users to easily use the tag function for various reasons including keeping track of tasks done by contacts.</p>
+<p>Editing tasks is a natural extension of the add task feature</p>
 </div>
 </div>
 <div class="sect3">
@@ -316,11 +364,53 @@ Changes the START DATE of the task at INDEX 2 to the date of the following day.<
 <div class="paragraph">
 <p><mark>Start of Extract [from: Developer Guide]</mark></p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="edittask-mechanism"><a class="link" href="#edittask-mechanism">EditTask Mechanism</a></h3>
+<div class="paragraph">
+<p>The EditTask Mechanism is facilitated by the <code>EditTaskCommand</code> class and allows th euser to edit any parameter of a given task.</p>
+</div>
+<div class="paragraph">
+<p>Suppose the user has just executed the command:</p>
+</div>
+<hr>
+<div class="paragraph">
+<p><code>edit 1 finish homework by sunday at 9 am to 12 pm</code>
+---</p>
+</div>
+<div class="paragraph">
+<p>The command is passed by the <code>LogicManager</code> class to the <code>AddressBookParser</code> which goes on to pass it to the <code>EditTaskCommandParser</code>
+class. Here a new <code>EditTaskDescriptor</code> is created using the newly specified parameters while old parameters are copied. Finally,
+a newly edited person is created and the Model is called to update the task using the <code>UpdateTask()</code> method.</p>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes how this operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/EditTaskCommandSequenceDiagram.png" alt="EditTaskCommandSequenceDiagram" width="800" height="500">
+</div>
+</div>
+<div class="paragraph">
+<p>The optional parameters are assigned in the following manner in the <code>EditTaskCommandParser</code>:</p>
+</div>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>            parseDescriptionForEdit(argMultimap.getPreamble()).ifPresent(editTaskDescriptor::setDescription);
+            parseDeadlineForEdit(argMultimap.getAllValues(PREFIX_DEADLINE_BY, PREFIX_DEADLINE_FROM, PREFIX_DEADLINE_ON))
+                    .ifPresent(editTaskDescriptor::setDeadline);
+            parseEventTimesForEdit(argMultimap.getAllValues(PREFIX_TIME_AT))
+                    .ifPresent(editTaskDescriptor::setEventTimes);
+            ParserUtil.parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
+---</pre>
+</div>
+</div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
-</div>
 </div>
 <div class="sect2">
 <h3 id="enhancement-added-tag-multiple-contacts-and-tasks"><a class="link" href="#enhancement-added-tag-multiple-contacts-and-tasks">Enhancement Added: Tag Multiple Contacts and Tasks</a></h3>
@@ -400,7 +490,20 @@ Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] an
 <div class="sect3">
 <h4 id="justification-3"><a class="link" href="#justification-3">Justification</a></h4>
 <div class="paragraph">
-<p>Tagging multiple contacts at the same time will enable users to easily use the tag function for various reasons including keeping track of tasks done by contacts.</p>
+<p>The rationale behind adding a special feature to add tags cumulatively, was primarily to open up a world of
+possibilities of the tags themselves, to a user. Not only can they be used to effectively, yet easily organize contacts
+and tasks - that too, by multiple parameters - but they can also be used to <em>link</em> the two with the same tag
+to keep track of tasks with which people are associated and vice versa.<br></p>
+</div>
+<div class="paragraph">
+<p>That being said, the caveat to consider was whether to create a new command or modify the edit command itself
+to allow for tagging cumulatively. In the end, it was decided that separating the two would help achieve the goal
+of helping users be better organized, as the edit function focuses solely on <em>replacing</em> existing tags or removing
+them altogether while the tag command serves to increment them. In addition, the flexible indexing for the tag command helps users tag their desired contact or task even if they make
+some mistakes in typing the index unlike the edit command.</p>
+</div>
+<div class="paragraph">
+<p>Overall the tag command achieves the application&#8217;s purposes of organizing its user&#8217;s life much more efficiently.</p>
 </div>
 </div>
 <div class="sect3">
@@ -426,7 +529,7 @@ The mechanism is facilitated by the <code>TagCommand</code> class which inherits
 </div>
 </div>
 <div class="paragraph">
-<p>At first the <code>execute()</code> function of the <code>Logic Manager</code> is called, which passes the command string to the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This determines that the <code>TagCommand</code> feature is being evoked
+<p>At first the command is called, which causes <code>LogicManager</code> to pass the command string to the <code>parseCommand()</code> function of the <code>AddressBookParser</code> class. This determines that the <code>TagCommand</code> feature is being evoked
 and calls the <code>TagCommandParser</code> class.</p>
 </div>
 <div class="paragraph">
@@ -439,6 +542,54 @@ and calls the <code>TagCommandParser</code> class.</p>
 <p>The Storage and UI are subsequently updated with the new information.</p>
 </div>
 <div class="paragraph">
+<p>The following sequence diagram summarizes how this operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/TagSequenceDiagram.png" alt="TagSequenceDiagram" width="800" height="500">
+</div>
+</div>
+<div class="paragraph">
+<p>The TagCommand skips over the invalid indices and attempts to tag the contacts who are in the valid indices.
+If no valid indices are found, then an error is thrown. This is done by the following:</p>
+</div>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>/**
+ * Filters the valid indices in a given array of indices.
+ */
+public static Index[] filterValidIndices(int lastShownListSize, Index[] indices) {
+    assert indices != null;
+    assert lastShownListSize != 0;
+    return Arrays.stream(indices)
+            .filter(currentIndex -&gt; currentIndex.getZeroBased() &lt; lastShownListSize)
+            .toArray(Index[]::new);
+}</pre>
+</div>
+</div>
+<hr>
+<hr>
+<div class="literalblock">
+<div class="content">
+<pre>Index[] validIndices = CommandUtil.filterValidIndices(lastShownList.size(), indices);</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if (validIndices.length == 0) {
+    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+}</pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="tagtask-mechanism"><a class="link" href="#tagtask-mechanism">TagTask Mechanism</a></h3>
+<div class="paragraph">
+<p>This works in a similar way to the above.</p>
+</div>
+<div class="paragraph">
 <p><mark>End of Extract</mark></p>
 </div>
 <hr>
@@ -448,10 +599,25 @@ and calls the <code>TagCommandParser</code> class.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Added autocomplete feature (Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/96">#96</a>)</p>
+<p>Added autocomplete feature using ControlsFX Library (Pull request <a href="https://github.com/CS2103AUG2017-T11-B3/main/pull/96">#96</a>).</p>
 </li>
 <li>
-<p>Discovered bug during trial acceptance testing (<a href="https://github.com/CS2103AUG2017-T09-B4/main/issues/103">Issue #103</a>)</p>
+<p>Discovered bug during trial acceptance testing (<a href="https://github.com/CS2103AUG2017-T09-B4/main/issues/103">Issue #103</a>).</p>
+</li>
+<li>
+<p>Rewrote large parts of the User Guide to enhance it (Pull Request ).</p>
+</li>
+<li>
+<p>Reviewed and edited the language and structure of all documentation (Pull Requests ).</p>
+</li>
+<li>
+<p>Generated SampleData.xml file (Pull Request ).</p>
+</li>
+<li>
+<p>Set up organization, Milestones (until V1.?) and Issues (until V1.?).</p>
+</li>
+<li>
+<p>Assisted other students in Slack and Forums (Issue ).</p>
 </li>
 </ul>
 </div>
@@ -461,7 +627,7 @@ and calls the <code>TagCommandParser</code> class.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 15:56:09 +00:00
+Last updated 2017-11-13 16:21:05 +00:00
 </div>
 </div>
 </body>
