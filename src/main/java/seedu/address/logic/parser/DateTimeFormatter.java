@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.logic.parser;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

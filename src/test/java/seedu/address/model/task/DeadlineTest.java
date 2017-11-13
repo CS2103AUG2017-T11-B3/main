@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import seedu.address.logic.parser.DateTimeValidator;
+
 //@@author raisa2010
 public class DeadlineTest {
 

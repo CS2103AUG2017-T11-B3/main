@@ -43,7 +43,7 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTimeValidator;
+import seedu.address.logic.parser.DateTimeValidator;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.ReadOnlyTask;
 import seedu.address.testutil.TaskBuilder;

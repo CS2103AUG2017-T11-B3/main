@@ -20,7 +20,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.person.exceptions.TagNotFoundException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
-import seedu.address.model.task.DateTimeFormatter;
+import seedu.address.logic.parser.DateTimeFormatter;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.EventTime;
 import seedu.address.model.task.ReadOnlyTask;

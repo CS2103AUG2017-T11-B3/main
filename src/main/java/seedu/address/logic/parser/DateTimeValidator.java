@@ -1,8 +1,10 @@
-package seedu.address.model.task;
+package seedu.address.logic.parser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import seedu.address.model.task.EventTime;
 
 //@@author raisa2010
 /**
