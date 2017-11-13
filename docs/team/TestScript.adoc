@@ -475,21 +475,19 @@ Task Descriptions containing deadline or time prefixes must be in double quotes 
 === Case 1
 
 
-*Title*: Add – Adding a task to the task manager without description - Failed +
-*Description*: A task cannot be added without a description. +
-*Precondition*: All parameters are valid. Description is missing +
+*Title*: Edit – Editing a task to the task manager +
+*Description*: ny parameter can be edited. +
+*Precondition*: All parameters are valid. +
 *Assumption*: Mobilize is in task manager mode +
 *Test Steps*:
 
 . Switch to tm using `switch tm`
 . Click on the command box.
-. Enter command using the following, i.e. `add meeting at 5 pm to 7 pm t/urgent`.
+. Enter command using the following, i.e. `edit 1 do this at 5 pm to 7 pm t/urgent`.
 . Hit the enter button.
 
 *Expected Result*: The task is not added and result box should display:
-Invalid command format!  +
-add: Adds a task to the task manager. Parameters: DESCRIPTION by/on/from DEADLINE DATE at START TIME to END TIME t/TAG. +
-Task Descriptions containing deadline or time prefixes must be in double quotes [""].
+Edited Task: do this Deadline: Tue, Nov 14, '17 At: 17:00 - 19:00 Tags: [urgent]
 
 
 
