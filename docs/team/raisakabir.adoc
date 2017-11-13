@@ -115,8 +115,8 @@ include::../DeveloperGuide.adoc[tag=tag]
 
 * Added autocomplete feature using ControlsFX Library (Pull request https://github.com/CS2103AUG2017-T11-B3/main/pull/96[#96]).
 * Discovered bug during trial acceptance testing (https://github.com/CS2103AUG2017-T09-B4/main/issues/103[Issue #103]).
-* Rewrote large parts of the User Guide to enhance it (Pull Request ).
-* Reviewed and edited the language and structure of all documentation (Pull Requests ).
-* Generated SampleData.xml file (Pull Request ).
-* Set up organization, Milestones (until V1.?) and Issues (until V1.?).
-* Assisted other students in Slack and Forums (Issue ).
+* Rewrote large parts of the User Guide and Developer to enhance it (Pull Request https://github.com/CS2103AUG2017-T11-B3/main/pull/144[#144]) (Pull Request https://github.com/CS2103AUG2017-T11-B3/main/pull/112[#112]).
+* Reviewed and edited the language and structure of all documentation.
+* Generated SampleData.xml file (Pull Request https://github.com/CS2103AUG2017-T11-B3/main/pull/138[#138]).
+* Set up organization, Milestones and Issues.
+* Assisted other students in Slack.
