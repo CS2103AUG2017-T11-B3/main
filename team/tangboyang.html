@@ -135,8 +135,10 @@ The default mode of Mobilize will be address book.
 Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="paragraph">
-<p>To find task(s) by deadlines, use<br>
-Format: <code>find DD-MM-YYYY</code></p>
+<p>To find task(s) by deadlines, use<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find DD-MM-YYYY</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -149,16 +151,19 @@ Returns <code>finish task tonight</code> and <code>finish task tomorrow</code></
 </li>
 <li>
 <p><code>find finish task tonight</code><br>
-Returns any task having descriptions <code>finish</code>, <code>task</code>, or <code>tonight</code></p>
+Returns any task(s) having a description containing <code>finish</code>, <code>task</code>, or <code>tonight</code></p>
 </li>
 <li>
 <p><code>find 29-10-2017</code><br>
-Returns any task having deadlines on <code>29-10-2017</code></p>
+Returns any task(s) having deadlines on <code>29-10-2017</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p><em>Constraints:</em></p>
+</div>
+<div class="paragraph">
+<p>Note the following constraints when finding tasks:</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -280,10 +285,8 @@ Returns any task having deadlines on <code>29-10-2017</code></p>
 <div class="sect3">
 <h4 id="selecting-a-task-code-select-code"><a class="link" href="#selecting-a-task-code-select-code">Selecting a task: <code>select</code></a></h4>
 <div class="paragraph">
-<p>You can use the select command to select the task identified by the index number used in the last task listing.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>select INDEX</code></p>
+<p>You can use the select command to select the task identified by the index number used in the last task listing.
+Format: <code>select INDEX</code></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -312,7 +315,7 @@ Selects the 2nd task in the task manager.</p>
 <li>
 <p><code>find finish</code><br>
 <code>select 1</code><br>
-Selects the 1st task in the results of the <code>find</code> command.</p>
+Selects the 1st task in the results of the <code>find</code> command. &lt;*result list&gt;</p>
 </li>
 </ul>
 </div>
@@ -470,7 +473,7 @@ Selects the 1st task in the results of the <code>find</code> command.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 16:21:05 +00:00
+Last updated 2017-11-13 16:41:06 +00:00
 </div>
 </div>
 </body>

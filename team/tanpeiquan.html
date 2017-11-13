@@ -53,19 +53,31 @@ Deletes the [<code>friends</code>] tag of the 2nd contact in the address book.</
 </li>
 <li>
 <p><code>find Betsy</code><br>
-<code>detag 1, 2, 4 t/OwesMoney</code><br>
-Deletes the [<code>OwesMoney</code>] tag of the 1st, 2nd and 4th contact in the result list of the <code>find</code> command.</p>
+<code>detag 1, 2, 4 t/OwesMoney</code><br></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Deletes the [<code>OwesMoney</code>] tag of the 1st, 2nd and 4th contact in the result list of the <code>find</code> command.</p>
 </div>
 <div class="paragraph">
 <p><em>Constraints</em></p>
 </div>
 <div class="paragraph">
-<p>Note the following constraints when trying to remove tag:<br>
-* INDEX refers to the index number shown in the most recent listing.<br>
-* The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;<br>
-* Every index must be separated by a comma.</p>
+<p>Note the following constraints when trying to remove a tag:<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>INDEX refers to the index number shown in the most recent listing.<br></p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;<br></p>
+</li>
+<li>
+<p>Every index must be separated by a comma.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -160,7 +172,7 @@ The current detag mechanism does not support multiple tag removal, i.e. remove 2
 <p>A calendar is useful for marking important dates. When you have many deadlines and birthdays to take note of, the calendar allows you to view all these important dates at a glance.<br></p>
 </div>
 <div class="sect3">
-<h4 id="marking-the-dates"><a class="link" href="#marking-the-dates">Marking the dates</a></h4>
+<h4 id="marking-dates"><a class="link" href="#marking-dates">Marking dates</a></h4>
 <div class="paragraph">
 <p>With many contacts and tasks to manage, differentiating between birthdays and deadlines on the calendar can be done with the help of colours.</p>
 </div>
@@ -198,12 +210,15 @@ The corresponding date on the calendar is marked <strong>yellow</strong>.<br></p
 <div class="paragraph">
 <p><em>Constraints</em></p>
 </div>
+<div class="paragraph">
+<p>Note the following constraint on the colour of a date:</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The colour of the date on the calendar is <strong>only updated</strong> when the next/previous button for month/year is clicked or when a date on the calendar is clicked.</p>
+<p>The colour of the date on the calendar is <strong>only updated</strong> when next/previous button for month/year is clicked or when a date on the calendar is clicked.</p>
 </li>
 </ul>
 </div>
@@ -211,7 +226,7 @@ The corresponding date on the calendar is marked <strong>yellow</strong>.<br></p
 </div>
 </div>
 <div class="sect3">
-<h4 id="clicking-of-date-on-the-calendar"><a class="link" href="#clicking-of-date-on-the-calendar">Clicking of date on the calendar</a></h4>
+<h4 id="viewing-deadlines-and-birthdays"><a class="link" href="#viewing-deadlines-and-birthdays">Viewing deadlines and birthdays</a></h4>
 <div class="paragraph">
 <p>When there are many deadlines or birthdays on the same date, instead of switching between <code>CommandMode</code> and using the <code>find</code> command, you can just click on the date itself.</p>
 </div>
@@ -229,10 +244,19 @@ Returns a list of tasks with deadlines on 17th July 2017 and a list of contacts 
 <div class="paragraph">
 <p><em>Constraint</em></p>
 </div>
+<div class="paragraph">
+<p>Note the following constraints when clicking a date on a calendar:</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
+<li>
+<p>When a date is clicked and it is not a deadline or not a birthday or both, an empty task list or an empty contacts list or both will be shown, which will be represented by a blank field on the application.<br></p>
+</li>
+<li>
+<p>To return to the original task list or contacts list, you can use the <code>list</code> command.</p>
+</li>
 <li>
 <p>When a clicked date is not a deadline, an empty task list is shown.<br></p>
 </li>
@@ -245,9 +269,6 @@ Returns a list of tasks with deadlines on 17th July 2017 and a list of contacts 
 </ul>
 </div>
 </div>
-</div>
-<div class="paragraph">
-<p>To return to original task list or contacts list, you can use the <code>list</code> command.</p>
 </div>
 <div class="paragraph">
 <p><mark>End of Extract</mark></p>
@@ -377,7 +398,7 @@ Returns a list of tasks with deadlines on 17th July 2017 and a list of contacts 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 16:21:05 +00:00
+Last updated 2017-11-13 16:41:06 +00:00
 </div>
 </div>
 </body>

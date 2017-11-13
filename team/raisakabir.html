@@ -47,65 +47,40 @@ in Java and uses the Object Oriented Paradigm. The user interacts with it using 
 <div class="ulist">
 <ul>
 <li>
-<p><code>from</code> to denote the date in which the event begins.</p>
+<p><code>on</code> or <code>by</code> or <code>from</code> to denote the date in which the task is due to be completed or when a task is set to begin.</p>
 </li>
 <li>
-<p><code>to</code>, <code>on</code> or <code>by</code> to denote the date in which the task is due to be completed.</p>
+<p><code>at</code> to denote the starting time of the task and <code>to</code> to denote the ending time of the task.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The command follows:<br>
-Format: <code>add DESCRIPTION from START DATE by/on DEADLINE t/[TAG]…</code></p>
-</li>
-<li>
-<p>As the task is added to a new Task Card, the Result Display shows:<br>
-<code>Task has been added: DESCRIPTION From: START DATE To: DEADLINE Tags: [TAG]</code></p>
-</li>
+<div class="paragraph">
+<p>Format: <code>add DESCRIPTION [by/on/from DEADLINE] [at START TIME to END TIME] [t/TAG]…</code></p>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>The task added is automatically sorted according to the deadline. With expired tasks coming first, follow by tasks with deadline that are coming up next and lastly tasks without deadline.</p>
 </li>
-</ol>
+</ul>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Dates can be in any format as long as the month precedes the date.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Words or phrases like 'tomorrow', 'yesterday', 'Tue', 'Tuesday', 'next Mon', 'day before yesterday', '5 Dec', '5/9/2017' and 'the 8th of Jan' are all valid dates.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A person can opt to leave out a single or all dates.
-</td>
-</tr>
-</table>
+<div class="ulist NOTE">
+<ul class="NOTE">
+<li>
+<p>If you want to enter a date, it must follow the MONTH-DAY-YEAR format.</p>
+</li>
+<li>
+<p>Words or phrases like 'tomorrow', 'yesterday', 'Tue', 'Tuesday', 'day after tomorrow', '5 Dec', '5/9/2017' and 'the 8th of Jan' are all valid dates.</p>
+</li>
+<li>
+<p><code>2 pm</code>, <code>2:00</code>, <code>02:00</code>, <code>1400</code> are all valid times.</p>
+</li>
+<li>
+<p>Deadlines and times are optional items.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -113,24 +88,56 @@ A person can opt to leave out a single or all dates.
 <div class="ulist">
 <ul>
 <li>
+<p><code>add important meeting on 17 Nov at 9 am to 11 am</code>
+Sets the description to <code>important meetin</code>, deadline to the <code>15th of November</code> in the current or upcoming year and times to <code>09:00</code> and <code>11:00</code> respectively.</p>
+</li>
+<li>
 <p><code>add recess week from tomorrow by 15 Sep</code>
-Sets the description to "recess week" start date to the next day and the deadline to the 15th of September in the current or upcoming year.</p>
+Sets the description to <code>recess week</code> start date to the next day and the deadline to the <code>15th of September</code> in the current or upcoming year.</p>
 </li>
 <li>
 <p><code>add get groceries</code>
-Sets the description to "get groceries" leaving the other parameters blank.</p>
+Sets the description to <code>get groceries</code> leaving the other parameters blank.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <p><em>Constraints</em></p>
 </div>
+<div class="paragraph">
+<p>Note the following constraints when adding tasks:</p>
+</div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Dates MUST be preceded by one of the prefixes.</p>
+<p>Dates <strong>must</strong> be preceded by one of the prefixes.</p>
+</li>
+<li>
+<p>Invalid dates (such as 32 Jan) will not be flagged by Mobilize and will be replaced in a task card by an incorrect date (such as Feb 1 '48).</p>
+</li>
+<li>
+<p>Invalid times (such as 200 and 3 (without am or pm)) will not be flagged by Mobilize and will be replaced in a task card by an incorrect time (such as 00:00).</p>
+</li>
+<li>
+<p>If one time (e.g. start time) is invalid while the other (e.g. end time) is valid, the incorrect time will be ignored by Mobilize and only the correct time will be added
+as a <strong>single</strong> time for the task.</p>
+</li>
+<li>
+<p>If a prefix is used and no subsequent parameter is specified, the task will be added without the associated item, e.g. <code>add meeting on</code> will set an empty deadline for the task.</p>
+</li>
+<li>
+<p>Different deadline prefixes are <strong>not</strong> allowed in the same command, e.g. <code>add submit assignment by friday on friday</code> will result in an error.</p>
+</li>
+<li>
+<p>Multiple values for a single deadline prefix for a single task will only result in the <strong>first</strong> value being selected, e.g. the command <code>add finish quiz by friday saturday</code> will set the deadline to the upcoming <strong>Friday only</strong> and <strong>not</strong> Saturday.</p>
+</li>
+<li>
+<p>Multiple copies of the same deadline prefix with multiple values each will result in the <strong>last</strong> value being selected, e.g. the command <code>add finish quiz by friday by saturday</code> will set the deadline to the upcoming <strong>Saturday only</strong> and <strong>not</strong> Friday.</p>
+</li>
+<li>
+<p>Multiple values for each time prefix is <strong>not allowed</strong> and will result in incorrect time values being registered for a task card without warning.</p>
 </li>
 </ul>
 </div>
@@ -295,10 +302,7 @@ Limits possibilities of adding new prefixes and making the format more flexible 
 <p>Change of plans? The edit feature offers a hassle-free solution to change any parameter of an existing task.</p>
 </div>
 <div class="paragraph">
-<p>All you have to do is type in:</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>edit INDEX DESCRIPTION from START DATE to DEADLINE</code></p>
+<p>Format: <code>edit INDEX DESCRIPTION by/from/at DEADLINE at START TIME to END TIME</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -312,27 +316,48 @@ One or more parameters can be specified.
 </tr>
 </table>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+The time parameter can only be edited using the prefix <code>at</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>For example:</p>
 </div>
-<div class="paragraph">
-<p>*<code>edit 1 exams from 4th Dec to 5th Dec</code><br>
-Changes all parameters of the task at INDEX 1 to set DESCRIPTION to "exams", START DATE to "Mon, Dec 4, '17"
-and DEADLINE to "Tue, Dec 5, '17"</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>edit 1 exam on 4th Dec at 8 pm to 9 pm</code><br>
+Changes all parameters of the task at INDEX 1 to set task description to <code>exams</code>, deadline to <code>Mon, Dec 4, '17</code>
+and times to <code>20:00</code> and <code>21:00</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 from tomorrow</code><br>
+Changes the deadline of the task at INDEX 2 to the date of the following day.</p>
+</li>
+<li>
+<p><code>edit 3 at 9 am</code>
+Changes the time of the task at INDEX 3 to <code>09:00</code>.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>*<code>edit 2 from tomorrow</code><br>
-Changes the START DATE of the task at INDEX 2 to the date of the following day.</p>
-</div>
-<div class="paragraph">
-<p><em>Constraints</em></p>
+<div class="title"><em>Constraints</em></div>
+<p>Note the following constraints when editing tasks:</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The index refers to the index number shown in the most recent listing.</p>
+<p>INDEX refers to the index number shown in the most recent task listing.</p>
 </li>
 <li>
 <p>If a task is first searched by the “find” feature, then the new index of the task according to the filtered list of Task Cards, is what must be used in the INDEX parameter.</p>
@@ -341,7 +366,27 @@ Changes the START DATE of the task at INDEX 2 to the date of the following day.<
 <p>The index <strong>must be a positive integer</strong> <code>1, 2, 3, &#8230;&#8203;</code></p>
 </li>
 <li>
+<p>The time parameter can only be changed using the <code>at</code> prefix.</p>
+</li>
+<li>
+<p>When changing the times of a task, <strong>both</strong> start time and end time <strong>must</strong> be specified or repeated, even if only one time must be changed,
+e.g. to change the end time of <code>09:00 - 11:00</code> at INDEX 1, the command must be <code>edit 1 at 10 am to 11 am</code>. If <code>edit 1 at 10 am</code>, both times will
+be replaced by <code>10:00</code> only. If <code>edit 1 to 10 am</code> is used, then Mobilize will give an error.</p>
+</li>
+<li>
 <p>If a prefix is used with a blank parameter, the respective date associated with that prefix will be deleted.</p>
+</li>
+<li>
+<p>Different deadline prefixes are <strong>not</strong> allowed in the same command, e.g. <code>edit 1 by friday on friday</code> will result in an error.</p>
+</li>
+<li>
+<p>Multiple values for a single deadline prefix for a single task will only result in the <strong>first</strong> value being selected, e.g. the command <code>edit 1 by friday saturday</code> will set the deadline to the upcoming <strong>Friday only</strong> and <strong>not</strong> Saturday.</p>
+</li>
+<li>
+<p>Multiple copies of the same deadline prefix with multiple values each will result in the <strong>last</strong> value being selected, e.g. the command <code>edit 1 by friday by saturday</code> will set the deadline to the upcoming <strong>Saturday only</strong> and <strong>not</strong> Friday.</p>
+</li>
+<li>
+<p>Multiple values for each time prefix is <strong>not allowed</strong> and will result in incorrect time values being registered for a task card without warning.</p>
 </li>
 </ul>
 </div>
@@ -424,21 +469,11 @@ a newly edited person is created and the Model is called to update the task usin
 <div class="sect3">
 <h4 id="tagging-multiple-contacts-code-tag-code-br"><a class="link" href="#tagging-multiple-contacts-code-tag-code-br">Tagging multiple contacts : <code>tag</code><br></a></h4>
 <div class="paragraph">
-<p>Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.</p>
+<p>Tags are a useful way of grouping and labeling contacts. But editing them manually, one by one, can be a tedious process.
+Instead, you can use the tag command to tag multiple contacts simultaneously.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Instead, use:
-Format: <code>tag [INDEX]… t/[TAG]…</code></p>
-</li>
-<li>
-<p>Multiple contacts will be tagged by the tag(s) set in the parameter.</p>
-</li>
-<li>
-<p>The Contact Cards will be updated to display the new tags.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>Format: <code>tag INDEX… t/[TAG]…</code></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -453,21 +488,27 @@ You can add multiple tags to multiple contacts by repeating the tag prefix.
 </table>
 </div>
 <div class="paragraph">
-<p>To illustrate, the command:</p>
+<p>Example:</p>
 </div>
 <div class="paragraph">
 <p><code>tag 1, 2, 3 t/friend t/family</code><br>
-Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] and [family].</p>
+Results in all contacts in indices 1, 2 and 3 being tagged with both [<code>friend</code>] and [<code>family</code>].</p>
 </div>
 <div class="paragraph">
 <p><em>Constraints</em></p>
+</div>
+<div class="paragraph">
+<p>Note the following constraints when trying to add tags:</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Each index MUST be valid according to the current list of contacts.</p>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Each index <strong>must</strong> be valid according to the current list of contacts.</p>
 </li>
 <li>
 <p>If a contact is first searched by the “find” feature, then the new index of the contact according to the filtered list of Contact Cards, is what must be used in the INDEX parameter.</p>
@@ -476,7 +517,10 @@ Results in all contacts in indices 1, 2 and 3 to be tagged with both [friend] an
 <p>Every INDEX must be separated by a comma.</p>
 </li>
 <li>
-<p>Every TAG must have a prefix.</p>
+<p>Every TAG must be preceded by a tag prefix, t/.</p>
+</li>
+<li>
+<p>If a mix of valid and invalid indices are given, then tags will only be added to the valid INDEX without warning. If all indices are invalid, Mobilize will show an error message.</p>
 </li>
 </ul>
 </div>
@@ -627,7 +671,7 @@ public static Index[] filterValidIndices(int lastShownListSize, Index[] indices)
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-13 16:21:05 +00:00
+Last updated 2017-11-13 16:41:06 +00:00
 </div>
 </div>
 </body>
