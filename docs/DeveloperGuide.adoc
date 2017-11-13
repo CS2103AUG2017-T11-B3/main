@@ -69,12 +69,12 @@ This project follows https://github.com/oss-generic/process/blob/master/docs/Cod
 
 . Go to `File` > `Settings...` (Windows/Linux), or `IntelliJ IDEA` > `Preferences...` (macOS)
 . Select `Editor` > `Code Style` > `Java`
-. Click on the `Imports` tab to set the order
+. Click on the `Imports` tab to set the order:
 
-* For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set to `999` to prevent IntelliJ from contracting the import statements
-* For `Import Layout`: The order is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
+* For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set these to `999` to prevent IntelliJ from contracting the import statements.
+* For `Import Layout`: Set these in order beginning with `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*` and ending with `import all other imports`. Add a `<blank line>` between each `import`.
 
-Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
+Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check if your code is compliant with our style.
 
 ==== Setting up CI
 
@@ -83,23 +83,25 @@ Set up Travis to perform Continuous Integration (CI) for your fork. See <<UsingT
 Optionally, you can set up AppVeyor as a second CI (see <<UsingAppVeyor#, UsingAppVeyor.adoc>>).
 
 [NOTE]
-Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based)
+Having both Travis and AppVeyor ensures your App works on both Unix-based platforms and Windows-based platforms (Travis is Unix-based and AppVeyor is Windows-based).
 
 ==== Getting started with coding
 
 When you are ready to start coding,
 
 1. Get some sense of the overall design by reading the link:#architecture[Architecture] section.
-2. Take a look at the section link:#implementation[Implementation] to understand how some of the key features are implemented.
+2. Take a look at the link:#implementation[Implementation] section to understand how some of the key features are implemented.
 
 == Design
 
 === Architecture
 
+The *_Architecture Diagram_* given below explains the high-level design of the App.
+
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
-The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
+Given below is a quick overview of each component.
 
 [TIP]
 The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
@@ -390,7 +392,7 @@ image::AddTaskCommandSequenceDiagram.png[width="800", height="500"]
 **Pros:** * Easy to assign an empty string to the instance variable so that the dates are optional and do not show up in the UI.
 In addition, dates can be stored after being formatted to a more user-friendly style (i.e. Tue, Oct 24, '17). This prevents dates from becoming confusing (i.e. distinguishing between dd-MM-yyyy and mm-DD-yyyy) +
 **Cons:** Dates are not stored the correct format. This makes it more difficult to compare and validate later on as they have to be reformatted into Date objects every time. For example,
- in validating whether a start date is indeed before a deadline. +
+in validating whether a start date is indeed before a deadline. +
 **Alternative 2:** Use java.time.LocalDate class. +
 **Pros:** Dates are in correct format. Validation becomes easier and reformatting is not necessary. +
 **Cons:** LocalDate cannot be initialized when no input is given. In order to make dates optional, phony values would have to be used which violates the coding standard. +

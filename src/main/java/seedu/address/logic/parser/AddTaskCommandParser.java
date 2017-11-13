@@ -34,7 +34,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     private static final int INDEX_START_TIME = 0;
     private static final int INDEX_END_TIME = 1;
 
-    Logger logger = LogsCenter.getLogger(this.getClass());
+    private Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddTaskCommand
