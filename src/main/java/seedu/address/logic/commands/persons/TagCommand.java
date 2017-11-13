@@ -6,7 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -22,7 +24,6 @@ import seedu.address.model.tag.Tag;
 /**
  * Tags multiple people in the address book.
  */
-//@@author raisa2010
 public class TagCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "tag";
@@ -40,6 +41,8 @@ public class TagCommand extends UndoableCommand {
 
     private final Index[] indices;
     private final Set<Tag> newTags;
+
+    private Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * @param indices of the people in the filtered person list to tag
@@ -63,7 +66,12 @@ public class TagCommand extends UndoableCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        int numInvalidValues = indices.length - validIndices.length;
+        logger.info("Number of invalid indices skipped: " + numInvalidValues);
+
         for (Index currentIndex : validIndices) {
+            assert currentIndex != null;
+            assert currentIndex.getZeroBased() >= 0;
             ReadOnlyPerson personToEdit = lastShownList.get(currentIndex.getZeroBased());
 
             try {

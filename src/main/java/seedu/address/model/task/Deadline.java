@@ -11,9 +11,6 @@ public class Deadline {
 
     public final String date;
 
-    /**
-     * Creates a new deadline.
-     */
     public Deadline(String date) {
         requireNonNull(date);
         String trimmedDate = date.trim();

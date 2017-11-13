@@ -37,6 +37,7 @@ public class ArgumentTokenizer {
      * @return           The part of the {@code argsString} that is unquoted.
      */
     private static String extractUnquotedArgsString(String argsString) {
+        assert argsString != null;
         if (argsString.indexOf(QUOTE_REGEX) == argsString.lastIndexOf(QUOTE_REGEX)) {
             return argsString;
         }

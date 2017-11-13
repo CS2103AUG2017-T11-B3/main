@@ -1,8 +1,10 @@
-package seedu.address.model.task;
+package seedu.address.logic.parser;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import seedu.address.model.task.EventTime;
 
 //@@author raisa2010
 /**
@@ -27,7 +29,8 @@ public abstract class DateTimeValidator {
             + "and any date not using the (M)M(d)d(YY)YY format.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Time is invalid! Invalid values include values such as "
             + "29:00, 29pm or 2900.\n"
-            + "Invalid formats include 100 (instead of 1:00), 1900 (instead of 19:00) and 11 (instead of 11 am or pm";
+            + "Invalid formats include 100 (instead of 1:00), 1900 (instead of 19:00) and 11 (instead of 11 am or pm)\n"
+            + "Start times cannot be after End times.";
 
     /**
      * Validates a given {@code inputDate} given in an MDY format.
@@ -69,6 +72,7 @@ public abstract class DateTimeValidator {
 
     /**
      * Determines the specific dotted date format used by the {@code String} inputDate.
+     * Returns an empty string if it doesn not match the dotted date format.
      */
     public static String getDottedFormat(String inputDate) {
         for (String format : DOTTED_DATE_FORMATS) {
@@ -92,7 +96,7 @@ public abstract class DateTimeValidator {
     }
 
     /**
-     * Checks if the {@code String inputDate} matches the given {@code String validDateFormat}
+     * Checks if the {@code String inputDate} matches the given {@code String validDateFormat}.
      */
     public static boolean doesDateMatchValidFormat(String inputDate, String validDateFormat) {
         try {

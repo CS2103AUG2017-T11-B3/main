@@ -43,7 +43,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tasks.EditTaskCommand;
 import seedu.address.logic.commands.tasks.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTimeValidator;
 import seedu.address.model.task.Description;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 

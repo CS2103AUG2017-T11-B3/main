@@ -31,6 +31,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.TaskBuilder;
 
+//@@author raisa2010
 public class TagTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Index[] indices;
