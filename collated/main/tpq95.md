@@ -165,6 +165,7 @@ public class DetagCommandParser implements Parser<DetagCommand> {
 
         updatePerson(oldPerson, newPerson);
     }
+
 ```
 ###### /java/seedu/address/model/Model.java
 ``` java
@@ -281,6 +282,8 @@ public class CalendarPanel extends UiPart<Region> {
 
     private static final String FXML = "CalendarPanel.fxml";
 
+    private static Clock clock = Clock.systemDefaultZone();
+
     private final Logger logger = LogsCenter.getLogger(this.getClass());
     private final Logic logic;
     private final Model model;
@@ -314,7 +317,9 @@ public class CalendarPanel extends UiPart<Region> {
         calendarPane.getChildren().add(popupContent);
         //selectDate(popupContent, "30-10-2017");
     }
-
+```
+###### /java/seedu/address/ui/CalendarPanel.java
+``` java
     /**
      * Load datePicker with various dates, birthday from personList and deadline from taskList
      * @param personList
@@ -508,7 +513,6 @@ public class CalendarPanel extends UiPart<Region> {
         return dayCellFactory;
     }
 
-}
 ```
 ###### /java/seedu/address/ui/PersonCard.java
 ``` java
