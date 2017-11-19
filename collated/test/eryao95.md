@@ -1,5 +1,5 @@
 # eryao95
-###### /java/seedu/address/logic/commands/CommandTestUtil.java
+###### \java\seedu\address\logic\commands\CommandTestUtil.java
 ``` java
     /**
      * Updates {@code model}'s filtered list to show only the first task in the {@code model}'s address book.
@@ -12,7 +12,7 @@
         assert model.getFilteredTaskList().size() == 1;
     }
 ```
-###### /java/seedu/address/logic/commands/DeleteTaskCommandTest.java
+###### \java\seedu\address\logic\commands\DeleteTaskCommandTest.java
 ``` java
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteTaskCommand}.
@@ -112,7 +112,7 @@ public class DeleteTaskCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddCommandParserTest.java
+###### \java\seedu\address\logic\parser\AddCommandParserTest.java
 ``` java
     @Test
     public void parse_allFieldsPresent_success() {
@@ -219,7 +219,7 @@ public class DeleteTaskCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/DeleteTaskCommandParserTest.java
+###### \java\seedu\address\logic\parser\DeleteTaskCommandParserTest.java
 ``` java
 public class DeleteTaskCommandParserTest {
 
@@ -237,7 +237,7 @@ public class DeleteTaskCommandParserTest {
     }
 }
 ```
-###### /java/seedu/address/testutil/PersonBuilder.java
+###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
     public PersonBuilder() {
         try {
@@ -254,7 +254,7 @@ public class DeleteTaskCommandParserTest {
         }
     }
 ```
-###### /java/seedu/address/testutil/PersonBuilder.java
+###### \java\seedu\address\testutil\PersonBuilder.java
 ``` java
     /**
      * Sets the {@code Birthday} of the {@code Person} that we are building.
@@ -268,7 +268,7 @@ public class DeleteTaskCommandParserTest {
         return this;
     }
 ```
-###### /java/seedu/address/testutil/TestUtil.java
+###### \java\seedu\address\testutil\TestUtil.java
 ``` java
     /**
      * Returns the middle index of the task in the {@code model}'s task list.
@@ -292,7 +292,7 @@ public class DeleteTaskCommandParserTest {
     }
 }
 ```
-###### /java/systemtests/AddCommandSystemTest.java
+###### \java\systemtests\AddCommandSystemTest.java
 ``` java
     @Test
     public void add() throws Exception {
@@ -438,7 +438,7 @@ public class DeleteTaskCommandParserTest {
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 ```
-###### /java/systemtests/DeleteTaskCommandSystemTest.java
+###### \java\systemtests\DeleteTaskCommandSystemTest.java
 ``` java
     private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE);
