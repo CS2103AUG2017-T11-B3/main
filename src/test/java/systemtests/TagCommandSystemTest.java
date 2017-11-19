@@ -65,6 +65,7 @@ public class TagCommandSystemTest extends AddressBookSystemTest {
                         + INDEX_SECOND_TASK.getOneBased() + INVALID_TAG_DESC,
                 Tag.MESSAGE_TAG_CONSTRAINTS);
     }
+    //@@author
 
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
@@ -118,7 +119,6 @@ public class TagCommandSystemTest extends AddressBookSystemTest {
         assertStatusBarUnchangedExceptSyncStatus();
     }
 
-    //@@author
     /**
      * Executes {@code command} and in addition,<br>
      * 1. Asserts that the command box displays {@code command}.<br>
