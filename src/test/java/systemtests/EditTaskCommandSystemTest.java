@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.ChangeModeCommand.MESSAGE_CHANGE_MODE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_INTERNSHIP;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_QUOTED_PAPER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
@@ -28,7 +27,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalTasks.GYM;
 import static seedu.address.testutil.TypicalTasks.INTERNSHIP;
 import static seedu.address.testutil.TypicalTasks.KEYWORD_MATCHING_FINISH;
 
@@ -117,23 +115,7 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
         editedTask = new TaskBuilder(editedTask).withDeadline("").build();
         assertCommandSuccess(command, index, editedTask);
 
-        /* Case: deadline prefix inside quoted description -> only description edited */
-        index = INDEX_SECOND_TASK;
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + " " + DESCRIPTION_QUOTED_PAPER;
-        editedTask = new TaskBuilder(GYM).withDescription(UNQUOTED_DESCRIPTION_PAPER).build();
-        assertCommandSuccess(command, index, editedTask);
-
-
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
-
-        /* Case: filtered task list, edit index within bounds of address book and task list -> edited */
-        showTasksWithDescription(KEYWORD_MATCHING_FINISH);
-        index = INDEX_FIRST_TASK;
-        assertTrue(index.getZeroBased() < getModel().getFilteredTaskList().size());
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_DESCRIPTION_INTERNSHIP;
-        taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
-        editedTask = new TaskBuilder(taskToEdit).withDescription(VALID_DESCRIPTION_INTERNSHIP).build();
-        assertCommandSuccess(command, index, editedTask);
 
         /* Case: filtered task list, edit index within bounds of task manager but out of bounds of task list
          * -> rejected

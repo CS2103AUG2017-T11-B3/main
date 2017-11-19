@@ -1,5 +1,5 @@
 # tpq95
-###### /java/seedu/address/logic/commands/AddCommandTest.java
+###### \java\seedu\address\logic\commands\AddCommandTest.java
 ``` java
         @Override
         public void deleteTag(ReadOnlyPerson person, Tag oldTag)
@@ -7,7 +7,7 @@
             fail("This method should not be called.");
         }
 ```
-###### /java/seedu/address/logic/commands/DetagCommandTest.java
+###### \java\seedu\address\logic\commands\DetagCommandTest.java
 ``` java
 /**
  * Contains integration tests (Interaction with the Model) and unit tests for {@code DetagCommand}.
@@ -99,7 +99,7 @@ public class DetagCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/FindCommandTest.java
+###### \java\seedu\address\logic\commands\FindCommandTest.java
 ``` java
     @Test
     public void executeMultipleBirthdaysMultiplePersonsFound() {
@@ -122,7 +122,7 @@ public class DetagCommandTest {
         assertCommandSuccess(command, expectedMessage, Arrays.asList(ALICE, FIONA, GEORGE));
     }
 ```
-###### /java/seedu/address/logic/commands/FindTaskCommandTest.java
+###### \java\seedu\address\logic\commands\FindTaskCommandTest.java
 ``` java
     @Test
     public void executeMultipleDeadlinesMultipleTasksFound() {
@@ -138,7 +138,7 @@ public class DetagCommandTest {
         assertCommandSuccess(command, expectedMessage, Arrays.asList(ASSIGNMENT, QUIZ, SUBMISSION));
     }
 ```
-###### /java/systemtests/DetagCommandSystemTest.java
+###### \java\systemtests\DetagCommandSystemTest.java
 ``` java
 public class DetagCommandSystemTest extends AddressBookSystemTest {
 
@@ -261,7 +261,7 @@ public class DetagCommandSystemTest extends AddressBookSystemTest {
         return targetTag;
     }
 ```
-###### /java/systemtests/FindTaskCommandSystemTest.java
+###### \java\systemtests\FindTaskCommandSystemTest.java
 ``` java
         /* Case: find task with deadline in address book, 1 keyword -> 1 task found */
         command = FindTaskCommand.COMMAND_WORD + " 01-11-2017";
@@ -288,7 +288,7 @@ public class DetagCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedTaskCardUnchanged();
 ```
-###### /java/systemtests/FindTaskCommandSystemTest.java
+###### \java\systemtests\FindTaskCommandSystemTest.java
 ``` java
         /* Case: find deadline of task in address book, keyword is substring of deadline -> 0 tasks found */
         command = FindTaskCommand.COMMAND_WORD + " 20-10";

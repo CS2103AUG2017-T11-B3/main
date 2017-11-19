@@ -1,5 +1,5 @@
 # raisa2010
-###### /java/seedu/address/logic/commands/AddTaskCommandIntegrationTest.java
+###### \java\seedu\address\logic\commands\AddTaskCommandIntegrationTest.java
 ``` java
 /**
  * Contains integration tests (interaction with the Model) for {@code AddTaskCommand}.
@@ -40,7 +40,7 @@ public class AddTaskCommandIntegrationTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/AddTaskCommandTest.java
+###### \java\seedu\address\logic\commands\AddTaskCommandTest.java
 ``` java
 public class  AddTaskCommandTest {
 
@@ -222,7 +222,7 @@ public class  AddTaskCommandTest {
         }
     }
 ```
-###### /java/seedu/address/logic/commands/EditTaskCommandTest.java
+###### \java\seedu\address\logic\commands\EditTaskCommandTest.java
 ``` java
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditTaskCommand.
@@ -379,7 +379,7 @@ public class EditTaskCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/EditTaskDescriptorTest.java
+###### \java\seedu\address\logic\commands\EditTaskDescriptorTest.java
 ``` java
 public class EditTaskDescriptorTest {
 
@@ -423,7 +423,7 @@ public class EditTaskDescriptorTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/TagCommandTest.java
+###### \java\seedu\address\logic\commands\TagCommandTest.java
 ``` java
 public class TagCommandTest {
 
@@ -566,7 +566,7 @@ public class TagCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/TagTaskCommandTest.java
+###### \java\seedu\address\logic\commands\TagTaskCommandTest.java
 ``` java
 public class TagTaskCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -693,7 +693,7 @@ public class TagTaskCommandTest {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/AddTaskCommandParserTest.java
+###### \java\seedu\address\logic\parser\AddTaskCommandParserTest.java
 ``` java
 public class AddTaskCommandParserTest  {
     private AddTaskCommandParser parser = new AddTaskCommandParser();
@@ -835,7 +835,7 @@ public class AddTaskCommandParserTest  {
     }
 }
 ```
-###### /java/seedu/address/logic/parser/EditTaskCommandParserTest.java
+###### \java\seedu\address\logic\parser\EditTaskCommandParserTest.java
 ``` java
 public class EditTaskCommandParserTest {
 
@@ -1016,7 +1016,7 @@ public class EditTaskCommandParserTest {
     }
 
 ```
-###### /java/seedu/address/logic/parser/TagTaskCommandParserTest.java
+###### \java\seedu\address\logic\parser\TagTaskCommandParserTest.java
 ``` java
 public class TagTaskCommandParserTest {
 
@@ -1141,7 +1141,7 @@ public class TagTaskCommandParserTest {
     }
 }
 ```
-###### /java/seedu/address/model/task/DeadlineTest.java
+###### \java\seedu\address\model\task\DeadlineTest.java
 ``` java
 public class DeadlineTest {
 
@@ -1165,7 +1165,7 @@ public class DeadlineTest {
     }
 }
 ```
-###### /java/seedu/address/model/task/DescriptionTest.java
+###### \java\seedu\address\model\task\DescriptionTest.java
 ``` java
 public class DescriptionTest {
     @Test
@@ -1183,7 +1183,7 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("finish the 2nd assignment")); // alphanumeric characters
         //@@ author
 ```
-###### /java/seedu/address/model/UniqueTaskListTest.java
+###### \java\seedu\address\model\UniqueTaskListTest.java
 ``` java
 public class UniqueTaskListTest {
     @Rule
@@ -1197,7 +1197,7 @@ public class UniqueTaskListTest {
     }
 }
 ```
-###### /java/seedu/address/testutil/AddressBookBuilder.java
+###### \java\seedu\address\testutil\AddressBookBuilder.java
 ``` java
     /**
      * Adds a new {@code Task} to the {@code AddressBook} that we are building.
@@ -1212,7 +1212,7 @@ public class UniqueTaskListTest {
     }
 
 ```
-###### /java/seedu/address/testutil/TaskBuilder.java
+###### \java\seedu\address\testutil\TaskBuilder.java
 ``` java
 /**
  * A utility class to help with building Task objects.
@@ -1300,7 +1300,7 @@ public class TaskBuilder {
     }
 }
 ```
-###### /java/seedu/address/testutil/TaskUtil.java
+###### \java\seedu\address\testutil\TaskUtil.java
 ``` java
 /**
  * A Utility class for Task.
@@ -1333,7 +1333,7 @@ public class TaskUtil {
     }
 }
 ```
-###### /java/systemtests/AddTaskCommandSystemTest.java
+###### \java\systemtests\AddTaskCommandSystemTest.java
 ``` java
 public class AddTaskCommandSystemTest extends AddressBookSystemTest {
 
@@ -1464,7 +1464,7 @@ public class AddTaskCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
     }
 ```
-###### /java/systemtests/EditTaskCommandSystemTest.java
+###### \java\systemtests\EditTaskCommandSystemTest.java
 ``` java
 public class EditTaskCommandSystemTest extends AddressBookSystemTest {
 
@@ -1531,23 +1531,7 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
         editedTask = new TaskBuilder(editedTask).withDeadline("").build();
         assertCommandSuccess(command, index, editedTask);
 
-        /* Case: deadline prefix inside quoted description -> only description edited */
-        index = INDEX_SECOND_TASK;
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + " " + DESCRIPTION_QUOTED_PAPER;
-        editedTask = new TaskBuilder(GYM).withDescription(UNQUOTED_DESCRIPTION_PAPER).build();
-        assertCommandSuccess(command, index, editedTask);
-
-
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
-
-        /* Case: filtered task list, edit index within bounds of address book and task list -> edited */
-        showTasksWithDescription(KEYWORD_MATCHING_FINISH);
-        index = INDEX_FIRST_TASK;
-        assertTrue(index.getZeroBased() < getModel().getFilteredTaskList().size());
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_DESCRIPTION_INTERNSHIP;
-        taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
-        editedTask = new TaskBuilder(taskToEdit).withDescription(VALID_DESCRIPTION_INTERNSHIP).build();
-        assertCommandSuccess(command, index, editedTask);
 
         /* Case: filtered task list, edit index within bounds of task manager but out of bounds of task list
          * -> rejected
@@ -1636,7 +1620,7 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
     }
 
 ```
-###### /java/systemtests/TagCommandSystemTest.java
+###### \java\systemtests\TagCommandSystemTest.java
 ``` java
 public class TagCommandSystemTest extends AddressBookSystemTest {
 
@@ -1679,58 +1663,6 @@ public class TagCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(TagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + ", "
                         + INDEX_SECOND_TASK.getOneBased() + INVALID_TAG_DESC,
                 Tag.MESSAGE_TAG_CONSTRAINTS);
-    }
-
-    /**
-     * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
-     * 1. Asserts that result display box displays the success message of executing {@code TagCommand}.<br>
-     * 2. Asserts that the model related components are updated to reflect the person at index {@code toEdit} being
-     * updated to values specified {@code taggedPerson}.<br>
-     * @param toEdit the index of the current model's filtered list.
-     * @see TagCommandSystemTest#assertCommandSuccess(String, Model, String, Index)
-     */
-    private void assertCommandSuccess(String command, Index toEdit, ReadOnlyPerson taggedPerson,
-                                      Index expectedSelectedCardIndex) {
-        Model expectedModel = getModel();
-        try {
-            expectedModel.updatePerson(
-                    expectedModel.getFilteredPersonList().get(toEdit.getZeroBased()), taggedPerson);
-            expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        } catch (DuplicatePersonException | PersonNotFoundException e) {
-            throw new IllegalArgumentException(
-                    "taggedPerson is a duplicate in expectedModel, or it isn't found in the model.");
-        }
-
-        assertCommandSuccess(command, expectedModel,
-                String.format(TagCommand.MESSAGE_TAG_PERSONS_SUCCESS, taggedPerson), expectedSelectedCardIndex);
-    }
-
-    /**
-     * Executes {@code command} and in addition,<br>
-     * 1. Asserts that the command box displays an empty string.<br>
-     * 2. Asserts that the result display box displays {@code expectedResultMessage}.<br>
-     * 3. Asserts that the model related components equal to {@code expectedModel}.<br>
-     * 4. Asserts that the browser url and selected card update accordingly depending on the card at
-     * {@code expectedSelectedCardIndex}.<br>
-     * 5. Asserts that the status bar's sync status changes.<br>
-     * 6. Asserts that the command box has the default style class.<br>
-     * Verifications 1 to 3 are performed by
-     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
-     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
-     * @see AddressBookSystemTest#assertSelectedCardChanged(Index)
-     */
-    private void assertCommandSuccess(String command, Model expectedModel, String expectedResultMessage,
-                                      Index expectedSelectedCardIndex) {
-        executeCommand(command);
-        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        assertApplicationDisplaysExpected("", expectedResultMessage, expectedModel);
-        assertCommandBoxShowsDefaultStyle();
-        if (expectedSelectedCardIndex != null) {
-            assertSelectedCardChanged(expectedSelectedCardIndex);
-        } else {
-            assertSelectedCardUnchanged();
-        }
-        assertStatusBarUnchangedExceptSyncStatus();
     }
 
 ```
