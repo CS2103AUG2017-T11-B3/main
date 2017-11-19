@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.ChangeModeCommand.MESSAGE_CHANGE_MODE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_INTERNSHIP;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_QUOTED_PAPER;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
@@ -28,7 +27,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
-import static seedu.address.testutil.TypicalTasks.GYM;
 import static seedu.address.testutil.TypicalTasks.INTERNSHIP;
 import static seedu.address.testutil.TypicalTasks.KEYWORD_MATCHING_FINISH;
 
