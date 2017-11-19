@@ -117,15 +117,6 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
 
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
-        /* Case: filtered task list, edit index within bounds of address book and task list -> edited */
-        showTasksWithDescription(KEYWORD_MATCHING_FINISH);
-        index = INDEX_FIRST_TASK;
-        assertTrue(index.getZeroBased() < getModel().getFilteredTaskList().size());
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_DESCRIPTION_INTERNSHIP;
-        taskToEdit = getModel().getFilteredTaskList().get(index.getZeroBased());
-        editedTask = new TaskBuilder(taskToEdit).withDescription(VALID_DESCRIPTION_INTERNSHIP).build();
-        assertCommandSuccess(command, index, editedTask);
-
         /* Case: filtered task list, edit index within bounds of task manager but out of bounds of task list
          * -> rejected
          */
