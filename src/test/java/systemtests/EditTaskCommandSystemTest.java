@@ -117,13 +117,6 @@ public class EditTaskCommandSystemTest extends AddressBookSystemTest {
         editedTask = new TaskBuilder(editedTask).withDeadline("").build();
         assertCommandSuccess(command, index, editedTask);
 
-        /* Case: deadline prefix inside quoted description -> only description edited */
-        index = INDEX_SECOND_TASK;
-        command = EditTaskCommand.COMMAND_WORD + " " + index.getOneBased() + " " + DESCRIPTION_QUOTED_PAPER;
-        editedTask = new TaskBuilder(GYM).withDescription(UNQUOTED_DESCRIPTION_PAPER).build();
-        assertCommandSuccess(command, index, editedTask);
-
-
         /* ------------------ Performing edit operation while a filtered list is being shown ------------------------ */
 
         /* Case: filtered task list, edit index within bounds of address book and task list -> edited */
