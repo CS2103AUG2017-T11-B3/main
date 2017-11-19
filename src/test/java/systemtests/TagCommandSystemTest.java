@@ -65,8 +65,8 @@ public class TagCommandSystemTest extends AddressBookSystemTest {
                         + INDEX_SECOND_TASK.getOneBased() + INVALID_TAG_DESC,
                 Tag.MESSAGE_TAG_CONSTRAINTS);
     }
-    //@@author
 
+    //@@author
     /**
      * Performs the same verification as {@code assertCommandSuccess(String, Model, String, Index)} and in addition,<br>
      * 1. Asserts that result display box displays the success message of executing {@code TagCommand}.<br>
